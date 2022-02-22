@@ -48,7 +48,7 @@ html_theme = 'sphinx_rtd_theme'
 
 html_theme_path = ['_themes', ]
 
-html_logo = './img/state_logo_1.png'
+html_logo = './img/state_logo_red.png'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
