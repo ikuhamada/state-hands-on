@@ -6,7 +6,7 @@
 Welcome to the STATE hands-on tutorial!
 =======================================
 
-This is the home to the STATE tutorial.
+This is the home to the STATE tutorial. A documentation of the STATE code can be found `here <https://state-doc.readthedocs.io>`_.
 
 .. toctree::
    :maxdepth: 5
