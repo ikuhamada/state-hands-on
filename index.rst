@@ -12,6 +12,7 @@ This is the home to the STATE tutorial. A documentation of the STATE code can be
    :maxdepth: 5
    :hidden:
 
+   about
    CMD/CMD40/Beginner/index.rst
    CMD/CMD40/Advanced/index.rst
 
