@@ -1734,6 +1734,8 @@ Preparation can be done using a utility ``prepneb``. In the ``NEB`` directory, e
 
   $ prepneb -ndiv 6 -ini ../Initial/nfinp_ini  -fin ../Final/nfinp_fin
 
+(type ``prepneb -h`` for more options)
+
 This creates 7 images (subdirectories ``01``, ``02``, ... ``07``) including initial and final geometries as::
 
   01:
