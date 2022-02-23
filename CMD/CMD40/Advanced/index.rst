@@ -1794,7 +1794,7 @@ Finally, the NEB calculation can be executed, in the presence of ``replica.cmd``
 The standard output is not mandatroy, and actual output is written to ``nfout.data`` in each directory.
 
 In contrast to the usual structural optmization, the calculation is not terminated automatically.
-Instead, we mononitor the convergence of the force along and perpendicular to the reaction coordinate, and when the force perpendicular to the reaction coordinate is small, we judge the NEB calculation is converged. To do so, we grep the keyword ``ForceIN`` (``ForceOut``) in the output file for the force parpendicular (parallel) to the reaction coordinate. For example
+Instead, we mononitor the convergence of the force along and perpendicular to the reaction coordinate, and when the force perpendicular to the reaction coordinate is small, we judge the NEB calculation is converged. To do so, we grep the keyword ``ForceIn`` (``ForceOut``) in the output file for the force perpendicular (parallel) to the reaction coordinate. For example
 
 .. code ::bash
 
@@ -1817,7 +1817,7 @@ and we obtain::
   NEB:     Dist1     Dist3  AbsForce   ForceIn  ForceOut    CosPhi    Switch
   NEB:   0.73547   0.70698   0.00070   0.00036   0.00152   0.79843   0.09695
 
-and we can confirm the the forces parpendicular to the reaction coordinate are small.
+and we can confirm the the forces perpendicular to the reaction coordinate (``ForceIn``) are small.
 
 Finally, by plotting the final energy (difference),  we obtain the following energy profile.
 
