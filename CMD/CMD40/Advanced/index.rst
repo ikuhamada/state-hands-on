@@ -15,7 +15,26 @@ First of all, we login the cluster system.
 
   $ ssh -Y [user_name]@rl.mp.es.osaka-u.ac.jp
 
+or
+
+.. code:: bash
+
+  $ ssh -Y -l [user_name] rl.mp.es.osaka-u.ac.jp
+
 where [user_name] is your user name assigned.
+
+In case you connect via *pyxis* from outside of OU, it reads:
+
+.. code:: bash
+
+  $ ssh -Y [user_name]@rl
+
+or 
+
+.. code:: bash
+
+  $ ssh -Y -l [user_name] rl
+
 
 Then, we are going to set up the STATE program, pseudopotentials, and example files.
 This is done by executing the following command in the home directory (``${HOME}`` or ``~``) as:
