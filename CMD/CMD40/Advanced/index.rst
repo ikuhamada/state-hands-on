@@ -1702,7 +1702,7 @@ To perform a NEB calculation, we need the following steps:
 
 - Optimization of the final state
 
-- Preparation of the (initial) intermediate images
+- Preparation of the (initial) intermediate images and corresponding input files
 
 - NEB calculation (constrained optimization along the reaction pathway)
 
@@ -1758,6 +1758,15 @@ In each ``nfinp.data``, we need to use declare::
 for standard NEB, and for the climing-image NEB (CINEB)::
 
   GEO_OPT CINEB
+
+Also, the ``nudged_2`` contains the spring constant and the geometry of the intermediate image as::
+
+        0.02000000
+      1      0.000000000000      0.000000000000      0.000000000000
+      2      2.828316488820      0.000000000000      0.000000000000
+      3      5.656632977600      0.000000000000      0.000000000000
+
+Here, the first line specify the spring constant, and the remaining lines specify the atomic index (1st column) and positions (2-4th columns) in the cartesian coordinate (in Bohr).
 
 Furthermore, ``replica.cmd`` is required to run the image-parallel NEB. For this example it looks::
 
