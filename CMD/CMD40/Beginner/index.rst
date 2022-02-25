@@ -836,14 +836,14 @@ Use C2H4.xsf for the XSF file, vib.data for VIB file, and vib for prefix, and we
 
 Finite temperature molecular dynamics
 -------------------------------------
-In this example, we are going to perform a finite temperature molecular dynamics simulation.
+In this example, we are going to perform a finite temperature molecular dynamics (MD) simulation.
 
 * Input file ``nfinp_nhc``
 
 .. code:: bash
 
   #
-  # Ethylene molecule in a box: geometry optimization with the GDIIS method
+  # Ethylene molecule in a box: finite temperature molecular dynamics
   #
   WF_OPT  DAV
   ION_DYN FTMD
@@ -910,6 +910,9 @@ to save the trajectory in the XYZ format.
 
 Use XCrySDen, VMD, or other your favorite visualization software to visualize it (VESTA cannot be used for movies).
 
+.. note::
+  Generally, long time molecular dynamics simulation is required to obtain reliable statistical ensemble/average, which cannot be possible within the given hours. In STATE, use ``CPUMAX`` to dump the latest geometry and wave functions before the time limit, and restart by using the ``RESTART`` keyword. It is also possible to terminate the job by writing a positive number in the ``nfstop.data``.
+
 Cl on Al(100)
 =============
 
@@ -970,6 +973,9 @@ Subit the STATE job by executing:
   $ qsub qsub_cmd.sh
 
 and we get ``GEOMETRY`` and ``gdiis.data`` in addition to the standard output files.
+
+.. warning::
+	When the geometry optimization is performed with the GDIIS method from scratch, make sure that there is no existing ``gdiis.dta``. Furthermore, when the number of optimization steps exceeds the number of degrees of freedom, delete or rename ``gdiis.data``.
 
 Geometry optimization with the ESM method
 -----------------------------------------
