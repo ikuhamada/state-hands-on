@@ -12,28 +12,28 @@ Welcome to the STATE hands-on tutorial at ACMD\@\TDMU. In the following, how to 
 Getting started
 ===============
 
-First of all, we login the cluster system.
+First of all, login to TDMU's HPCC
 
 .. code:: bash
 
-  $ ssh -Y [user_name]@pyxis.mp.es.osaka-u.ac.jp
+  $ ssh -Y -p [port] [user_name]@hpcc.tdmu.edu.vn 
 
 or
 
 .. code:: bash
 
-  $ ssh -Y -l [user_name] pyxis.mp.es.osaka-u.ac.jp
+  $ ssh -Y -p [port] -l [user_name] hpcc.tdmu.edu.vn
 
-where [user_name] is your user name assigned. If the above commands do not work, use *pxyis*, instead of *pyxis.mp.es.osaka-u.ac.jp*.
+where [port] is the port number and [user_name] is your user name assigned. See the user guide provided by the organizers.
 
 Then, we are going to set up the STATE program, pseudopotentials, and example files.
 This is done by executing the following command in the home directory (``${HOME}`` or ``~``) as:
 
 .. code:: bash
 
-  $ git clone https://github.com/ikuhamada/state-setup.git STATE
+  $ git clone -b acmd_tdmu_2022 https://github.com/ikuhamada/state-setup.git STATE
 
-See also `my github page <https://github.com/ikuhamada/state-setup>`_.
+See also `my github page <https://github.com/ikuhamada/state-setup/tree/acmd_tdmu_2022>`_.
 
 Then, go to the STATE directory 
 
