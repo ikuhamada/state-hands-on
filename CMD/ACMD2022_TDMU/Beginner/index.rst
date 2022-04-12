@@ -97,15 +97,11 @@ Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
 
 Short description of the input variables can be found :doc:`here <co>`
 
-Let us review the job script by ``cat qsub_cmd.sh``
+Let us review the job script by ``cat run.sh``
 
 .. code:: bash
 
-  #$ -S /bin/sh
-  #$ -cwd
-  #$ -q all.q
-  #$ -pe smp 4
-  #$ -N CO
+  #!/bin/sh
   
   # Disable OPENMP parallelism
   
@@ -127,13 +123,13 @@ Let us review the job script by ``cat qsub_cmd.sh``
    
   # Run!
 
-  mpirun -np $NSLOTS ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
+  mpiexec ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
 
 and submit!
 
 .. code:: bash
 
-  $ qsub qsub_cmd.sh
+  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
 
 The output ``nfout_scf`` starts with the header
 
@@ -241,13 +237,9 @@ Let us have a look at it by typing in the ``Si`` directory:
 
 By default wave function optimization (single-point calculation) is performed (``WF_OPT``) with the Davidson algorithm (``DAV``), and structural optimization is not performed (Short description of the input variables can be found :doc:`here <si2>`).
 
-Let us review the job script ``qsub_cmd.sh``::
+Let us review the job script ``run.sh``::
 
-  #$ -S /bin/sh
-  #$ -cwd
-  #$ -q all.q
-  #$ -pe smp 4
-  #$ -N Si
+  #!/bin/sh
   
   #disable OPENMP parallelism
   setenv OMP_NUM_THREADS 1
@@ -265,7 +257,7 @@ By using the above input file and job script, we submit the job as:
 
 .. code:: bash
 
-  $ qsub qsub_cmd.sh
+  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
 
 Status of your job can be monitored by using ``qstat`` as:
 
@@ -379,9 +371,9 @@ For each lattice constant we prepare an input file as ``nfinp_scf_10.10``, ``nfi
 
 .. code:: bash
 
-  $ qsub qsub_cmd.sh
+  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
 
-To collect the volume-energy (E-V) data, here we use ``state2ev.sh`` script in ``state-5.6.6/util/`` as
+To collect the volume-energy (E-V) data, here we use ``state2ev.sh`` script in ``state/util/`` as
 
 .. code:: bash
 
@@ -468,7 +460,7 @@ Submit the STATE job as
 
 .. code:: bash
 
-  $ qsub_cmd.sh
+  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
 
 Total energy of the metallic system is sensitive to the smearing function and width, and the number of k-points, and they should be determined very carefully before the production run.
 Detail is discussed in the tutorial (to be completed).
@@ -536,7 +528,7 @@ for each atomic species.
 
 Submitting a job::
 
-  $ qsub qsub_cmd.sh
+  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
 
 
 As above, ``dos.data`` is automatically generated. In the case of spin polarized system, the first column of ``dos.data`` contains energy, second and third columns contain DOS for spin up and down respectively.
