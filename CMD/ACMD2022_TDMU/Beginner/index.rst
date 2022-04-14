@@ -4,7 +4,7 @@
 Hands-on for ACMD\@\TDMU
 ========================
 
-Welcome to the STATE hands-on tutorial at ACMD\@\TDMU. In the following, how to run the STATE examples for this hands on is desdribed.
+Welcome to the STATE hands-on tutorial at ACMD_2022\@\TDMU. In the following, how to run the STATE examples for this hands on is desdribed.
 
 .. warning::
 	This page is tentative and subject to change.
@@ -35,7 +35,7 @@ This is done by executing the following command in the home directory (``${HOME}
 
 See also `my github page <https://github.com/ikuhamada/state-setup/tree/acmd_tdmu_2022>`_.
 
-Then, go to the STATE directory 
+Then, go to the ``STATE`` directory, which was created in the previous step 
 
 .. code:: bash
 
@@ -56,7 +56,7 @@ Go to the STATE directory by typing
 
   $ cd ~/STATE
 
-and 
+and by
 
 .. code:: bash
 
@@ -103,9 +103,9 @@ Let us review the job script by ``cat run.sh``
 
   #!/bin/sh
   
-  # Disable OPENMP parallelism
+  # Disable OpenMP parallelism
   
-  setenv OMP_NUM_THREADS 1
+  export OMP_NUM_THREADS=1
    
   # Set the execuable of the STATE code
   
@@ -241,8 +241,9 @@ Let us review the job script ``run.sh``::
 
   #!/bin/sh
   
-  #disable OPENMP parallelism
-  setenv OMP_NUM_THREADS 1
+  #disable OpenMP parallelism
+
+  export OMP_NUM_THREADS=1
   
   # execuable of the STATE code
   ln -fs ${HOME}/STATE/src/state/src/STATE .
@@ -250,8 +251,12 @@ Let us review the job script ``run.sh``::
   # pseudopotential data
   ln -fs ../gncpp/pot.Si_pbe1
    
-  # launch STATE
-  mpirun -np $NSLOTS ./STATE < nfinp_scf > nfout_scf
+  INPUT_FILE=nfinp_scf
+  OUTPUT_FILE=nfout_scf
+  
+  # Run!
+  
+  mpiexec ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
 
 By using the above input file and job script, we submit the job as:
 
@@ -295,35 +300,30 @@ The convergence of the total energy can be monitored from the output. It looks l
   ***********************************************************************
 
    NSCF NADR            ETOTAL          EDEL          CDEL CONV      TCPU
-      1    0       -6.05513096   0.60551E+01   0.32033E-02    0      0.40
-      2    1       -7.84013758   0.17850E+01   0.50625E-02    0      0.08
-      3    2       -7.87244596   0.32308E-01   0.45624E-02    1      0.08
-      4    3       -7.87086756   0.15784E-02   0.76306E-02    1      0.08
-      5    4       -7.87352176   0.26542E-02   0.13466E-02    1      0.08
-      6    5       -7.87351941   0.23528E-05   0.56367E-03    2      0.08
-      7    6       -7.87353730   0.17887E-04   0.40389E-03    2      0.08
-      8    7       -7.87355183   0.14538E-04   0.21148E-03    2      0.08
-      9    8       -7.87355489   0.30598E-05   0.15435E-03    2      0.08
-     10    9       -7.87355832   0.34247E-05   0.95948E-05    3      0.08
-     11   10       -7.87355833   0.93097E-08   0.45654E-05    3      0.08
-     12   11       -7.87355833   0.29345E-08   0.19696E-05    3      0.08
-     13   12       -7.87355833   0.57462E-09   0.17709E-06    4      0.08
-     14   13       -7.87355833   0.11322E-10   0.10973E-06    5      0.08
-     15   14       -7.87355833   0.90061E-12   0.54074E-07    6      0.08
-
+      1    0       -6.05513096   0.60551E+01   0.32033E-02    0      0.13
+      2    0       -7.84013758   0.17850E+01   0.50625E-02    0      0.07
+      3    1       -7.87280128   0.32664E-01   0.23361E-02    1      0.06
+      4    2       -7.87352825   0.72697E-03   0.44450E-03    2      0.06
+      5    3       -7.87355444   0.26191E-04   0.14565E-03    2      0.06
+      6    4       -7.87355827   0.38304E-05   0.17592E-04    3      0.06
+      7    5       -7.87355833   0.59844E-07   0.53913E-05    3      0.06
+      8    6       -7.87355833   0.17527E-08   0.14864E-05    3      0.06
+      9    7       -7.87355833   0.15878E-09   0.19139E-06    4      0.06
+     10    8       -7.87355833   0.12934E-10   0.18081E-07    5      0.06
+     11    9       -7.87355833   0.83755E-12   0.23101E-07    6      0.06
 
 At the convergence, the total energy and its componets are printed as::
 
-                       TOTAL ENERGY AND ITS COMPONENTS 
-                    TOTAL ENERGY     =          -7.87355833 A.U.
-                  KINETIC ENERGY     =           3.01922477 A.U.
-                  HARTREE ENERGY     =           0.55014239 A.U.
-                       XC ENERGY     =          -2.40098667 A.U.
-                    LOCAL ENERGY     =          -0.84295028 A.U.
-                 NONLOCAL ENERGY     =           0.16885308 A.U.
-                    EWALD ENERGY     =          -8.36784162 A.U.
-                       PC ENERGY     =           0.00000000 A.U.
-                 ENTROPIC ENERGY     =           0.00000000 A.U.
+                      TOTAL ENERGY AND ITS COMPONENTS 
+                   TOTAL ENERGY     =          -7.87355833 A.U.
+                 KINETIC ENERGY     =           3.01922419 A.U.
+                 HARTREE ENERGY     =           0.55014198 A.U.
+                      XC ENERGY     =          -2.40098652 A.U.
+                   LOCAL ENERGY     =          -0.84294926 A.U.
+                NONLOCAL ENERGY     =           0.16885291 A.U.
+                   EWALD ENERGY     =          -8.36784162 A.U.
+                      PC ENERGY     =           0.00000000 A.U.
+                ENTROPIC ENERGY     =           0.00000000 A.U.
 
 NOTE this message is NOT printed when the convergence is not achieved.
 
@@ -368,10 +368,38 @@ Let us change the lattice constant from 10.10 Bohr to 10.50 Bohr by 0.05 Bohr by
   CELL   10.50  10.50  10.50  90.00  90.00  90.00
 
 For each lattice constant we prepare an input file as ``nfinp_scf_10.10``, ``nfinp_scf_10.15``, ... ``nfinp_scf_10.50`` and submit jobs by changing the input and output files in the job script.
+An example of the modified job script (``run.sh``) for the lattice constant of 10.10 Bohr may look like::
+
+  #!/bin/sh
+  
+  # Disable OpenMP parallelism
+  
+  export OMP_NUM_THREADS=1
+  
+  # Set the executable of the STATE code
+  
+  ln -fs ${HOME}/STATE/src/state/src/STATE .
+  
+  # Set the pseudopotential data
+  
+  ln -fs ../gncpp/pot.Si_pbe1
+   
+  # Set the input/output file
+  
+  INPUT_FILE=nfinp_scf_10.10
+  OUTPUT_FILE=nfout_scf_10.10
+  
+  # Run!
+  
+  mpiexec ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
+
+After confirming the correct lattice constant is used, we submit the job
 
 .. code:: bash
 
   $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
+
+and repeat, up to the lattice constant of 10.50.
 
 To collect the volume-energy (E-V) data, here we use ``state2ev.sh`` script in ``state/util/`` as
 
@@ -463,8 +491,7 @@ Submit the STATE job as
   $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
 
 Total energy of the metallic system is sensitive to the smearing function and width, and the number of k-points, and they should be determined very carefully before the production run.
-Detail is discussed in the tutorial (to be completed).
-
+Detail is discussed in the `corresponding section <https://state-doc.readthedocs.io/en/latest/Tutorial/al.html>`_ of the STATE documenation.
 
 Nickel
 ======
@@ -544,7 +571,7 @@ This can be plotted by using gnuplot as follows:
   $ gnuplot> set yrange [0:4]
   $ gnuplot> set xlabel 'E-E_F (eV)'
   $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data_smearing' using ($1):($2) w l title 'Spin-up','dos.data_smearing' using ($1):($3) w l title 'Spin-down'
+  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):($3) w l title 'Spin-down'
 
 
 The spin-polarized DOS looks like:
@@ -562,7 +589,7 @@ Or by using the following:
   $ gnuplot> set yzeroaxis
   $ gnuplot> set xlabel 'E-E_F (eV)'
   $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data_smearing' using ($1):($2) w l title 'Spin-up','dos.data_smearing' using ($1):(-$3) w l title 'Spin-down'
+  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):(-$3) w l title 'Spin-down'
 
 One may obtain the spin-polarized DOS like:
 
@@ -574,7 +601,7 @@ One may obtain the spin-polarized DOS like:
 Ethylene
 ========
 
-This example explains how to perform the geometry optimization.
+This example explains how to perform geometry optimization and vibrational mode analysis.
 
 * Directory ``C2H4``
 
@@ -623,9 +650,13 @@ The force threshold for the geometry optimization is set by the keyword ``FMAX``
 Geometry optimization
 ---------------------
 
+* Input file ``nfinp_gdiis``
+
+* Output file ``nfout_gdiis``
+
 .. code:: bash
 
-  $ qsub qsub_gdiis_cmd.sh
+  $ submitjob -a STATE -i run_gdiis.sh -n 1 -p 8 -w 1
 
 The convergence of the forces can be monitored by:
 
@@ -657,7 +688,7 @@ It is suggested that ``gdiis.data`` be deleted or renamed when the number of opt
 Vibrational analyis
 -------------------
 
-Having obtained the optimized geometry, let us perform the vibrational (normal) mode analysis.
+Having obtained the optimized geometry, let us perform the vibrational mode analysis.
 This can be done in the following steps.
 
 Frist, we need to create an input file with the optimized geometry.
@@ -671,7 +702,7 @@ where input parameters from ``nfinp_gdiis`` and atomic positions from ``GEOMETRY
 ``geom2nfinp`` can also be used to generate an XYZ/XSF file from the optimized geometry.
 Type ``geom2nfinp -h`` for the usage of the command.
 
-Then we copy ``nfinp_relaxed`` to ``nfinp_vib`` which looks like::
+Then we copy ``nfinp_relaxed`` to ``nfinp_vib`` (type ``cp nfinp_relaxed nfinp_vib``), add a new variable ``TASK``, and delete the variable ``GEO_OPT``. The resulting input file ``nfinp_vib`` may look like::
 
   #
   # Ethylene molecule in a box: geometry optimization with the GDIIS method
@@ -770,7 +801,7 @@ Submit the job
 
 .. code:: bash
 
-  $ qsub qsub_vib_cmd.sh
+  $ submitjob -a STATE -i run_vib.sh -n 1 -p 8 -w 1
 
 and we get ``nfforce.data`` in addition to the standard output files, which contains displaced atomic positions and forces acting on atoms, which can be used to calculate the vibrational frequencies.
 
@@ -788,25 +819,25 @@ and we can see the vibrational frequncies printed in the standard output as:
                 SUMMARY              
                =========             
   
-   MODE  WR       : NU(meV)  NU(cm-1)
-      1 -0.42D-03 :   12.97    104.63
-      2 -0.19D-03 :    8.76     70.63
-      3 -0.61D-04 :    4.97     40.06
-      4 -0.18D-04 :    2.67     21.50
-      5  0.30D-04 :    3.46     27.93
-      6  0.28D-03 :   10.71     86.35
-      7  0.25D-01 :  100.48    810.43
-      8  0.32D-01 :  114.17    920.88
-      9  0.34D-01 :  116.25    937.60
-     10  0.41D-01 :  128.26   1034.48
-     11  0.55D-01 :  148.39   1196.82
-     12  0.68D-01 :  165.42   1334.18
-     13  0.76D-01 :  175.51   1415.54
-     14  0.10D+00 :  201.49   1625.12
-     15  0.36D+00 :  379.55   3061.29
-     16  0.36D+00 :  381.80   3079.41
-     17  0.37D+00 :  388.22   3131.17
-     18  0.38D+00 :  393.55   3174.18
+ MODE  WR       : NU(meV)  NU(cm-1)
+    1 -0.49D-03 :   14.02    113.11
+    2 -0.24D-03 :    9.85     79.48
+    3 -0.13D-04 :    2.26     18.22
+    4  0.56D-05 :    1.51     12.14
+    5  0.12D-04 :    2.20     17.76
+    6  0.28D-03 :   10.59     85.45
+    7  0.25D-01 :  100.29    808.87
+    8  0.32D-01 :  114.26    921.58
+    9  0.33D-01 :  116.22    937.39
+   10  0.41D-01 :  128.25   1034.39
+   11  0.55D-01 :  148.33   1196.33
+   12  0.68D-01 :  165.50   1334.88
+   13  0.76D-01 :  175.42   1414.86
+   14  0.10D+00 :  201.81   1627.74
+   15  0.36D+00 :  379.93   3064.32
+   16  0.36D+00 :  382.22   3082.81
+   17  0.37D+00 :  388.61   3134.37
+   18  0.38D+00 :  393.96   3177.45
 
 The first column, the number of mode, the second column, square of the vibrational frequency in Hartree, and third and fourth columns are vibrational frequencies in meV and wavenumber (cm^-1), respectively.
 
@@ -825,7 +856,7 @@ Then type
 
 .. code:: bash
 
-  $ gif2xsf -s --xsf C2H4 --gif vib.data --prefix vib
+  $ gif2xsf -s --xsf C2H4.xsf --gif vib.data --prefix vib
 
 Use C2H4.xsf for the XSF file, vib.data for VIB file, and vib for prefix, and we get separate vib_*.xsf, which can be visualized by using XCrySden or VESTA.
 
@@ -850,7 +881,7 @@ In this example, we are going to perform a finite temperature molecular dynamics
   MIX_ALPHA 0.8
   WIDTH   0.0010
   EDELTA  0.1000D-08
-  NEG     10
+  NEG     16
   TEMP_CONTROL NHC
   TEMPW   300.0D0
   WNOSEP  500.0D0
@@ -871,7 +902,7 @@ In this example, we are going to perform a finite temperature molecular dynamics
        -2.348328846800     -1.753458668500      0.000000000000    1 1001    2
   &END
 
-To perform a molecular dynamics simulation, we set ``ION_DYN`` `` FTMD`` and how to control the temperature is given as::
+To perform a molecular dynamics simulation, we set ``ION_DYN FTMD`` and how to control the temperature is given as::
 
   TEMP_CONTROL NHC
   TEMPW   300.0D0
@@ -884,7 +915,7 @@ Submit the job
 
 .. code:: bash
 
-  $ qsub qsub_nhc_cmd.sh
+  $ submitjob -a STATE -i run_vib.sh -n 1 -p 16 -w 1
 
 In this example, we perform 200 MD steps (default value).
 When the calculation is terminated, we get ``TRAJECTORY`` containing the trajectory and ``ENERGIES`` containing information on temperature and energies.
@@ -965,7 +996,7 @@ Subit the STATE job by executing:
 
 .. code:: bash
 
-  $ qsub qsub_cmd.sh
+  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
 
 and we get ``GEOMETRY`` and ``gdiis.data`` in addition to the standard output files.
 
@@ -1027,6 +1058,12 @@ Diffence from the previous calculation is ::
 
 This enables the ESM calculation. 
 In this case open boundary condition in the surface normal direction is used.
+
+Edit ``run.sh`` and use ``nfinp_gdiis_esm`` and ``nfout_gdiis_esm`` as input and output files, respectively, and submit the job as:
+
+.. code:: bash
+
+  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
 
 Analysis of the effective and electrostatic potentials
 ------------------------------------------------------
@@ -1120,9 +1157,9 @@ For each lattice constant we prepare an input file as ``nfinp_scf_a4.54``, ``nfi
 
 .. code:: bash
 
-  $ qsub qsub_cmd.sh
+  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
 
-Alternatively one can use ``qsub_opt_cmd.sh`` to automatically run a set of calculations.
+Alternatively one can use ``run_opt.sh`` to automatically run a set of calculations.
  
 
 We then plot the total energy as a function of lattice parameter (use getetot.sh in the same directory), and fit it to any function. In this example, let us use 6th order polynomial. The result looks like:
@@ -1170,7 +1207,7 @@ First perform the SCF calculation by using the following input file (``nfinp_scf
 
 .. code:: bash
 
-  $ qsub qsub_cmd.sh
+  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
 
 After converging the charge/potential, we perform the non-SCF band structure calculation by using the following input (``nfinp_band``)::
 
@@ -1248,11 +1285,11 @@ To give the k-points in the cartesian coordinate, use::
 
    KPOINTS CARTESIAN
 
-Run the band structure calculation by replacing the input file with ``nfinp_band`` in ``qsub_cmd.sh``
+Run the band structure calculation by replacing the input file with ``nfinp_band`` in ``run.sh``
 
 .. code:: bash
 
-  $ qsub qsub_cmd.sh
+  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
 
 we obtain the file ``energy.data``, which containg the Kohn-Sham eigenvalues, along with the k-points.
 However, we cannot plot the band structure directory from ``energy.data`` and should be processed properly.
