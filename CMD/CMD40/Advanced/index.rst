@@ -1471,7 +1471,7 @@ and the truncated orbital is smoothened by using the Fermi-Dirac type function w
 
    RWIDTH  0.10 
 
-The number of ``RCUT`` and ``RWIDTH`` should corresponds to then number of atomic species (``NTYPE``).
+The number of ``RCUT`` and ``RWIDTH`` should corresponds to the number of atomic species (``NTYPE``).
 
 The calculated PDOS for graphene can be visualized as:
 
