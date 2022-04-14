@@ -1295,7 +1295,7 @@ Density of states
 
 Now let us calculate the density of states (DOS) and projected DOS (PDOS) onto the atomic orbital.
 
-Change directory to ``DOS/`` and we can find the directory ``12x12/``, ``16x16/``, and ``24x24/``, which indicate the k-point mesh used the calculation.
+Change the directory to ``DOS/`` and we can find the directories ``12x12/``, ``16x16/``, and ``24x24/``, which indicate the k-point mesh used the calculation.
 
 Let us change directory to ``12x12`` and have a look at the input file::
 
