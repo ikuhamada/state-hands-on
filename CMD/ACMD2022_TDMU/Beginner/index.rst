@@ -916,7 +916,7 @@ Submit the job
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run_vib.sh -n 1 -p 16 -w 1
+  $ submitjob -a STATE -i run_md.sh -n 1 -p 16 -w 1
 
 In this example, we perform 200 MD steps (default value).
 When the calculation is terminated, we get ``TRAJECTORY`` containing the trajectory and ``ENERGIES`` containing information on temperature and energies.
