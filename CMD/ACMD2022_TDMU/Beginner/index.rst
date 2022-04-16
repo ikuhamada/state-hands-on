@@ -840,6 +840,7 @@ and we can see the vibrational frequncies printed in the standard output as:
    18  0.38D+00 :  393.96   3177.45
 
 The first column, the number of mode, the second column, square of the vibrational frequency in Hartree, and third and fourth columns are vibrational frequencies in meV and wavenumber (cm^-1), respectively.
+Compare the calculated frequencies with the literature. See for instance, `CCCBDB <https://cccbdb.nist.gov/>`_.
 
 .. warning::
 	New data are always appended to the exsiting ``nfforce.data``. Rename it when (a set of) calculations are finished.
