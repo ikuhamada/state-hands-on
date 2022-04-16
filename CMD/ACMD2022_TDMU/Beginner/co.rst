@@ -91,7 +91,7 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
 
   WIDTH     0.0010
 
-``WIDTH`` is the width of the broadening to approximate the delta function in Hartree. For systems with a gap, very small positive ``WIDTT`` is used. In such a case, it does not have a physical meaning and is used to determine the Fermi level.
+``WIDTH`` is the width of the broadening to approximate the delta function in Hartree. For systems with a gap, very small positive ``WIDTH`` is used. In such a case, it does not have a physical meaning and is used to determine the Fermi level.
 
 .. code:: bash
 
