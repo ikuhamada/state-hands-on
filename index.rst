@@ -13,6 +13,7 @@ This is the home to the STATE tutorial. A documentation of the STATE code can be
    :hidden:
 
    about
+   CMD/ACMD2022_UPM/Beginner/index.rst
    CMD/ACMD2022_TDMU/Beginner/index.rst
    CMD/CMD40/Beginner/index.rst
    CMD/CMD40/Advanced/index.rst
@@ -20,6 +21,8 @@ This is the home to the STATE tutorial. A documentation of the STATE code can be
 +----------------------+-------+--------------------------------------------------+
 | Date                 | Event | Course                                           |
 +======================+=======+==================================================+
+| April 14-16, 2022    | :any:`ACMD@UPM<CMD/ACMD2022_UPM/Beginner/index>`         |
++----------------------+-------+--------------------------------------------------+
 | April 14-16, 2022    | :any:`ACMD@TDMU<CMD/ACMD2022_TDMU/Beginner/index>`       |
 +----------------------+-------+--------------------------------------------------+
 | February 21-25, 2022 | CMD40 | :any:`Beginner course <CMD/CMD40/Beginner/index>`|
