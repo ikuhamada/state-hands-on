@@ -92,7 +92,7 @@ Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
     2.2000  0.0000  0.0000  1  1  2
   &END
 
-Short description of the input variables can be found :doc:`here <co>`
+Short description of the input variables can be found :doc:`here <co>`.
 
 Let us review the job script by ``cat qsub_cmd.sh``
 
