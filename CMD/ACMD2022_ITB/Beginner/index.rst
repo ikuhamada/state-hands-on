@@ -12,7 +12,7 @@ Welcome to the STATE hands-on tutorial at A-CMD\@\ITB. In the following, how to 
 Getting started
 ===============
 
-First of all, login to TDMU's HPCC
+First of all, login to ITB's HPCC
 
 .. code:: bash
 
