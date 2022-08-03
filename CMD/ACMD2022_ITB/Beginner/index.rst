@@ -656,7 +656,7 @@ Geometry optimization
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run_gdiis.sh -n 1 -p 8 -w 1
+  $ sbatch run_gdiis.sh
 
 The convergence of the forces can be monitored by:
 
@@ -801,7 +801,7 @@ Submit the job
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run_vib.sh -n 1 -p 8 -w 1
+  $ sbatch run_vib.sh
 
 and we get ``nfforce.data`` in addition to the standard output files, which contains displaced atomic positions and forces acting on atoms, which can be used to calculate the vibrational frequencies.
 
@@ -916,7 +916,7 @@ Submit the job
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run_md.sh -n 1 -p 16 -w 1
+  $ sbatch run_md.sh
 
 In this example, we perform 200 MD steps (default value).
 When the calculation is terminated, we get ``TRAJECTORY`` containing the trajectory and ``ENERGIES`` containing information on temperature and energies.
@@ -1208,7 +1208,7 @@ First perform the SCF calculation by using the following input file (``nfinp_scf
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
+  $ sbatch run.sh
 
 After converging the charge/potential, we perform the non-SCF band structure calculation by using the following input (``nfinp_band``)::
 
@@ -1290,7 +1290,7 @@ Run the band structure calculation by replacing the input file with ``nfinp_band
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
+  $ sbatch run.sh
 
 we obtain the file ``energy.data``, which containg the Kohn-Sham eigenvalues, along with the k-points.
 However, we cannot plot the band structure directory from ``energy.data`` and should be processed properly.
