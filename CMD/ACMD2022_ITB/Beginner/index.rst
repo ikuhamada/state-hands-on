@@ -129,7 +129,7 @@ and submit!
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
+  $ sbatch run.sh
 
 The output ``nfout_scf`` starts with the header
 
@@ -262,13 +262,13 @@ By using the above input file and job script, we submit the job as:
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
+  $ sbatch run.sh
 
-Status of your job can be monitored by using ``qstat`` as:
+Status of your job can be monitored by using ``squeue`` as:
 
 .. code:: bash
 
-  $ qstat
+  $ squeue
 
 After the calculation is done, check the output file ``nfout_scf`` and make sure that lattice vectors and atomic positions are correct.
 The primitive lattice vectors are given as::
@@ -397,7 +397,7 @@ After confirming the correct lattice constant is used, we submit the job
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
+  $ sbatch run.sh
 
 and repeat, up to the lattice constant of 10.50.
 
@@ -488,7 +488,7 @@ Submit the STATE job as
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
+  $ sbatch run.sh
 
 Total energy of the metallic system is sensitive to the smearing function and width, and the number of k-points, and they should be determined very carefully before the production run.
 Detail is discussed in the `corresponding section <https://state-doc.readthedocs.io/en/latest/Tutorial/al.html>`_ of the STATE documenation.
@@ -555,7 +555,7 @@ for each atomic species.
 
 Submitting a job::
 
-  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
+  $ sbatch run.sh
 
 
 As above, ``dos.data`` is automatically generated. In the case of spin polarized system, the first column of ``dos.data`` contains energy, second and third columns contain DOS for spin up and down respectively.
@@ -997,7 +997,7 @@ Subit the STATE job by executing:
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
+  $ sbatch run.sh
 
 and we get ``GEOMETRY`` and ``gdiis.data`` in addition to the standard output files.
 
@@ -1064,7 +1064,7 @@ Edit ``run.sh`` and use ``nfinp_gdiis_esm`` and ``nfout_gdiis_esm`` as input and
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
+  $ sbatch run.sh
 
 Analysis of the effective and electrostatic potentials
 ------------------------------------------------------
@@ -1158,7 +1158,7 @@ For each lattice constant we prepare an input file as ``nfinp_scf_a4.54``, ``nfi
 
 .. code:: bash
 
-  $ submitjob -a STATE -i run.sh -n 1 -p 8 -w 1
+  $ sbatch run.sh
 
 Alternatively one can use ``run_opt.sh`` to automatically run a set of calculations.
  
