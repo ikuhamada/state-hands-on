@@ -6,13 +6,15 @@
 Welcome to the STATE hands-on tutorial!
 =======================================
 
-This is the home to the STATE tutorial. A documentation of the STATE code can be found `here <https://state-doc.readthedocs.io>`_.
+This is the home to the STATE hands-on tutorial. A documentation of the STATE code can be found `here <https://state-doc.readthedocs.io>`_.
 
 .. toctree::
    :maxdepth: 5
    :hidden:
 
    about
+   CMD/CMD41/Beginner/index.rst
+   CMD/CMD41/SC/index.rst
    CMD/ACMD2022_ITB/Beginner/index.rst
    CMD/ACMD2022_UPM/Beginner/index.rst
    CMD/ACMD2022_TDMU/Beginner/index.rst
@@ -22,6 +24,10 @@ This is the home to the STATE tutorial. A documentation of the STATE code can be
 +----------------------+-------+--------------------------------------------------+
 | Date                 | Event | Course                                           |
 +======================+=======+==================================================+
+| February 21-25, 2022 | CMD41 | :any:`Beginner course <CMD/CMD41/Beginner/index>`|
++                      +       +--------------------------------------------------+
+|                      |       | :any:`Supercomputer course <CMD/CMD41/SC/index>` |
++----------------------+-------+--------------------------------------------------+
 | August 3-5, 2022     | :any:`ACMD@ITB<CMD/ACMD2022_ITB/Beginner/index>`         |
 +----------------------+-------+--------------------------------------------------+
 | July 28-30, 2022     | :any:`ACMD@UPM<CMD/ACMD2022_UPM/Beginner/index>`         |
