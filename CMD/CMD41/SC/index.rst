@@ -13,7 +13,7 @@ Welcome to the STATE hands-on tutorial at CMD41. In the following, how to run th
 Getting started
 ===============
 
-First of all, we login the cluster system.
+First of all, we log in to the supercomputer system (ohtaka) at ISSP, The University of Tokyo.
 
 .. code:: bash
 
@@ -29,7 +29,7 @@ where [user_name] is your user name assigned.
 
 .. code:: bash
 
-  $ git clone https://github.com/ikuhamada/state-setup.git STATE
+  $ git clone -b cmd_sc https://github.com/ikuhamada/state-setup.git STATE
 
 See also `my github page <https://github.com/ikuhamada/state-setup>`_.
 
@@ -95,43 +95,47 @@ Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
 
 Short description of the input variables can be found :doc:`here <co>`
 
-Let us review the job script by ``cat qsub_rl.sh``
+Let us review the job script by ``cat run.sh``
 
 .. code:: bash
 
-  #$ -S /bin/sh
-  #$ -cwd
-  #$ -q rl.q
-  #$ -pe smp 6
-  #$ -N CO
+  #!/bin/sh
+  #SBATCH -J  CO
+  #SBATCH -p  cmdinteractive
+  #SBATCH -N  1
+  #SBATCH -n  4
   
-  # Disable OPENMP parallelism
+  # Load the modules
   
-  setenv OMP_NUM_THREADS 1
-   
-  # Set the execuable of the STATE code
+  module load intel_compiler/2020.4.304
+  module load intel_mpi/2020.4.304
+  module load intel_mkl/2020.4.304
   
-  ln -fs ${HOME}/STATE/src/state/src/STATE .
+  # Set the executable of the STATE code
+  
+  ln -fs ${HOME}/state/src/STATE
   
   # Set the pseudopotential data
   
   ln -fs ../gncpp/pot.C_pbe1
   ln -fs ../gncpp/pot.O_pbe1
-
-  # Set the input/output file
+  
+  # Set the input/output files
   
   INPUT_FILE=nfinp_scf
   OUTPUT_FILE=nfout_scf
-   
+  
   # Run!
-
-  mpirun -np $NSLOTS ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
+  
+  ulimit -s unlimited
+  
+  srun ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
 
 and submit!
 
 .. code:: bash
 
-  $ qsub qsub_rl.sh
+  $ sbatch run.sh
 
 The output ``nfout_scf`` starts with the header
 
@@ -239,37 +243,50 @@ Let us have a look at it by typing in the ``Si`` directory:
 
 By default wave function optimization (single-point calculation) is performed (``WF_OPT``) with the Davidson algorithm (``DAV``), and structural optimization is not performed (Short description of the input variables can be found :doc:`here <si2>`).
 
-Let us review the job script ``qsub_rl.sh``::
+Let us review the job script ``run.sh``::
 
-  #$ -S /bin/sh
-  #$ -cwd
-  #$ -q rl.q
-  #$ -pe smp 6
-  #$ -N Si
+  #!/bin/sh
+  #SBATCH -J  Si
+  #SBATCH -p  cmdinteractive
+  #SBATCH -N  1
+  #SBATCH -n  4
   
-  #disable OPENMP parallelism
-  setenv OMP_NUM_THREADS 1
+  # Load the modules
   
-  # execuable of the STATE code
-  ln -fs ${HOME}/STATE/src/state/src/STATE .
+  module load intel_compiler/2020.4.304
+  module load intel_mpi/2020.4.304
+  module load intel_mkl/2020.4.304
   
-  # pseudopotential data
+  # Set the executable of the STATE code
+  
+  ln -fs ${HOME}/state/src/STATE
+  
+  # Set the pseudopotential data
+  
   ln -fs ../gncpp/pot.Si_pbe1
-   
-  # launch STATE
-  mpirun -np $NSLOTS ./STATE < nfinp_scf > nfout_scf
+  
+  # Set the input/output files
+  
+  INPUT_FILE=nfinp_scf
+  OUTPUT_FILE=nfout_scf
+  
+  # Run!
+  
+  ulimit -s unlimited
+  
+  srun ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
 
 By using the above input file and job script, we submit the job as:
 
 .. code:: bash
 
-  $ qsub qsub_rl.sh
+  $ sbatch run.sh
 
-Status of your job can be monitored by using ``qstat`` as:
+Status of your job can be monitored by using ``squeue`` as:
 
 .. code:: bash
 
-  $ qstat
+  $ squeue
 
 After the calculation is done, check the output file ``nfout_scf`` and make sure that lattice vectors and atomic positions are correct.
 The primitive lattice vectors are given as::
@@ -377,7 +394,7 @@ For each lattice constant we prepare an input file as ``nfinp_scf_10.10``, ``nfi
 
 .. code:: bash
 
-  $ qsub qsub_rl.sh
+  $ sbatch run.sh
 
 To collect the volume-energy (E-V) data, here we use ``state2ev.sh`` script in ``state-5.6.6/util/`` as
 
@@ -466,7 +483,7 @@ Submit the STATE job as
 
 .. code:: bash
 
-  $ qsub_rl.sh
+  $ run.sh
 
 Total energy of the metallic system is sensitive to the smearing function and width, and the number of k-points, and they should be determined very carefully before the production run.
 Detail is discussed in the tutorial (to be completed).
@@ -534,7 +551,7 @@ for each atomic species.
 
 Submitting a job::
 
-  $ qsub qsub_rl.sh
+  $ sbatch run.sh
 
 
 As above, ``dos.data`` is automatically generated. In the case of spin polarized system, the first column of ``dos.data`` contains energy, second and third columns contain DOS for spin up and down respectively.
@@ -631,7 +648,7 @@ Geometry optimization
 
 .. code:: bash
 
-  $ qsub qsub_gdiis_rl.sh
+  $ sbatch run_gdiis.sh
 
 The convergence of the forces can be monitored by:
 
@@ -776,7 +793,7 @@ Submit the job
 
 .. code:: bash
 
-  $ qsub qsub_vib_rl.sh
+  $ sbatch run_vib.sh
 
 and we get ``nfforce.data`` in addition to the standard output files, which contains displaced atomic positions and forces acting on atoms, which can be used to calculate the vibrational frequencies.
 
@@ -890,7 +907,7 @@ Submit the job
 
 .. code:: bash
 
-  $ qsub qsub_nhc_rl.sh
+  $ sbatch run_ftmd.sh
 
 In this example, we perform 200 MD steps (default value).
 When the calculation is terminated, we get ``TRAJECTORY`` containing the trajectory and ``ENERGIES`` containing information on temperature and energies.
@@ -971,7 +988,7 @@ Subit the STATE job by executing:
 
 .. code:: bash
 
-  $ qsub qsub_rl.sh
+  $ sbatch run.sh
 
 and we get ``GEOMETRY`` and ``gdiis.data`` in addition to the standard output files.
 
@@ -1126,9 +1143,9 @@ For each lattice constant we prepare an input file as ``nfinp_scf_a4.54``, ``nfi
 
 .. code:: bash
 
-  $ qsub qsub_rl.sh
+  $ sbatch run.sh
 
-Alternatively one can use ``qsub_opt_rl.sh`` to automatically run a set of calculations.
+Alternatively one can use ``run_opt.sh`` to automatically run a set of calculations.
  
 
 We then plot the total energy as a function of lattice parameter (use getetot.sh in the same directory), and fit it to any function. In this example, let us use 6th order polynomial. The result looks like:
@@ -1176,7 +1193,7 @@ First perform the SCF calculation by using the following input file (``nfinp_scf
 
 .. code:: bash
 
-  $ qsub qsub_rl.sh
+  $ sbatch run.sh
 
 After converging the charge/potential, we perform the non-SCF band structure calculation by using the following input (``nfinp_band``)::
 
@@ -1254,11 +1271,11 @@ To give the k-points in the cartesian coordinate, use::
 
    KPOINTS CARTESIAN
 
-Run the band structure calculation by replacing the input file with ``nfinp_band`` in ``qsub_rl.sh``
+Run the band structure calculation by replacing the input file with ``nfinp_band`` in ``run.sh``
 
 .. code:: bash
 
-  $ qsub qsub_rl.sh
+  $ sbatch run.sh
 
 we obtain the file ``energy.data``, which containg the Kohn-Sham eigenvalues, along with the k-points.
 However, we cannot plot the band structure directory from ``energy.data`` and should be processed properly.

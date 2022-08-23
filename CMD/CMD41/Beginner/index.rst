@@ -9,7 +9,7 @@ Welcome to the STATE hands-on tutorial at CMD41. In the following, how to run th
 Getting started
 ===============
 
-First of all, we login the cluster system.
+First of all, we log in to the cluster system (pyxis).
 
 .. code:: bash
 
