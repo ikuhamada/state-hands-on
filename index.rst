@@ -24,7 +24,7 @@ This is the home to the STATE hands-on tutorial. A documentation of the STATE co
 +----------------------+-------+--------------------------------------------------+
 | Date                 | Event | Course                                           |
 +======================+=======+==================================================+
-| February 21-25, 2022 | CMD41 | :any:`Beginner course <CMD/CMD41/Beginner/index>`|
+| September 5-9, 2022  | CMD41 | :any:`Beginner course <CMD/CMD41/Beginner/index>`|
 +                      +       +--------------------------------------------------+
 |                      |       | :any:`Supercomputer course <CMD/CMD41/SC/index>` |
 +----------------------+-------+--------------------------------------------------+
