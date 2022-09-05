@@ -1,6 +1,194 @@
 .. _instruction_ohtaka:
 
-:orpahn:
+:orphan:
+
+Minimum description of the job script
+=====================================
+
+Example of the job script
+
+.. code:: bash
+
+  #!/bin/sh
+  #SBATCH -J  CO
+  #SBATCH -p  cmdinteractive
+  #SBATCH -N  1
+  #SBATCH -n  4
+  
+  # Load the modules
+  
+  module load intel_compiler/2020.4.304
+  module load intel_mpi/2020.4.304
+  module load intel_mkl/2020.4.304
+  
+  # Set the executable of the STATE code
+  
+  ln -fs ${HOME}/STATE/src/state/src/STATE
+  
+  # Set the pseudopotential data
+  
+  ln -fs ../gncpp/pot.C_pbe1
+  ln -fs ../gncpp/pot.O_pbe1
+  
+  # Set the input/output files
+  
+  INPUT_FILE=nfinp_scf
+  OUTPUT_FILE=nfout_scf
+  
+  # Run!
+  
+  ulimit -s unlimited
+  
+  srun ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
+
+Header
+------
+
+.. code:: bash
+
+  #!/bin/sh
+  #SBATCH -J  CO
+  #SBATCH -p  cmdinteractive
+  #SBATCH -N  1
+  #SBATCH -n  4
+
+* 1st line:
+
+.. code:: bash
+
+  #!/bin/sh
+
+Name of the shell used
+
+* 2nd line:
+
+.. code:: bash
+
+  #SBATCH -J  CO
+
+Name of the job, which is shown when you use the ``squeue`` command
+
+* 3rd line:
+
+.. code:: bash
+
+  #SBATCH -p  cmdinteractive
+
+Name of the partition (queue)
+
+* 4th line:
+
+.. code:: bash
+
+  #SBATCH -N  1
+
+Number of nodes 
+
+* 5th line:
+
+.. code:: bash
+
+  #SBATCH -n  4
+
+Number of MPI processes
+
+In the case OpenMPI (thread) parallelization needs to be activated, add the following (in this case, 2 thread parallelization will be performed):
+
+.. code:: bash
+
+  #SBATCH -c  2
+
+In this example, we use 4 cores with 1 node.
+
+.. note::
+	Each node of ohtaka has 128 cores, and (number of MPI processes) times (number of OpenMPI processes) should be within the resource you request.
+
+
+Body
+----
+
+.. code:: bash
+
+  #!/bin/sh
+  #SBATCH -J  CO
+  #SBATCH -p  cmdinteractive
+  #SBATCH -N  1
+  #SBATCH -n  4
+  
+  # Load the modules
+  
+  module load intel_compiler/2020.4.304
+  module load intel_mpi/2020.4.304
+  module load intel_mkl/2020.4.304
+  
+  # Set the executable of the STATE code
+  
+  ln -fs ${HOME}/state/src/STATE
+  
+  # Set the pseudopotential data
+  
+  ln -fs ../gncpp/pot.C_pbe1
+  ln -fs ../gncpp/pot.O_pbe1
+  
+  # Set the input/output files
+  
+  INPUT_FILE=nfinp_scf
+  OUTPUT_FILE=nfout_scf
+  
+  # Run!
+  
+  ulimit -s unlimited
+  
+  srun ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
+
+
+* Modules
+
+.. code::
+
+  # Load the modules
+  
+  module load intel_compiler/2020.4.304
+  module load intel_mpi/2020.4.304
+  module load intel_mkl/2020.4.304
+
+Please do not change them, unless you build STATE with different modules.
+
+
+* STATE executable
+
+.. code::
+
+  # Set the executable of the STATE code
+  
+  ln -fs ${HOME}/STATE/src/state/src/STATE
+ 
+Please do not change this line, unless you don't change the name of the STATE executable
+
+* Pseudopotentials
+
+.. code::
+
+  # Set the pseudopotential data
+  
+  ln -fs ../gncpp/pot.C_pbe1
+  ln -fs ../gncpp/pot.O_pbe1
+  
+Please choose all the pseudopotentials you need to use and write here (change ``C_pbe1`` and ``O_pbe1``, and add more lines if necessary)
+
+* Input/output files
+
+.. code::
+
+  # Set the input/output files
+    
+  INPUT_FILE=nfinp_scf
+  OUTPUT_FILE=nfout_scf
+
+Please change the input (``nfinp_scf``) and output (``nfout_scf``) file names as necessary.
+ 
+You don't have to change the following lines in the job script.
+
 
 Available resources on ohtaka
 =============================

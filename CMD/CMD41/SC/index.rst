@@ -128,6 +128,7 @@ Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
 Short description of the input variables can be found :doc:`here <co>`
 
 Let us review the job script by ``cat run.sh``
+(very short description on the available queues and job script can be found :doc:`here <ohtaka>`
 
 .. code:: bash
 
