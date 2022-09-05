@@ -1114,7 +1114,7 @@ Use ``state2chgpro.sh`` utility to extract planar average of charge, effective (
 Here, the first column is the z-coordinate in the Bohr radius, and second, third, and fourth column are the planer averages of charge density, local potential (sum of local pseudo-, Hartree, and XC potentials), and hartree potential, respectively. 
 
 
-By plotting the first and third colums, and first and fourth colums, we get the following potential profile:
+By plotting the first (z-coordinate) and third (local potential) colums, and first (z-coordinate) and fourth (electrostatic potential) colums, we get the following potential profile:
 
 .. image:: ../../../img/potential_profile_pbc.png
    :scale: 80%
