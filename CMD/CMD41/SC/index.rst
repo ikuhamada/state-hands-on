@@ -1862,7 +1862,7 @@ The standard output is not mandatroy, and actual output is written to ``nfout.da
 In contrast to the usual structural optmization, the calculation is not terminated automatically.
 Instead, we mononitor the convergence of the force along and perpendicular to the reaction coordinate, and when the force perpendicular to the reaction coordinate is small, we judge the NEB calculation is converged. To do so, we grep the keyword ``ForceIn`` (``ForceOut``) in the output file for the force perpendicular (parallel) to the reaction coordinate. For example
 
-.. code ::bash
+.. code:: bash
 
   $ for d in 0[2-6]; do grep -A1 ForceIn $d/nfout.data | tail -2; done
 
