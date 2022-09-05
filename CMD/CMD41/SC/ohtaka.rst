@@ -190,6 +190,30 @@ Please change the input (``nfinp_scf``) and output (``nfout_scf``) file names as
 You don't have to change the following lines in the job script.
 
 
+Minimum list of submission commands
+===================================
+
+* Submission of a job
+
+.. code::
+
+  $ sbatch [job script]
+
+* Check the job status
+
+.. code::
+
+  $ squeue
+
+* Cancel the job
+
+.. code::
+
+  $ scancel [Job ID]
+
+Use ``squeue`` to know your JOB ID
+
+
 Available resources on ohtaka
 =============================
 
