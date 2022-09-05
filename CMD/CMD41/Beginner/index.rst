@@ -63,7 +63,10 @@ you can find the directories as::
 
   examples/  gncpp/  src/
 
-Let us move to ``${HOME}/STATE/examples``.
+Let us move to ``${HOME}/STATE/examples`` to run the examples.
+
+Carbon monoxide
+===============
 
 As the first example, let us use the carbon monoxide (CO) molecule in a box.
 Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
