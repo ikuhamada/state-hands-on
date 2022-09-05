@@ -1046,7 +1046,23 @@ Use ``state2chgpro.sh`` utility to extract planar average of charge, effective (
 
   $ state2chgpro.sh nfout_gdiis_pbc > chgpro.dat_pbc
 
-By plotting the first and third colums, and first and fourth colums, we get the following potential profile:
+``chgpro.dat_pbc`` may look like following:
+
+.. code::
+
+  #
+  # Fermi energy =       -0.05368332 Hartree
+  #
+  #          z           Charge             VlHxc               VlH
+       0.0000      0.0244720791     -0.5159539900     -0.1911502410
+       0.3061      0.0234616356     -0.5090777191     -0.1881052797
+       0.6123      0.0227510319     -0.4956732447     -0.1748120165
+       0.9184      0.0226562465     -0.4739551828     -0.1543648253
+       ...
+
+Here, the first column is the z-coordinate in the Bohr radius, and second, third, and fourth column are the planer averages of charge density, local potential (sum of local pseudo-, Hartree, and XC potentials), and hartree potential, respectively. 
+
+By plotting the first (z-coordinate) and third (local potential) colums, and first (z-coordinate) and fourth (electrostatic potential) colums, we get the following potential profile:
 
 .. image:: ../../../img/potential_profile_pbc.png
    :scale: 80%
