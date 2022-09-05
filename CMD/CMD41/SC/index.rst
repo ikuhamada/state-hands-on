@@ -1853,9 +1853,9 @@ Running the NEB calculation
 
 Finally, the NEB calculation can be executed, in the presence of ``replica.cmd`` as
 
-.. code ::bash
+.. code:: bash
   
-  $ mpirun -np 6 STATE > neb.log
+  $ sbatch run_neb.sh
 
 The standard output is not mandatroy, and actual output is written to ``nfout.data`` in each directory.
 
