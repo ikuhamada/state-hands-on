@@ -31,7 +31,7 @@ where [user_name] is your user name assigned.
 
   $ git clone -b cmd_sc https://github.com/ikuhamada/state-setup.git STATE
 
-See also `my github page <https://github.com/ikuhamada/state-setup>`_.
+See also `my github page <https://github.com/ikuhamada/state-setup/tree/cmd_sc>`_.
 
 Then, go to the STATE directory 
 
