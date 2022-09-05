@@ -88,6 +88,12 @@ and ``make``
 
   $ make > make.log 2>&1&
 
+Just make sure the utility programs are in your command search path, please type the following
+
+.. code:: bash
+
+  $ source ~/.bashrc
+
 If the builds are done successfully, we are now ready to run the STATE program!
 
 Let us move to ``${HOME}/STATE/examples``.
