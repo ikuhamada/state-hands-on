@@ -519,7 +519,7 @@ Submit the STATE job as
 
 .. code:: bash
 
-  $ run.sh
+  $ sbatch run.sh
 
 Total energy of the metallic system is sensitive to the smearing function and width, and the number of k-points, and they should be determined very carefully before the production run.
 Detail is discussed in the tutorial (to be completed).
@@ -603,7 +603,7 @@ This can be plotted by using gnuplot as follows:
   $ gnuplot> set yrange [0:4]
   $ gnuplot> set xlabel 'E-E_F (eV)'
   $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data_smearing' using ($1):($2) w l title 'Spin-up','dos.data_smearing' using ($1):($3) w l title 'Spin-down'
+  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):($3) w l title 'Spin-down'
 
 
 The spin-polarized DOS looks like:
@@ -621,7 +621,7 @@ Or by using the following:
   $ gnuplot> set yzeroaxis
   $ gnuplot> set xlabel 'E-E_F (eV)'
   $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data_smearing' using ($1):($2) w l title 'Spin-up','dos.data_smearing' using ($1):(-$3) w l title 'Spin-down'
+  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):(-$3) w l title 'Spin-down'
 
 One may obtain the spin-polarized DOS like:
 
