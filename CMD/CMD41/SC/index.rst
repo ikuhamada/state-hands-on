@@ -45,24 +45,50 @@ and execute the following
 
   $ ./state-setup.sh
 
-and you are all set!
+and we are almost there!
 
-The source file is located in ``${HOME}/STATE/src`` and examples ``${HOME}/STATE/examples``.
-Go to the STATE directory by typing
-
-.. code:: bash
-
-  $ cd ~/STATE
-
-and 
-
-.. code:: bash
-
-  $ ls
-
-you can find the directories as::
+Now you can find the directories by typing ``ls`` as::
 
   examples/  gncpp/  src/
+
+and we are ready to build the STATE executable. Let us moved to the source directory
+
+.. code:: bash
+
+  $ cd src/state/src
+
+and execute the following
+
+.. code:: bash
+
+  $ ln -s ../arch/make.arch.intel_ohtaka_scalapack make.arch
+
+and build the STATE code by executing ``make``
+
+.. code:: bash
+
+  $ make > make.log 2>&1&
+
+``make.log`` is a log file for the build and the file name can be anything. It takes few minutes to complete the build.
+If successfull, we get the following message
+
+.. code:: bash
+
+  [1]+  Done                    make > make.log 2>&1
+
+Then let us also build the utility programs. Go to the utility directory
+
+.. code:: bash
+
+  $ cd ../util
+
+and ``make``
+
+.. code:: bash
+
+  $ make > make.log 2>&1&
+
+If the builds are done successfully, we are now ready to run the STATE program!
 
 Let us move to ``${HOME}/STATE/examples``.
 
