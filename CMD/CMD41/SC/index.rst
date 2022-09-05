@@ -146,7 +146,7 @@ Let us review the job script by ``cat run.sh``
   
   # Set the executable of the STATE code
   
-  ln -fs ${HOME}/state/src/STATE
+  ln -fs ${HOME}/STATE/src/state/src/STATE
   
   # Set the pseudopotential data
   
@@ -292,7 +292,7 @@ Let us review the job script ``run.sh``::
   
   # Set the executable of the STATE code
   
-  ln -fs ${HOME}/state/src/STATE
+  ln -fs ${HOME}/STATE/src/state/src/STATE
   
   # Set the pseudopotential data
   
