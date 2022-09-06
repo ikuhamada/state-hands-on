@@ -912,6 +912,7 @@ Then use ``traj2xyz.pl`` in the current example directry as
 to save the trajectory in the XYZ format.
 
 Use XCrySDen, VMD, or other your favorite visualization software to visualize it (VESTA cannot be used for movies).
+:doc:`Here <openmxviewer>` is an example how to use a web-based tool to visualize the molecular dynamics.
 
 .. note::
   Generally, long time molecular dynamics simulation is required to obtain reliable statistical ensemble/average, which cannot be possible within the given hours. In STATE, use ``CPUMAX`` to dump the latest geometry and wave functions before the time limit, and restart by using the ``RESTART`` keyword. It is also possible to terminate the job by writing a positive number in the ``nfstop.data``.
