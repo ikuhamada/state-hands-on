@@ -30,7 +30,7 @@ This is done by executing the following command in the home directory (``${HOME}
 
   $ git clone -b cmd_beginner https://github.com/ikuhamada/state-setup.git STATE
 
-See also `my github page <https://github.com/ikuhamada/state-setup>`_.
+See also `my github page <https://github.com/ikuhamada/state-setup/tree/cmd_beginner>`_.
 
 Then, go to the STATE directory 
 
