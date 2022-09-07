@@ -658,9 +658,29 @@ The result looks like::
      NIT     TotalEnergy     f_max     f_rms      edel      vdel      fdel
        5    -13.90234848  0.000329  0.000271  0.11D-09  0.91D-07  0.11D-09
 
+Final atomic coordinates in the cartesian coordinate and forces acting on atoms are given as::
 
-The latest geometry is stored in the ``GEOMETRY`` file, and in the case of GDIIS, past geometries are stored in ``gdiis.data``.
+                         CONVERGED ENERGY AND FORCES 
+     NIT     TotalEnergy     f_max     f_rms      edel      vdel      fdel
+       5    -13.90234843  0.000349  0.000281  0.25D-09  0.12D-06  0.25D-09
+  
+      ATOM              COORDINATES                        FORCES
+  MD:    5
+  MD:    1  C   1.260786   0.000001  -0.000000  -0.00035 -0.00000  0.00000
+  MD:    2  H   2.337963   1.755204  -0.000000  -0.00019 -0.00015  0.00000
+  MD:    3  H   2.337964  -1.755205  -0.000000  -0.00019  0.00015  0.00000
+  MD:    4  C  -1.260786   0.000000  -0.000000   0.00035 -0.00000  0.00000
+  MD:    5  H  -2.337963   1.755204   0.000000   0.00019 -0.00015 -0.00000
+  MD:    6  H  -2.337963  -1.755204   0.000000   0.00019  0.00015 -0.00000
+  
+   EXITING ATOM LOOP 
+
+Because the maximum force ``f_max`` is smaller than the threshold, the calculation stops with the message ``EXITING ATOM LOOP``.
+
+The latest geometry is stored in the ``GEOMETRY`` file (text file), and in the case of GDIIS, past geometries are stored in ``gdiis.data``.
 It is suggested that ``gdiis.data`` be deleted or renamed when the number of optimization steps is close to the number of degrees of freedom.
+
+If the structural optimization is not finished, add ``RESTART`` in the input file and submit the job again. To restart the calculation, make sure ``restart.data`` file exists in the working directory.
 
 Vibrational analyis
 -------------------
