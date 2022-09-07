@@ -960,7 +960,7 @@ In this example, we are going to perform a finite temperature molecular dynamics
        -2.348328846800     -1.753458668500      0.000000000000    1 1001    2
   &END
 
-To perform a molecular dynamics simulation, we set ``ION_DYN`` `` FTMD`` and how to control the temperature is given as::
+To perform a molecular dynamics simulation, we set ``ION_DYN`` ``FTMD`` and how to control the temperature is given as::
 
   TEMP_CONTROL NHC
   TEMPW   300.0D0
