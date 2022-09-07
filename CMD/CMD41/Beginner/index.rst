@@ -953,6 +953,11 @@ Use XCrySDen, VMD, or other your favorite visualization software to visualize it
 Cl on Al(100)
 =============
 
+.. image:: ../../../img/al6cl.png
+   :scale: 20%
+   :align: center
+
+
 This example explains how to model the surface with an adsobate by using an Al(100) surface with a Cl atom.
 We also discuss how the periodic boundary condition (PBC) affects the potential (and thus the energy and forces)
 and how to address the issue by using the effective screening medium (ESM) method.
