@@ -454,11 +454,19 @@ The output looks like
    :scale: 80%
    :align: center
 
-Furthermore, by using the ``eosfit`` in the ``util`` directory, the equilibrium volume is obitained:
+Furthermore, by using the ``eosfit`` in the ``util`` directory as
+
+.. code:: bash
+
+  $ eosfit etot.dat
+
+one can see the following
 
 .. image:: ../../../img/etot_si_fit.png
    :scale: 80%
    :align: center
+
+and the equilibrium volume is obitained.
 
 The equilibrium volume (v0), energy (e0), bulk modulus (b0), and derivative of bulk modulus (b0') can be found in ``eosfit.param``.
 The resulting equilibrium lattice constant is 10.3455 Bohr.
