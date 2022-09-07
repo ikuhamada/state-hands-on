@@ -4,7 +4,7 @@
 Beginner course @ CMD41
 =======================
 
-Welcome to the STATE hands-on tutorial at CMD41. In the following, how to run the STATE examples for this hands on is desdribed.
+Welcome to the STATE hands-on tutorial at CMD41. In the following, how to run the STATE examples for this hands on is desdribed.  A documentation of the STATE code can be found `here <https://state-doc.readthedocs.io>`_.
 
 Getting started
 ===============
