@@ -675,7 +675,9 @@ Final atomic coordinates in the cartesian coordinate and forces acting on atoms 
   
    EXITING ATOM LOOP 
 
-Because the maximum force ``f_max`` is smaller than the threshold, the calculation stops with the message ``EXITING ATOM LOOP``.
+Because the maximum force ``f_max`` is smaller than the threshold, the calculation stops with the message::
+
+   EXITING ATOM LOOP 
 
 The latest geometry is stored in the ``GEOMETRY`` file (text file), and in the case of GDIIS, past geometries are stored in ``gdiis.data``.
 It is suggested that ``gdiis.data`` be deleted or renamed when the number of optimization steps is close to the number of degrees of freedom.
