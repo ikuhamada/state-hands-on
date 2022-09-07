@@ -680,7 +680,7 @@ Because the maximum force ``f_max`` is smaller than the threshold, the calculati
 The latest geometry is stored in the ``GEOMETRY`` file (text file), and in the case of GDIIS, past geometries are stored in ``gdiis.data``.
 It is suggested that ``gdiis.data`` be deleted or renamed when the number of optimization steps is close to the number of degrees of freedom.
 
-If the structural optimization is not finished, add ``RESTART`` in the input file and submit the job again. To restart the calculation, make sure ``restart.data`` file exists in the working directory.
+If the structural optimization is not finished, add the keyword ``RESTART`` in the input file and submit the job again. To restart the calculation, make sure ``restart.data`` file exists in the working directory.
 
 Vibrational analyis
 -------------------
