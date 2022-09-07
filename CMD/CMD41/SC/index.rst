@@ -410,15 +410,15 @@ The resulting DOS looks as follows:
 Cell optimization
 -----------------
 In the current version of STATE, the stress tensor is not (yet!) calculated, and the cell optimization should be performed manually.
-Let us change the lattice constant from 10.10 Bohr to 10.50 Bohr by 0.05 Bohr by changing the input variable ``CELL``
+Let us change the lattice constant from 10.20 Bohr to 10.50 Bohr by 0.05 Bohr by changing the input variable ``CELL``
 
 .. code:: bash
 
-  CELL   10.10  10.10  10.10  90.00  90.00  90.00
+  CELL   10.20  10.20  10.20  90.00  90.00  90.00
 
 .. code:: bash
 
-  CELL   10.15  10.15  10.15  90.00  90.00  90.00
+  CELL   10.25  10.25  10.25  90.00  90.00  90.00
 
 ...
 
@@ -426,7 +426,7 @@ Let us change the lattice constant from 10.10 Bohr to 10.50 Bohr by 0.05 Bohr by
 
   CELL   10.50  10.50  10.50  90.00  90.00  90.00
 
-For each lattice constant we prepare an input file as ``nfinp_scf_10.10``, ``nfinp_scf_10.15``, ... ``nfinp_scf_10.50`` and submit jobs by changing the input and output files in the job script.
+For each lattice constant we prepare an input file as ``nfinp_scf_10.20``, ``nfinp_scf_10.25``, ... ``nfinp_scf_10.50`` and submit jobs by changing the input and output files in the job script.
 
 .. code:: bash
 
