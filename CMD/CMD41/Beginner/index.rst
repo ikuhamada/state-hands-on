@@ -68,6 +68,11 @@ Let us move to ``${HOME}/STATE/examples`` to run the examples.
 Carbon monoxide
 ===============
 
+.. image:: ../../../img/co.png
+   :scale: 20%
+   :align: center
+
+
 As the first example, let us use the carbon monoxide (CO) molecule in a box.
 Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
 
@@ -202,6 +207,12 @@ Congratulations! We see the victory cat at the end of the output file:-)
 
 Silicon
 =======
+
+.. image:: ../../../img/si2.png
+   :scale: 20%
+   :align: center
+
+
 This example explains how to perform a self-consistent field (SCF) calculation and cell (volume) optimization by using a crystalline silicon in the diamond structure as an example.
 
 SCF
