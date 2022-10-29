@@ -15,6 +15,7 @@ This is the home to the STATE hands-on tutorial. A documentation of the STATE co
    about
    CMD/CMD41/Beginner/index.rst
    CMD/CMD41/SC/index.rst
+   CMD/ACMD2022_PKA/Beginner/index.rst
    CMD/ACMD2022_ITB/Beginner/index.rst
    CMD/ACMD2022_UPM/Beginner/index.rst
    CMD/ACMD2022_TDMU/Beginner/index.rst
@@ -24,6 +25,8 @@ This is the home to the STATE hands-on tutorial. A documentation of the STATE co
 +----------------------+-------+--------------------------------------------------+
 | Date                 | Event | Course                                           |
 +======================+=======+==================================================+
+| November 9-12, 2022  | :any:`ACMD@PKA<CMD/ACMD2022_PKA/Beginner/index>`         |
++----------------------+-------+--------------------------------------------------+
 | September 5-9, 2022  | CMD41 | :any:`Beginner course <CMD/CMD41/Beginner/index>`|
 +                      +       +--------------------------------------------------+
 |                      |       | :any:`Supercomputer course <CMD/CMD41/SC/index>` |
