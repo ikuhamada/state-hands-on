@@ -13,7 +13,8 @@ Visit the `OpenMX Viewer <http://www.openmx-square.org/viewer/index.html>`_ site
    :scale: 25%
    :align: center
 
-Download your trajectory file, say, ``traj.xyz`` to your local computer, and then drag and drop your trajectory file as suggested in the web page (see below):
+Download your trajectory file, say, ``traj.xyz`` to your local computer, and then drag and drop your trajectory file as suggested in the web page:
+(In case you have difficulty in producing the trajectory file, download/copy it from `here <https://github.com/ikuhamada/state-examples/blob/4a663dc31935a68616b023243987f2f2cb91b913/C2H4/References/5.6.6/traj.xyz>`_)
 
 .. image:: ../../../img/dtomxwp.png
    :scale: 65%
