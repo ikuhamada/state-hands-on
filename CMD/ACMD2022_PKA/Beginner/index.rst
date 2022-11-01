@@ -49,6 +49,9 @@ and execute the following
 
 and you are all set!
 
+.. note::
+  If this step gets slow due to possible congestion of the file system, run ``srun --pty bash -i`` first and try the above command.
+
 The source file is located in ``${HOME}/STATE/src`` and examples ``${HOME}/STATE/examples``.
 Go to the STATE directory by typing
 
