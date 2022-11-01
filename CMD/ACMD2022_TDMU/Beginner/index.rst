@@ -1,8 +1,8 @@
 .. _ACMD2020_TDMU:
 
-========================
-Hands-on for ACMD\@\TDMU
-========================
+============================
+Hands-on for Asia CMD\@\TDMU
+============================
 
 Welcome to the STATE hands-on tutorial at ACMD_2022\@\TDMU. In the following, how to run the STATE examples for this hands on is desdribed.
 

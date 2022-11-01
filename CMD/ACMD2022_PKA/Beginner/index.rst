@@ -442,6 +442,12 @@ Compare with that reported in the literature.
 
 Aluminum
 ========
+
+.. image:: ../../../img/al.png
+   :scale: 30%
+   :align: center
+
+
 In this example, how to deal with a metallic system with the smearing method is briefly described by using the crystalline aluminium in the face centered cubic (fcc) structure.
 
 SCF

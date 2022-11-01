@@ -1,8 +1,8 @@
 .. _ACMD2020_ITB:
 
-========================
-Hands-on for ACMD\@\ITB
-========================
+===========================
+Hands-on for Asia CMD\@\ITB
+===========================
 
 Welcome to the STATE hands-on tutorial at A-CMD\@\ITB. In the following, how to run the STATE examples for this hands on is desdribed.
 

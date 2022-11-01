@@ -13,32 +13,32 @@ This is the home to the STATE hands-on tutorial. A documentation of the STATE co
    :hidden:
 
    about
+   CMD/ACMD2022_PKA/Beginner/index.rst
    CMD/CMD41/Beginner/index.rst
    CMD/CMD41/SC/index.rst
-   CMD/ACMD2022_PKA/Beginner/index.rst
    CMD/ACMD2022_ITB/Beginner/index.rst
    CMD/ACMD2022_UPM/Beginner/index.rst
    CMD/ACMD2022_TDMU/Beginner/index.rst
    CMD/CMD40/Beginner/index.rst
    CMD/CMD40/Advanced/index.rst
 
-+----------------------+-------+--------------------------------------------------+
-| Date                 | Event | Course                                           |
-+======================+=======+==================================================+
-| November 9-12, 2022  | :any:`ACMD@PKA<CMD/ACMD2022_PKA/Beginner/index>`         |
-+----------------------+-------+--------------------------------------------------+
-| September 5-9, 2022  | CMD41 | :any:`Beginner course <CMD/CMD41/Beginner/index>`|
-+                      +       +--------------------------------------------------+
-|                      |       | :any:`Supercomputer course <CMD/CMD41/SC/index>` |
-+----------------------+-------+--------------------------------------------------+
-| August 3-5, 2022     | :any:`ACMD@ITB<CMD/ACMD2022_ITB/Beginner/index>`         |
-+----------------------+-------+--------------------------------------------------+
-| July 28-30, 2022     | :any:`ACMD@UPM<CMD/ACMD2022_UPM/Beginner/index>`         |
-+----------------------+-------+--------------------------------------------------+
-| April 14-16, 2022    | :any:`ACMD@TDMU<CMD/ACMD2022_TDMU/Beginner/index>`       |
-+----------------------+-------+--------------------------------------------------+
-| February 21-25, 2022 | CMD40 | :any:`Beginner course <CMD/CMD40/Beginner/index>`|
-+                      +       +--------------------------------------------------+
-|                      |       | :any:`Advanced course <CMD/CMD40/Advanced/index>`|
-+----------------------+-------+--------------------------------------------------+
++----------------------+-------+------------------------------------------------------+
+| Date                 | Event | Course                                               |
++======================+=======+======================================================+
+| November 9-12, 2022  | :any:`Asia CMD@PKA<CMD/ACMD2022_PKA/Beginner/index>`         |
++----------------------+-------+------------------------------------------------------+
+| September 5-9, 2022  | CMD41 | :any:`Beginner course <CMD/CMD41/Beginner/index>`    |
++                      +       +------------------------------------------------------+
+|                      |       | :any:`Supercomputer course <CMD/CMD41/SC/index>`     |
++----------------------+-------+------------------------------------------------------+
+| August 3-5, 2022     | :any:`Asia CMD@ITB<CMD/ACMD2022_ITB/Beginner/index>`         |
++----------------------+-------+------------------------------------------------------+
+| July 28-30, 2022     | :any:`Asia CMD@UPM<CMD/ACMD2022_UPM/Beginner/index>`         |
++----------------------+-------+------------------------------------------------------+
+| April 14-16, 2022    | :any:`Asia CMD@TDMU<CMD/ACMD2022_TDMU/Beginner/index>`       |
++----------------------+-------+------------------------------------------------------+
+| February 21-25, 2022 | CMD40 | :any:`Beginner course <CMD/CMD40/Beginner/index>`    |
++                      +       +------------------------------------------------------+
+|                      |       | :any:`Advanced course <CMD/CMD40/Advanced/index>`    |
++----------------------+-------+------------------------------------------------------+
 

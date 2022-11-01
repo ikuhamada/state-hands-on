@@ -1,8 +1,8 @@
 .. _ACMD2022_UPM:
 
-=======================
-Hands on for ACMD\@\UPM
-=======================
+===========================
+Hands on for Asia CMD\@\UPM
+===========================
 
 Welcome to the STATE hands-on tutorial at ACMD\@\UPM. In the following, how to run the STATE examples for this hands on is desdribed.
 
