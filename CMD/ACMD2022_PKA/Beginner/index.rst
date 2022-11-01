@@ -7,33 +7,33 @@ Hands-on for Asia CMD\@\Phenikaa University
 Welcome to the STATE hands-on tutorial at Asia Computational Materials Design (ACMD)\@\Phenikaa University. In the following, how to run the STATE examples for this hands on is desdribed. A documentation of the STATE code can be found `here <https://state-doc.readthedocs.io>`_.
 
 .. warning::
-        This page is tentative and subject to change.
+        This page is still tentative and subject to change.
 
 Getting started
 ===============
 
-First of all, we log in to the cluster system (pyxis).
+First of all, we log in to the HPC system.
 
 .. code:: bash
 
-  $ ssh -Y [user_name]@pyxis.mp.es.osaka-u.ac.jp
+  $ ssh -Y [user_name]@10.20.8.11
 
 or
 
 .. code:: bash
 
-  $ ssh -Y -l [user_name] pyxis.mp.es.osaka-u.ac.jp
+  $ ssh -Y -l [user_name] 10.20.8.11
 
-where [user_name] is your user name assigned. If the above commands do not work, use *pxyis*, instead of *pyxis.mp.es.osaka-u.ac.jp*.
+where [user_name] is your user name assigned.
 
 Then, we are going to set up the STATE program, pseudopotentials, and example files.
 This is done by executing the following command in the home directory (``${HOME}`` or ``~``) as:
 
 .. code:: bash
 
-  $ git clone -b cmd_beginner https://github.com/ikuhamada/state-setup.git STATE
+  $ git clone -b acmd_pka_2022 https://github.com/ikuhamada/state-setup.git STATE
 
-See also `my github page <https://github.com/ikuhamada/state-setup/tree/cmd_beginner>`_.
+See also `my github page <https://github.com/ikuhamada/state-setup/tree/acmd_pka_2022>`_.
 
 Then, go to the STATE directory 
 
@@ -87,9 +87,6 @@ Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
   GMAX      5.50
   GMAXP     20.00
   NSCF      200
-  WAYMIX    3
-  KBXMIX    8
-  MIX_ALPHA 0.8
   WIDTH     0.0010
   EDELTA    0.1000D-09
   NEG       8
@@ -109,13 +106,15 @@ Let us review the job script by ``cat run.sh``
 
 .. code:: bash
 
-  #$ -S /bin/sh
-  #$ -cwd
-  #$ -q all.q
-  #$ -pe smp 4
-  #$ -N CO
+  #SBATCH --job-name=CO
+  #SBATCH --partition=small
+  #SBATCH --ntasks=8
+  #SBATCH --nodes=1
+  #SBATCH --ntasks-per-node=8
+  #SBATCH --output=%x.%j.out 
+  #SBATCH --error=%x.%j.err
   
-  # Disable OPENMP parallelism
+  module load mpi
   
   export OMP_NUM_THREADS=1
    
@@ -158,7 +157,7 @@ The output ``nfout_scf`` starts with the header
    *                ***      **   **********   **    ******              *
    *                  **     **  **        **  **    **                  *
    *             ********    ** **          ** **    ********            *
-   *              ******     ** VERSION 5.6.9  **    ********            *
+   *              ******     ** VERSION 5.6.10 **    ********            *
    *                               RICS-AIST                             *
    *                           OSAKA UNIVERSITY                          *
    *                                                                     *
@@ -168,18 +167,18 @@ and at the convergence, total energy, its components, and Fermi energy are print
 
 .. code:: bash
 
-                       TOTAL ENERGY AND ITS COMPONENTS 
-                    TOTAL ENERGY     =         -22.21942426 A.U.
-                  KINETIC ENERGY     =           9.92111407 A.U.
-                  HARTREE ENERGY     =           5.12121800 A.U.
-                       XC ENERGY     =          -5.89585641 A.U.
-                    LOCAL ENERGY     =         -20.23161604 A.U.
-                 NONLOCAL ENERGY     =           6.73686140 A.U.
-                    EWALD ENERGY     =         -17.87114528 A.U.
-                       PC ENERGY     =           0.00000000 A.U.
-                 ENTROPIC ENERGY     =           0.00000000 A.U.
-  
-                                           FERMI ENERGY =       0.43248213
+                        TOTAL ENERGY AND ITS COMPONENTS 
+                     TOTAL ENERGY     =         -22.21942426 A.U.
+                   KINETIC ENERGY     =           9.92111371 A.U.
+                   HARTREE ENERGY     =           5.12121739 A.U.
+                        XC ENERGY     =          -5.89585625 A.U.
+                     LOCAL ENERGY     =         -20.23161463 A.U.
+                  NONLOCAL ENERGY     =           6.73686081 A.U.
+                     EWALD ENERGY     =         -17.87114528 A.U.
+                        PC ENERGY     =           0.00000000 A.U.
+                  ENTROPIC ENERGY     =           0.00000000 A.U.
+   
+                                            FERMI ENERGY =       0.43248232
   
 along with the forces acting on atoms
 
@@ -187,8 +186,8 @@ along with the forces acting on atoms
 
       ATOM              COORDINATES                        FORCES
   MD:    1
-  MD:    1  C   0.000000   0.000000   0.000000   0.01852 -0.00000 -0.00000
-  MD:    2  O   2.200000   0.000000   0.000000  -0.01858  0.00000 -0.00000
+  MD:    1  C   0.000000   0.000000   0.000000   0.01852 -0.00000  0.00000
+  MD:    2  O   2.200000   0.000000   0.000000  -0.01858 -0.00000  0.00000
 
 Congratulations! We see the victory cat at the end of the output file:-)
 
@@ -257,15 +256,18 @@ By default wave function optimization (single-point calculation) is performed (`
 
 Let us review the job script ``run.sh``::
 
-  #$ -S /bin/sh
-  #$ -cwd
-  #$ -q all.q
-  #$ -pe smp 4
-  #$ -N Si
+  #SBATCH --job-name=Si
+  #SBATCH --partition=small
+  #SBATCH --ntasks=8
+  #SBATCH --nodes=1
+  #SBATCH --ntasks-per-node=8
+  #SBATCH --output=%x.%j.out 
+  #SBATCH --error=%x.%j.err
   
-  #disable OPENMP parallelism
+  module load mpi
+  
   export OMP_NUM_THREADS=1
-  
+
   # execuable of the STATE code
   ln -fs ${HOME}/STATE/src/state/src/STATE .
   
@@ -304,7 +306,7 @@ and atomic positions::
 
 The exchange-correlation functional used is printed as::
 
-   EXCHANGE CORRELATION FUNCTIONALS : ggapbe
+   EXCHANGE CORRELATION FUNCTIONAL : ggapbe
 
 and make sure that this is what you want to use.
 
@@ -315,37 +317,39 @@ The convergence of the total energy can be monitored from the output. It looks l
   *                              START SCF                              *
   *                                                                     *
   ***********************************************************************
-
+ 
    NSCF NADR            ETOTAL          EDEL          CDEL CONV      TCPU
-      1    0       -6.05513096   0.60551E+01   0.32033E-02    0      0.40
-      2    1       -7.84013758   0.17850E+01   0.50625E-02    0      0.08
-      3    2       -7.87244596   0.32308E-01   0.45624E-02    1      0.08
-      4    3       -7.87086756   0.15784E-02   0.76306E-02    1      0.08
-      5    4       -7.87352176   0.26542E-02   0.13466E-02    1      0.08
-      6    5       -7.87351941   0.23528E-05   0.56367E-03    2      0.08
-      7    6       -7.87353730   0.17887E-04   0.40389E-03    2      0.08
-      8    7       -7.87355183   0.14538E-04   0.21148E-03    2      0.08
-      9    8       -7.87355489   0.30598E-05   0.15435E-03    2      0.08
-     10    9       -7.87355832   0.34247E-05   0.95948E-05    3      0.08
-     11   10       -7.87355833   0.93097E-08   0.45654E-05    3      0.08
-     12   11       -7.87355833   0.29345E-08   0.19696E-05    3      0.08
-     13   12       -7.87355833   0.57462E-09   0.17709E-06    4      0.08
-     14   13       -7.87355833   0.11322E-10   0.10973E-06    5      0.08
-     15   14       -7.87355833   0.90061E-12   0.54074E-07    6      0.08
+      1    0      -16.71058056   0.16711E+02   0.89648E-01    0      0.04
+      2    1      -20.10285006   0.33923E+01   0.57093E-01    0      0.02
+      3    2      -21.98063616   0.18778E+01   0.44916E-01    0      0.02
+      4    3      -22.16556242   0.18493E+00   0.31281E-01    0      0.02
+      5    4      -22.19099536   0.25433E-01   0.23667E-01    0      0.02
+      6    5      -22.21869682   0.27701E-01   0.61422E-02    1      0.02
+      7    6      -22.21927724   0.58042E-03   0.25371E-02    1      0.02
+      8    7      -22.21937883   0.10159E-03   0.99730E-03    2      0.02
+      9    8      -22.21941863   0.39807E-04   0.49973E-03    2      0.02
+     10    9      -22.21942384   0.52027E-05   0.11026E-03    2      0.02
+     11   10      -22.21942370   0.13864E-06   0.93562E-04    3      0.02
+     12   11      -22.21942423   0.53607E-06   0.17810E-04    3      0.02
+     13   12      -22.21942426   0.21336E-07   0.18634E-05    3      0.02
+     14   13      -22.21942426   0.15235E-09   0.32432E-06    4      0.02
+     15   14      -22.21942426   0.11546E-11   0.18848E-06    5      0.02
+     16   15      -22.21942426   0.30802E-11   0.55825E-07    6      0.03
 
 
 At the convergence, the total energy and its componets are printed as::
 
-                       TOTAL ENERGY AND ITS COMPONENTS 
-                    TOTAL ENERGY     =          -7.87355833 A.U.
-                  KINETIC ENERGY     =           3.01922477 A.U.
-                  HARTREE ENERGY     =           0.55014239 A.U.
-                       XC ENERGY     =          -2.40098667 A.U.
-                    LOCAL ENERGY     =          -0.84295028 A.U.
-                 NONLOCAL ENERGY     =           0.16885308 A.U.
-                    EWALD ENERGY     =          -8.36784162 A.U.
-                       PC ENERGY     =           0.00000000 A.U.
-                 ENTROPIC ENERGY     =           0.00000000 A.U.
+                      TOTAL ENERGY AND ITS COMPONENTS 
+                   TOTAL ENERGY     =         -22.21942426 A.U.
+                 KINETIC ENERGY     =           9.92111371 A.U.
+                 HARTREE ENERGY     =           5.12121739 A.U.
+                      XC ENERGY     =          -5.89585625 A.U.
+                   LOCAL ENERGY     =         -20.23161463 A.U.
+                NONLOCAL ENERGY     =           6.73686081 A.U.
+                   EWALD ENERGY     =         -17.87114528 A.U.
+                      PC ENERGY     =           0.00000000 A.U.
+                ENTROPIC ENERGY     =           0.00000000 A.U.
+
 
 NOTE this message is NOT printed when the convergence is not achieved.
 
@@ -603,6 +607,11 @@ One may obtain the spin-polarized DOS like:
 
 Ethylene
 ========
+
+.. image:: ../../../img/c2h4.png
+   :scale: 20%
+   :align: center
+
 
 This example explains how to perform the geometry optimization.
 
@@ -1139,6 +1148,11 @@ We can see that the potentials are flat in the vacuum region. Mind that the slab
 Graphene
 ========
 
+.. image:: ../../../img/gr.png
+   :scale: 20%
+   :align: center
+
+
 In this example (``GR``), how to optimize the cell parameter, how to calculate the band structure, and how to calculate density of states, are described.
 
 * Sample input file ``nfinp_scf``
@@ -1539,6 +1553,11 @@ The calculated PDOS for graphene can be visualized as:
 Benzene
 =======
 
+.. image:: ../../../img/c6h6.png
+   :scale: 30%
+   :align: center
+
+
 This example explain how to plot the molecular orbitals by using the benzene (C6H6) molecule.
 The directory is ``C6H6/``
 
@@ -1659,6 +1678,11 @@ The real parts of the doubly degenerated highest occupied molecular orbitals (HO
 
 TiO2
 ====
+
+.. image:: ../../../img/ti2o4.png
+   :scale: 20%
+   :align: center
+
 
 This example explains hot to perform a calculation with the on-site Coulomb potential correction (DFT+U) by using rutile.
 
