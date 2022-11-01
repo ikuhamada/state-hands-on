@@ -970,7 +970,7 @@ Use XCrySDen, VMD, or other your favorite visualization software to visualize it
 .. note::
   Generally, long time molecular dynamics simulation is required to obtain reliable statistical ensemble/average, which cannot be possible within the given hours. In STATE, use ``CPUMAX`` to dump the latest geometry and wave functions before the time limit, and restart by using the ``RESTART`` keyword. It is also possible to terminate the job by writing a positive number in the ``nfstop.data``.
 
-Cl on Al(100)
+Cl on Al(100) 
 =============
 
 .. image:: ../../../img/al6cl.png
@@ -978,7 +978,7 @@ Cl on Al(100)
    :align: center
 
 
-This example explains how to model the surface with an adsobate by using an Al(100) surface with a Cl atom.
+This example explains how to model the surface with an adsobate, using an Al(100) surface with a Cl atom.
 We also discuss how the periodic boundary condition (PBC) affects the potential (and thus the energy and forces)
 and how to address the issue by using the effective screening medium (ESM) method.
 
@@ -1676,15 +1676,15 @@ The real parts of the doubly degenerated highest occupied molecular orbitals (HO
    :align: center
 
 
-TiO2
-====
+Titanium dioxide
+================
 
 .. image:: ../../../img/ti2o4.png
    :scale: 20%
    :align: center
 
 
-This example explains hot to perform a calculation with the on-site Coulomb potential correction (DFT+U) by using rutile.
+This example explains hot to perform a calculation with the on-site Coulomb potential correction (DFT+U) by using rutile (TiO\ :sub:`2`).
 
 * Directory ``TiO2/``
 
