@@ -106,6 +106,8 @@ Let us review the job script by ``cat run.sh``
 
 .. code:: bash
 
+  #!/bin/sh
+  
   #SBATCH --job-name=CO
   #SBATCH --partition=small
   #SBATCH --ntasks=8
@@ -255,6 +257,8 @@ Let us have a look at it by typing in the ``Si`` directory:
 By default wave function optimization (single-point calculation) is performed (``WF_OPT``) with the Davidson algorithm (``DAV``), and structural optimization is not performed (Short description of the input variables can be found :doc:`here <si2>`).
 
 Let us review the job script ``run.sh``::
+
+  #!/bin/sh
 
   #SBATCH --job-name=Si
   #SBATCH --partition=small
