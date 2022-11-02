@@ -119,7 +119,7 @@ Let us review the job script by ``cat run.sh``
   #SBATCH --output=%x.%j.out 
   #SBATCH --error=%x.%j.err
   
-  module load mpi
+  module load mpi mkl
   
   export OMP_NUM_THREADS=1
    
@@ -145,7 +145,7 @@ and submit!
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 The output ``nfout_scf`` starts with the header
 
@@ -271,7 +271,7 @@ Let us review the job script ``run.sh``::
   #SBATCH --output=%x.%j.out 
   #SBATCH --error=%x.%j.err
   
-  module load mpi
+  module load mpi mkl
   
   export OMP_NUM_THREADS=1
 
@@ -288,13 +288,13 @@ By using the above input file and job script, we submit the job as:
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
-Status of your job can be monitored by using ``qstat`` as:
+Status of your job can be monitored by using ``squeue`` as:
 
 .. code:: bash
 
-  $ qstat
+  $ squeue
 
 After the calculation is done, check the output file ``nfout_scf`` and make sure that lattice vectors and atomic positions are correct.
 The primitive lattice vectors are given as::
@@ -404,7 +404,7 @@ For each lattice constant we prepare an input file as ``nfinp_scf_10.20``, ``nfi
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 To collect the volume-energy (E-V) data, here we use ``state2ev.sh`` script in ``state-5.6.6/util/`` as
 
@@ -507,7 +507,7 @@ Submit the STATE job as
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 Total energy of the metallic system is sensitive to the smearing function and width, and the number of k-points, and they should be determined very carefully before the production run.
 Detail is discussed in the tutorial (to be completed).
@@ -575,7 +575,7 @@ for each atomic species.
 
 Submitting a job::
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 
 As above, ``dos.data`` is automatically generated. In the case of spin polarized system, the first column of ``dos.data`` contains energy, second and third columns contain DOS for spin up and down respectively.
@@ -677,7 +677,7 @@ Geometry optimization
 
 .. code:: bash
 
-  $ qsub run_gdiis.sh
+  $ sbatch run_gdiis.sh
 
 The convergence of the forces can be monitored by:
 
@@ -844,7 +844,7 @@ Submit the job
 
 .. code:: bash
 
-  $ qsub run_vib.sh
+  $ sbatch run_vib.sh
 
 and we get ``nfforce.data`` in addition to the standard output files, which contains displaced atomic positions and forces acting on atoms, which can be used to calculate the vibrational frequencies.
 
@@ -958,7 +958,7 @@ Submit the job
 
 .. code:: bash
 
-  $ qsub run_ftmd.sh
+  $ sbatch run_ftmd.sh
 
 In this example, we perform 200 MD steps (default value).
 When the calculation is terminated, we get ``TRAJECTORY`` containing the trajectory and ``ENERGIES`` containing information on temperature and energies.
@@ -1045,7 +1045,7 @@ Subit the STATE job by executing:
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 and we get ``GEOMETRY`` and ``gdiis.data`` in addition to the standard output files.
 
@@ -1221,7 +1221,7 @@ For each lattice constant we prepare an input file as ``nfinp_scf_a4.54``, ``nfi
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 Alternatively one can use ``run_multi.sh`` to automatically run a set of calculations.
  
@@ -1271,7 +1271,7 @@ First perform the SCF calculation by using the following input file (``nfinp_scf
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 After converging the charge/potential, we perform the non-SCF band structure calculation by using the following input (``nfinp_band``)::
 
@@ -1353,7 +1353,7 @@ Run the band structure calculation by replacing the input file with ``nfinp_band
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 we obtain the file ``energy.data``, which containg the Kohn-Sham eigenvalues, along with the k-points.
 However, we cannot plot the band structure directory from ``energy.data`` and should be processed properly.
