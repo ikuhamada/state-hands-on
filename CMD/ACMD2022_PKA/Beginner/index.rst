@@ -728,6 +728,14 @@ It is suggested that ``gdiis.data`` be deleted or renamed when the number of opt
 
 If the structural optimization is not finished, add the keyword ``RESTART`` in the input file and submit the job again. To restart the calculation, make sure ``restart.data`` file exists in the working directory.
 
+To visualize the optimized geometry, ``geom2nfinp`` can be used, for instace, as
+
+.. code:: bash
+
+  $ geom2nfinp -xsf -i nfinp_gdiis -g GEOMETRY -o C2H4_relaxed.xsf
+
+In this way, we obtain a file containing the optimized geometry ``C2H4_relaxed.xsf``.
+
 Vibrational analyis
 -------------------
 
