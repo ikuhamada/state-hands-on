@@ -734,7 +734,10 @@ To visualize the optimized geometry, ``geom2nfinp`` can be used, for instace, as
 
   $ geom2nfinp -xsf -i nfinp_gdiis -g GEOMETRY -o C2H4_relaxed.xsf
 
-In this way, we obtain a file containing the optimized geometry ``C2H4_relaxed.xsf``.
+In this way, we obtain a file containing the optimized geometry ``C2H4_relaxed.xsf`` in the XSF format, which can be visualized using for instance, XCrySDen, VESTA, or VMD on a local computer (e.g., a laptop). If it is difficult to use these applications on a local computers, use a web interface. See this example how to use :doc:`Materials Clould <materialscloud>`.
+
+
+:doc:`Here <openmxviewer>` 
 
 Vibrational analyis
 -------------------
