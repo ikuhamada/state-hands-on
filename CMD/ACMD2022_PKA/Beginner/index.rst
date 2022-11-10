@@ -139,7 +139,7 @@ Let us review the job script by ``cat run.sh``
    
   # Run!
 
-  mpirun -np $NSLOTS ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
+  srun ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
 
 and submit!
 
@@ -282,7 +282,7 @@ Let us review the job script ``run.sh``::
   ln -fs ../gncpp/pot.Si_pbe1
    
   # launch STATE
-  mpirun -np $NSLOTS ./STATE < nfinp_scf > nfout_scf
+  srun ./STATE < nfinp_scf > nfout_scf
 
 By using the above input file and job script, we submit the job as:
 
