@@ -368,11 +368,11 @@ In addition, total density of states (DOS) is printed to ``dos.data``, which can
 
 .. code :: bash
 
-  $ gnuplot> set xrange [-12.5:7.5]
-  $ gnuplot> set yrange [0:2.0]
-  $ gnuplot> set xlabel 'Energy (eV)'
-  $ gnuplot> set ylabel 'DOS (arb. unit)'
-  $ gnuplot> plot 'dos.data' w l
+  gnuplot> set xrange [-12.5:7.5]
+  gnuplot> set yrange [0:2.0]
+  gnuplot> set xlabel 'Energy (eV)'
+  gnuplot> set ylabel 'DOS (arb. unit)'
+  gnuplot> plot 'dos.data' w l
 
 The resulting DOS looks as follows:
 
@@ -420,7 +420,7 @@ This can be visualized by using, for example, ``gnuplot`` as
 
 .. code:: bash
 
-  $ gnuplot> plot 'etot.dat' pt 7
+  gnuplot> plot 'etot.dat' pt 7
 
 The output looks like
 
@@ -587,12 +587,11 @@ This can be plotted by using gnuplot as follows:
 
 .. code:: bash
 
-  $ gnuplot> set xrange [-10:5]
-  $ gnuplot> set yrange [0:4]
-  $ gnuplot> set xlabel 'E-E_F (eV)'
-  $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):($3) w l title 'Spin-down'
-
+  gnuplot> set xrange [-10:5]
+  gnuplot> set yrange [0:4]
+  gnuplot> set xlabel 'E-E_F (eV)'
+  gnuplot> set ylabel 'DOS (state/eV)'
+  gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):($3) w l title 'Spin-down'
 
 The spin-polarized DOS looks like:
 
@@ -604,18 +603,139 @@ Or by using the following:
 
 .. code:: bash
 
-  $ gnuplot> set xrange [-10:5]
-  $ gnuplot> set yrange [-4:4]
-  $ gnuplot> set yzeroaxis
-  $ gnuplot> set xlabel 'E-E_F (eV)'
-  $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):(-$3) w l title 'Spin-down'
+  gnuplot> set xrange [-10:5]
+  gnuplot> set yrange [-4:4]
+  gnuplot> set yzeroaxis
+  gnuplot> set xlabel 'E-E_F (eV)'
+  gnuplot> set ylabel 'DOS (state/eV)'
+  gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):(-$3) w l title 'Spin-down'
 
 One may obtain the spin-polarized DOS like:
 
 .. image:: ../../../img/dos_ni_raw_2.png
    :scale: 80%
    :align: center
+
+Iron
+====
+
+.. image:: ../../../img/fe.png
+   :scale: 30%
+   :align: center
+
+This is yet another example to show how to perform a calculation of a spin-polarized system using the ferromagnetic Fe in the bcc structure.
+
+The directory is ``Fe``.
+
+SCF
+---
+
+* Input file (``nfinp_scf``)
+
+.. code::
+
+  #
+  # Fe in the bcc structure
+  # 
+  WF_OPT      DAV
+  NTYP        1
+  NATM        1
+  TYPE        1
+  NSPG        229
+  GMAX        5.00
+  GMAXP       15.00
+  KPOINT_MESH 08 08 08
+  MIX_ALPHA   0.50
+  BZINT       TETRA
+  EDELTA      1.0D-10
+  NSPIN       2
+  NEG         16
+  XCTYPE      ggapbe
+  CELL  5.40461887  5.40461887  5.40461887  90.00000000  90.00000000  90.00000000
+  &ATOMIC_SPECIES
+   Fe  55.845000 pot.Fe_pbe3
+  &END
+  &INITIAL_ZETA
+    0.2000
+  &END
+  &ATOMIC_COORDINATES CRYSTAL
+        0.000000000000      0.000000000000      0.000000000000    1    0    1
+  &END
+
+In this case, we use the tetrahedron method for the Brillouin zone integration.
+
+Make sure if the input and output files are propley given in the job script (``run.sh``), submit a job by:
+
+.. code::
+
+  $ sbatch run.sh
+
+As in the case of the Ni example, let us plot the density of states using ``gnuplot`` as follows
+
+.. code::
+
+  gnuplot> set xrange [-10:5]
+  gnuplot> set yrange [-4.0:4.0]
+  gnuplot> set xlabel 'E-E_F (eV)'
+  gnuplot> set ylabel 'Density of states (state/eV)'
+  gnuplot> plot 'dos.data' using ($1):($3) title 'Spin-up' with lines lt 1 lw 3,'' using ($1):(-$3) title 'Spin-down' lt 2 lw 3
+
+Then you may obtain DOS as shown in the following figure:
+
+.. image:: ../../../img/dos_fe_raw_1.png
+   :scale: 40%
+   :align: center
+
+How do you compare DOS from the plane-wave pseudopotential calculation with that from all-electron methods such as KKR and FLAPW?
+
+To improve the accuracy of DOS, we can increase the number of k-points without performing a new SCF calculation with denser k-point grid, by performing a non-SCF calculation using the converged electron density. This can be done by adding a key word ``TASK NSCF`` in the input file as:
+
+* Input file (``nfinp_nscf``)
+
+.. code::
+
+  #
+  # Fe in the bcc structure
+  # 
+  TASK        NSCF
+  WF_OPT      DAV
+  NTYP        1
+  NATM        1
+  TYPE        1
+  NSPG        229
+  GMAX        5.00
+  GMAXP       15.00
+  KPOINT_MESH 16 16 16
+  MIX_ALPHA   0.50
+  BZINT       TETRA
+  EDELTA      1.0D-10
+  NSPIN       2
+  NEG         16
+  XCTYPE      ggapbe
+  CELL  5.40461887  5.40461887  5.40461887  90.00000000  90.00000000  90.00000000
+  &ATOMIC_SPECIES
+   Fe  55.845000 pot.Fe_pbe3
+  &END
+  &INITIAL_ZETA
+    0.2000
+  &END
+  &ATOMIC_COORDINATES CRYSTAL
+        0.000000000000      0.000000000000      0.000000000000    1    0    1
+  &END
+
+We can see that we are going to use 16 x 16 x 16 k-point mesh in this calculation. Before performing Non-SCF calculation, let us rename ``dos.data`` ``dos.data_08x08x08``, and edit the job script and change the input and output file names ``nfinp_nscf`` and ``nfout_nscf``, respectively, and submit the job:
+
+.. code::
+
+  $ sbatch run.sh
+
+After the calculation, we plot DOS and may obtain the following:
+
+.. image:: ../../../img/dos_fe_raw_2.png
+   :scale: 40%
+   :align: center
+
+How about the comparison with the all-electron results?
 
 
 Ethylene
