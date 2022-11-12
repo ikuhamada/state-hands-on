@@ -1378,9 +1378,11 @@ Using your favorite calculator, you can calculate the interaction energy as a fu
    :scale: 80%
    :align: center
 
-* How do you compare this interaction energy curve with those obtained by using other method such as CCSD(T) and ACFDT-RPA?
+.. note::
+  How do you compare this interaction energy curve with those obtained by using other method such as CCSD(T) and ACFDT-RPA?
 
-* Further exercise: How the interaction energy curve looks like if you change the exchange-correlation functional by changing ``xctype`` to, for instance ``ggapbe`` or ``revpbe``. See the `manual <https://state-doc.readthedocs.io/en/latest/manual.html>`_ for the exchange-correlation  available.
+.. note::
+  How the interaction energy curve looks like if you change the exchange-correlation functional by changing ``xctype`` to, for instance ``ggapbe`` or ``revpbe``. See the `manual <https://state-doc.readthedocs.io/en/latest/manual.html>`_ for the exchange-correlation  available.
 
 Graphene
 ========
