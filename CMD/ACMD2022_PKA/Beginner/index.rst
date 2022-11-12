@@ -1288,6 +1288,99 @@ and we get the following:
 
 We can see that the potentials are flat in the vacuum region. Mind that the slab is locased near the origin (z=0). The discontinuity is by the plotting reason (actually they are disconnected because we do not use the periodic boundary condition with the ESM method). 
 
+Ar dimer
+========
+
+In this example (``Ar2``), how to draw the interaction energy curve of simple dimer is described. Optionally, we can learn the impact on of the (approximate) exchange-correlation funcitonal on the calulated interaction energy.
+
+.. warning::
+        This section is tentative and subject to change.
+
+* Sample input file for an Ar dimer (Ar2) ``nfinp_ar2_scf``
+
+.. code::
+
+  #
+  # Ar dimer in a rectangular box
+  #
+  WF_OPT    DAV
+  NTYP      1
+  NATM      2
+  GMAX      6.00
+  GMAXP     12.00
+  NSCF      200
+  WIDTH     0.0010
+  EDELTA    1.D-10
+  NEG       24
+  XCTYPE    rev-vdW-DF2
+  CELL      20.0000  20.0000  30.0000  90.0000  90.0000  90.0000
+  &ATOMIC_SPECIES
+   Ar  39.9480  pot.Ar_pbe1TM
+  &END
+  &ATOMIC_COORDINATES CARTESIAN
+    0.0000  0.0000  0.0000    1    1    1
+    0.0000  0.0000  6.5000    1    1    1
+  &END
+
+In this example, Ar atoms are located at the origin (0,0,0) and (0,0,6.5) (Bohr). To draw the energy curve, let us change the z-coordinate of the second Ar atom from say, 4.0 Bohr to 12.0 Bohr with the 1.0 Bohr interval. To do so, we create input files ``nfinp_ar2_scf_4.0``, ``nfinp_ar2_scf_5.0``, ..., ``nfinp_ar2_scf_12.0`` and specify the corresponding z-coordinate in the file, and run the calculations one by one. Alternatively, you can write a script to do this set of calculations automatically.
+
+After all the calculations are finished, we obtain the total energy of the Ar dimer as a function of interatomic distance, which may look like::
+
+  4.0  -42.12293316
+  5.0  -42.21388395
+  6.0  -42.22850085
+  7.0  -42.23031342
+  8.0  -42.23029246
+  9.0  -42.23012428
+  10.0 -42.23002456
+  11.0 -42.22997851
+  12.0 -42.22995982
+
+Note that the distance is in Bohr and the total energy, in Hartree.
+
+To calcutate the interaction energy, we need the total energy of an isolated, which can be calculated using the following input files (11nfinp_ar1_scf``)::
+
+  #
+  # Ar atom in a rectangular box
+  #
+  WF_OPT    DAV
+  NTYP      1
+  NATM      1
+  GMAX      6.00
+  GMAXP     12.00
+  NSCF      200
+  WIDTH     0.0010
+  EDELTA    1.D-10
+  NEG       24
+  XCTYPE    rev-vdW-DF2
+  CELL      20.0000  20.0000  30.0000  90.0000  90.0000  90.0000
+  &ATOMIC_SPECIES
+   Ar  39.9480  pot.Ar_pbe1TM
+  &END
+  &ATOMIC_COORDINATES CARTESIAN
+    0.0000  0.0000  0.0000    1    1    1
+  &END
+
+
+The resulting energy is::
+
+  -21.11497048 
+
+The interaction energy can be defined as
+
+.. math::
+
+  E_{\mathrm{int}} = E_{\mathrm{tot}}(\mathrm{Ar}_2) - 2 \times E_{\mathrm{tot}}(\mathrm{Ar})
+
+Using your favorite calculator, you can calculate the interaction energy as a function of interatomic distance, which may look like (some distance are added to make the curve smoother):
+
+.. image:: ../../../img/eint_Ar2_revDF2.png
+   :scale: 80%
+   :align: center
+
+* How do you compare this interaction energy curve with those obtained by using other method such as CCSD(T) and ACFDT-RPA?
+
+* Further exercise: How the interaction energy curve looks like if you change the exchange-correlation functional by changing ``xctype`` to, for instance ``ggapbe`` or ``revpbe``. See the `manual <https://state-doc.readthedocs.io/en/latest/manual.html>`_ for the exchange-correlation  available.
 
 Graphene
 ========
