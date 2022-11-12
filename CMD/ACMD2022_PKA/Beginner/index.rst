@@ -678,7 +678,7 @@ As in the case of the Ni example, let us plot the density of states using ``gnup
   gnuplot> set yrange [-4.0:4.0]
   gnuplot> set xlabel 'E-E_F (eV)'
   gnuplot> set ylabel 'Density of states (state/eV)'
-  gnuplot> plot 'dos.data' using ($1):($3) title 'Spin-up' with lines lt 1 lw 3,'' using ($1):(-$3) title 'Spin-down' with lines lt 2 lw 3
+  gnuplot> plot 'dos.data' using ($1):($3) title 'Spin-up' with lines lt 1 lw 3,'' using ($1):(-$2) title 'Spin-down' with lines lt 2 lw 3
 
 Then you may obtain DOS as shown in the following figure:
 
