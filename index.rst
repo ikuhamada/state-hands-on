@@ -13,6 +13,7 @@ This is the home to the STATE hands-on tutorial. A documentation of the STATE co
    :hidden:
 
    about
+   CMD/CMD42/Beginner/index.rst
    CMD/ACMD2022_PKA/Beginner/index.rst
    CMD/CMD41/Beginner/index.rst
    CMD/CMD41/SC/index.rst
@@ -25,6 +26,8 @@ This is the home to the STATE hands-on tutorial. A documentation of the STATE co
 +----------------------+-------+------------------------------------------------------+
 | Date                 | Event | Course                                               |
 +======================+=======+======================================================+
+| February 20-24, 2023 | CMD42 | :any:`Beginner course <CMD/CMD42/Beginner/index>`    |
++----------------------+-------+------------------------------------------------------+
 | November 9-12, 2022  | :any:`Asia CMD@PKA<CMD/ACMD2022_PKA/Beginner/index>`         |
 +----------------------+-------+------------------------------------------------------+
 | September 5-9, 2022  | CMD41 | :any:`Beginner course <CMD/CMD41/Beginner/index>`    |
