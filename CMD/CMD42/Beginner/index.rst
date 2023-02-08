@@ -656,7 +656,7 @@ Make sure if the input and output files are propley given in the job script (``r
 
 .. code::
 
-  $ sbatch run.sh
+  $ qsub run.sh
 
 As in the case of the Ni example, let us plot the density of states using ``gnuplot`` as follows
 
@@ -715,7 +715,7 @@ We can see that we are going to use 16 x 16 x 16 k-point mesh in this calculatio
 
 .. code::
 
-  $ sbatch run.sh
+  $ qsub run.sh
 
 After the calculation, we plot DOS and may obtain the following:
 
