@@ -1007,7 +1007,7 @@ Then type
 
 .. code:: bash
 
-  $ gif2xsf -s --xsf C2H4 --gif vib.data --prefix vib
+  $ gif2xsf -s --xsf C2H4.xsf --gif vib.data --prefix vib
 
 Use C2H4.xsf for the XSF file, vib.data for VIB file, and vib for prefix, and we get separate vib_*.xsf, which can be visualized by using XCrySden or VESTA.
 
