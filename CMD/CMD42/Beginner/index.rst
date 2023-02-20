@@ -358,7 +358,9 @@ In addition, total density of states (DOS) is printed to ``dos.data``, which can
   $ gnuplot> set yrange [0:2.0]
   $ gnuplot> set xlabel 'Energy (eV)'
   $ gnuplot> set ylabel 'DOS (arb. unit)'
-  $ gnuplot> plot 'dos.data' w l
+  $ gnuplot> plot 'dos.data' with lines
+
+Note: ``with lines`` can be abbreviated as ``w l``.
 
 The resulting DOS looks as follows:
 
@@ -577,7 +579,7 @@ This can be plotted by using gnuplot as follows:
   $ gnuplot> set yrange [0:4]
   $ gnuplot> set xlabel 'E-E_F (eV)'
   $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','' using ($1):($3) w l title 'Spin-down'
+  $ gnuplot> plot 'dos.data' using ($1):($2) with lines title 'Spin-up','' using ($1):($3) with lines title 'Spin-down'
 
 
 The spin-polarized DOS looks like:
@@ -595,7 +597,7 @@ Or by using the following:
   $ gnuplot> set yzeroaxis
   $ gnuplot> set xlabel 'E-E_F (eV)'
   $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','' using ($1):(-$3) w l title 'Spin-down'
+  $ gnuplot> plot 'dos.data' using ($1):($2) with lines title 'Spin-up','' using ($1):(-$3) with lines title 'Spin-down'
 
 One may obtain the spin-polarized DOS like:
 
