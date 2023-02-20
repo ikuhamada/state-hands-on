@@ -155,7 +155,7 @@ The output ``nfout_scf`` starts with the header
    *                ***      **   **********   **    ******              *
    *                  **     **  **        **  **    **                  *
    *             ********    ** **          ** **    ********            *
-   *              ******     ** VERSION 5.6.9  **    ********            *
+   *              ******     ** VERSION 5.6.13 **    ********            *
    *                               RICS-AIST                             *
    *                           OSAKA UNIVERSITY                          *
    *                                                                     *
@@ -167,16 +167,16 @@ and at the convergence, total energy, its components, and Fermi energy are print
 
                        TOTAL ENERGY AND ITS COMPONENTS 
                     TOTAL ENERGY     =         -22.21942426 A.U.
-                  KINETIC ENERGY     =           9.92111407 A.U.
-                  HARTREE ENERGY     =           5.12121800 A.U.
-                       XC ENERGY     =          -5.89585641 A.U.
-                    LOCAL ENERGY     =         -20.23161604 A.U.
-                 NONLOCAL ENERGY     =           6.73686140 A.U.
+                  KINETIC ENERGY     =           9.92111450 A.U.
+                  HARTREE ENERGY     =           5.12121884 A.U.
+                       XC ENERGY     =          -5.89585659 A.U.
+                    LOCAL ENERGY     =         -20.23161779 A.U.
+                 NONLOCAL ENERGY     =           6.73686207 A.U.
                     EWALD ENERGY     =         -17.87114528 A.U.
                        PC ENERGY     =           0.00000000 A.U.
                  ENTROPIC ENERGY     =           0.00000000 A.U.
   
-                                           FERMI ENERGY =       0.43248213
+                                           FERMI ENERGY =       0.43248214
   
 along with the forces acting on atoms
 
@@ -184,8 +184,8 @@ along with the forces acting on atoms
 
       ATOM              COORDINATES                        FORCES
   MD:    1
-  MD:    1  C   0.000000   0.000000   0.000000   0.01852 -0.00000 -0.00000
-  MD:    2  O   2.200000   0.000000   0.000000  -0.01858  0.00000 -0.00000
+  MD:    1  C   0.000000   0.000000   0.000000   0.01852  0.00000  0.00000
+  MD:    2  O   2.200000   0.000000   0.000000  -0.01858  0.00000  0.00000
 
 Congratulations! We see the victory cat at the end of the output file:-)
 
@@ -307,39 +307,34 @@ and make sure that this is what you want to use.
 
 The convergence of the total energy can be monitored from the output. It looks like::
 
-  ***********************************************************************
-  *                                                                     *
-  *                              START SCF                              *
-  *                                                                     *
-  ***********************************************************************
-
-   NSCF NADR            ETOTAL          EDEL          CDEL CONV      TCPU
-      1    0       -6.05513096   0.60551E+01   0.32033E-02    0      0.40
-      2    1       -7.84013758   0.17850E+01   0.50625E-02    0      0.08
-      3    2       -7.87244596   0.32308E-01   0.45624E-02    1      0.08
-      4    3       -7.87086756   0.15784E-02   0.76306E-02    1      0.08
-      5    4       -7.87352176   0.26542E-02   0.13466E-02    1      0.08
-      6    5       -7.87351941   0.23528E-05   0.56367E-03    2      0.08
-      7    6       -7.87353730   0.17887E-04   0.40389E-03    2      0.08
-      8    7       -7.87355183   0.14538E-04   0.21148E-03    2      0.08
-      9    8       -7.87355489   0.30598E-05   0.15435E-03    2      0.08
-     10    9       -7.87355832   0.34247E-05   0.95948E-05    3      0.08
-     11   10       -7.87355833   0.93097E-08   0.45654E-05    3      0.08
-     12   11       -7.87355833   0.29345E-08   0.19696E-05    3      0.08
-     13   12       -7.87355833   0.57462E-09   0.17709E-06    4      0.08
-     14   13       -7.87355833   0.11322E-10   0.10973E-06    5      0.08
-     15   14       -7.87355833   0.90061E-12   0.54074E-07    6      0.08
-
+   ***********************************************************************
+   *                                                                     *
+   *                              START SCF                              *
+   *                                                                     *
+   ***********************************************************************
+  
+    NSCF NADR            ETOTAL          EDEL          CDEL CONV      TCPU
+       1    0       -6.05513096   0.60551E+01   0.32033E-02    0      0.35
+       2    0       -7.84013758   0.17850E+01   0.50625E-02    0      0.19
+       3    1       -7.87280128   0.32664E-01   0.23361E-02    1      0.19
+       4    2       -7.87352825   0.72697E-03   0.44450E-03    2      0.19
+       5    3       -7.87355444   0.26191E-04   0.14565E-03    2      0.19
+       6    4       -7.87355827   0.38304E-05   0.17592E-04    3      0.19
+       7    5       -7.87355833   0.59844E-07   0.53913E-05    3      0.19
+       8    6       -7.87355833   0.17526E-08   0.14864E-05    3      0.19
+       9    7       -7.87355833   0.15879E-09   0.19139E-06    4      0.19
+      10    8       -7.87355833   0.12937E-10   0.18081E-07    5      0.19
+      11    9       -7.87355833   0.82334E-12   0.23101E-07    6      0.19
 
 At the convergence, the total energy and its componets are printed as::
 
                        TOTAL ENERGY AND ITS COMPONENTS 
                     TOTAL ENERGY     =          -7.87355833 A.U.
-                  KINETIC ENERGY     =           3.01922477 A.U.
-                  HARTREE ENERGY     =           0.55014239 A.U.
-                       XC ENERGY     =          -2.40098667 A.U.
-                    LOCAL ENERGY     =          -0.84295028 A.U.
-                 NONLOCAL ENERGY     =           0.16885308 A.U.
+                  KINETIC ENERGY     =           3.01922419 A.U.
+                  HARTREE ENERGY     =           0.55014198 A.U.
+                       XC ENERGY     =          -2.40098652 A.U.
+                    LOCAL ENERGY     =          -0.84294926 A.U.
+                 NONLOCAL ENERGY     =           0.16885291 A.U.
                     EWALD ENERGY     =          -8.36784162 A.U.
                        PC ENERGY     =           0.00000000 A.U.
                  ENTROPIC ENERGY     =           0.00000000 A.U.
@@ -1218,6 +1213,11 @@ Diffence from the previous calculation is ::
 This enables the ESM calculation. 
 In this case open boundary condition in the surface normal direction is used.
 
+.. warning::
+	Before submitting the job, delete or rename ``gdiis.data`` if it exists.
+
+
+
 Analysis of the effective and electrostatic potentials
 ------------------------------------------------------
 
@@ -1270,6 +1270,10 @@ We can see that the potentials are flat in the vacuum region. Mind that the slab
 
 Ar dimer
 ========
+
+.. image:: ../../../img/ar2.png
+   :scale: 20%
+   :align: center
 
 In this example (``Ar2``), how to draw the interaction energy curve of simple dimer is described. Optionally, we can learn the impact on of the (approximate) exchange-correlation funcitonal on the calulated interaction energy.
 
