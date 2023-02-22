@@ -88,8 +88,6 @@ Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
   GMAX      5.50
   GMAXP     20.00
   NSCF      200
-  WAYMIX    3
-  KBXMIX    8
   MIX_ALPHA 0.8
   WIDTH     0.0010
   EDELTA    0.1000D-09
@@ -272,9 +270,15 @@ Let us review the job script ``run.sh``::
   
   # pseudopotential data
   ln -fs ../gncpp/pot.Si_pbe1
-   
-  # launch STATE
-  mpirun -np $NSLOTS ./STATE < nfinp_scf > nfout_scf
+
+  # Set the input/output file
+  
+  INPUT_FILE=nfinp_scf_10.25
+  OUTPUT_FILE=nfout_scf_10.25
+  
+  # Run!
+  
+  mpirun -np $NSLOTS ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
 
 By using the above input file and job script, we submit the job as:
 
