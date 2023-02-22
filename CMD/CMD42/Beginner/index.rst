@@ -484,6 +484,22 @@ The equilibrium volume (v0), energy (e0), bulk modulus (b0), and derivative of b
 The resulting equilibrium lattice constant is 10.3455 Bohr.
 Compare with that reported in the literature.
 
+Further exercise
+----------------
+The optimized lattice constant can vary depending on the exchange-correlation functional. How different can it be? Use different functional such as LDA and revised PBE of Hammer et al. (RPBE). To change the exchange-correlation functional from the default PBE, use
+
+.. code::
+
+  XCTYPE ldapw92
+
+for LDA (Perdew-Wang) and
+
+.. code::
+
+ XCTYPE rpbe
+
+for RPBE in the input file.
+
 
 Aluminum
 ========
