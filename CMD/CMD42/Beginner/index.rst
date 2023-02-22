@@ -364,6 +364,57 @@ The resulting DOS looks as follows:
    :align: center
 
 
+Charge density
+--------------
+The electron (charge) density of the silicon crystal (or molecule) can be visualized after an SCF calculation as follows:
+Set ``TASK``  ``PRTCHG`` in the input file (``nfinp_chg``) as::
+
+  TASK      PRTCHG
+  WF_OPT    DAV
+  NTYP      1
+  NATM      2
+  TYPE      2
+  NSPG      227
+  GMAX      4.00
+  GMAXP     8.00
+  KPOINT_MESH    8   8   8
+  KPOINT_SHIFT   OFF OFF OFF
+  WIDTH     0.0002
+  EDELTA    0.5000D-09
+  NEG    8
+  CELL   10.30  10.30  10.30  90.00  90.00  90.00
+  &ATOMIC_SPECIES
+   Si 28.0900 pot.Si_pbe1
+  &END
+  &ATOMIC_COORDINATES CRYSTAL
+        0.000000000000      0.000000000000      0.000000000000    1    1    1
+        0.250000000000      0.250000000000      0.250000000000    1    1    1
+  &END
+
+and change the input and output files in the job script (``run.sh``) as::
+
+ INPUT_FILE=nfinp_chg
+ OUTPUT_FILE=nfout_chg
+
+Then submit the job
+
+.. code :: bash
+
+  $ qsub run.sh  
+
+The calculation will be finished in no time and we may get a file called ``nfchgt_r.data``, which contains a raw data for the charge density in real space. To visualize it, we can use a utility called ``chg2xsf``. To use it just type
+
+.. code :: bash
+
+  $ chg2xsf
+
+By setting the STATE input file ``nfinp_chg``, charge density file ``nfchgt_r.data``, and output prefix ``chg``, we may obtain a file ``chg.xsf``, which can be visualized by softwares like `XCrySDen <http://www.xcrysden.org>`_, `VESTA <https://jp-minerals.org/vesta/en/>`_ and `VMD <http://www.ks.uiuc.edu/Research/vmd/>`_. Following image is an image created using `VESTA <https://jp-minerals.org/vesta/en/>`_.
+
+.. image:: ../../../img/charge_si2.png
+   :scale: 25%
+   :align: center
+
+
 Cell optimization
 -----------------
 In the current version of STATE, the stress tensor is not (yet!) calculated, and the cell optimization should be performed manually.
