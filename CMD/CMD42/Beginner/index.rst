@@ -46,8 +46,8 @@ and execute the following
 
 and you are all set!
 
-.. note:
-  If you want hard copies of the source code and pseudopotentials, copy ~teac21/STATE/archives/state-5.6.13.tgz (STATE source code) and ~/teac21/STATE/archives/gncpp.tgz (pseudopotentials) to your home directory/local computer. They can be used freely, but without any warrantly. Use them at your own risk.
+.. note::
+  If you want hard copies of the source code and pseudopotentials, copy ``~teac21/STATE/archives/state-5.6.13.tgz`` (STATE source code) and ``~/teac21/STATE/archives/gncpp.tgz`` (pseudopotentials) to your home directory/local computer. They can be used freely, but without any warrantly. Use them at your own risk.
 
 
 The source file is located in ``${HOME}/STATE/src`` and examples ``${HOME}/STATE/examples``.
