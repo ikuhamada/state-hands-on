@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'STATE hands-on tutorial'
-copyright = '2022, Ikutaro Hamada'
+copyright = '2022-2023, Ikutaro Hamada'
 author = 'Ikutaro Hamada'
 
 
