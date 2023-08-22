@@ -143,15 +143,20 @@ Let us review the job script by ``cat run.sh``
   
   # Load the modules
   
-  module load intel_compiler/2020.4.304
-  module load intel_mpi/2020.4.304
-  module load intel_mkl/2020.4.304
+  module purge
+  module load oneapi_compiler/2023.0.0
+  module load oneapi_mkl/2023.0.0
+  module load oneapi_mpi/2023.0.0
+
+  # Set this variable to use with OpenAPI and IntelMPI
   
-  # Set the executable of the STATE code
+  export FI_PROVIDER=psm3
   
-  ln -fs ${HOME}/STATE/src/state/src/STATE
+  # Set the STATE executable
   
-  # Set the pseudopotential data
+  ln -fs ${HOME}/STATE/src/state/src/STATE .
+  
+  # Set the pseudopotential files
   
   ln -fs ../gncpp/pot.C_pbe1
   ln -fs ../gncpp/pot.O_pbe1
@@ -289,15 +294,20 @@ Let us review the job script ``run.sh``::
   
   # Load the modules
   
-  module load intel_compiler/2020.4.304
-  module load intel_mpi/2020.4.304
-  module load intel_mkl/2020.4.304
+  module purge
+  module load oneapi_compiler/2023.0.0
+  module load oneapi_mkl/2023.0.0
+  module load oneapi_mpi/2023.0.0
   
-  # Set the executable of the STATE code
+  # Set this variable to use with OpenAPI and IntelMPI
   
-  ln -fs ${HOME}/STATE/src/state/src/STATE
+  export FI_PROVIDER=psm3
   
-  # Set the pseudopotential data
+  # Set the STATE executable
+  
+  ln -fs ${HOME}/STATE/src/state/src/STATE .
+  
+  # Set the pseudopotential file
   
   ln -fs ../gncpp/pot.Si_pbe1
   
