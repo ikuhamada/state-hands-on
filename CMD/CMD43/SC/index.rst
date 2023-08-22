@@ -193,7 +193,7 @@ The output ``nfout_scf`` starts with the header
    *                ***      **   **********   **    ******              *
    *                  **     **  **        **  **    **                  *
    *             ********    ** **          ** **    ********            *
-   *              ******     ** VERSION 5.6.9  **    ********            *
+   *              ******     ** VERSION 5.6.14 **    ********            *
    *                               RICS-AIST                             *
    *                           OSAKA UNIVERSITY                          *
    *                                                                     *
@@ -205,16 +205,16 @@ and at the convergence, total energy, its components, and Fermi energy are print
 
                        TOTAL ENERGY AND ITS COMPONENTS 
                     TOTAL ENERGY     =         -22.21942426 A.U.
-                  KINETIC ENERGY     =           9.92111407 A.U.
-                  HARTREE ENERGY     =           5.12121800 A.U.
+                  KINETIC ENERGY     =           9.92111353 A.U.
+                  HARTREE ENERGY     =           5.12121839 A.U.
                        XC ENERGY     =          -5.89585641 A.U.
-                    LOCAL ENERGY     =         -20.23161604 A.U.
-                 NONLOCAL ENERGY     =           6.73686140 A.U.
+                    LOCAL ENERGY     =         -20.23161651 A.U.
+                 NONLOCAL ENERGY     =           6.73686202 A.U.
                     EWALD ENERGY     =         -17.87114528 A.U.
                        PC ENERGY     =           0.00000000 A.U.
                  ENTROPIC ENERGY     =           0.00000000 A.U.
-  
-                                           FERMI ENERGY =       0.43248213
+
+                                         FERMI ENERGY =       0.43248223
   
 along with the forces acting on atoms
 

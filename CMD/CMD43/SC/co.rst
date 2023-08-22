@@ -15,11 +15,9 @@ By using a carbon monoxide (CO) in a small rectangular box as an example, short 
   GMAX      5.50
   GMAXP     20.00
   NSCF      200
-  WAYMIX    3
-  KBXMIX    8
   MIX_ALPHA 0.8
   WIDTH     0.0010
-  EDELTA    0.1000D-09
+  EDELTA    1.D-10
   NEG       8
   CELL      6.00  4.00  4.00  90.00  90.00  90.00
   &ATOMIC_SPECIES
@@ -71,18 +69,6 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
 
 .. code:: bash
 
-  WAYMIX    3
-
-``WAYMIX`` defines the charge-density mixing method. Default is 6 [Blugel].
-
-.. code:: bash
-
-  KBXMIX    8
-
-``KBXMIX`` is the number of SCF steps used for the mixing.
-
-.. code:: bash
-
   MIX_ALPHA 0.8
 
 ``MIX_ALPHA`` is the mixing parameter for the charge density mixing. Default is 0.7.
@@ -95,7 +81,7 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
 
 .. code:: bash
 
-  EDELTA    0.1000D-09
+  EDELTA    1.D-10
 
 ``EDELTA`` is the convergence threshold for the total energy in Hartree per atom for the SCF calculation.
 
