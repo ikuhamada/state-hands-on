@@ -20,7 +20,6 @@ By using silicon in the diamond structure an example, short description on the b
   GMAX      4.00
   GMAXP     8.00
   KPOINT_MESH    8   8   8
-  KPOINT_SHIFT   OFF OFF OFF
   WIDTH     0.0002
   EDELTA    0.5000D-09
   NEG    8
@@ -85,12 +84,6 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
   KPOINT_MESH    8   8   8
 
 ``KPOINT_MESH`` is used to define the k-point mesh for the Brillouin zone sampling.
-
-.. code:: bash
-
-  KPOINT_SHIFT   OFF OFF OFF
-
-``KPOINT_SHIFT`` is used to specify if the k-point is shifted or not. If shifted, the Gamma-point is _not_ included in the k-point set.
 
 .. code:: bash
 

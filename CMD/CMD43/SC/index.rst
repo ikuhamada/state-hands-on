@@ -269,7 +269,6 @@ Let us have a look at it by typing in the ``Si`` directory:
   GMAX      4.00
   GMAXP     8.00
   KPOINT_MESH    8   8   8
-  KPOINT_SHIFT   OFF OFF OFF
   WIDTH     0.0002
   EDELTA    0.5000D-09
   NEG    8
