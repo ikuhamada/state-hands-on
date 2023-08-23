@@ -84,11 +84,9 @@ Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
   GMAX      5.50
   GMAXP     20.00
   NSCF      200
-  WAYMIX    3
-  KBXMIX    8
   MIX_ALPHA 0.8
   WIDTH     0.0010
-  EDELTA    0.1000D-09
+  EDELTA    1.D-10
   NEG       8
   CELL      6.00  4.00  4.00  90.00  90.00  90.00
   &ATOMIC_SPECIES
@@ -155,7 +153,7 @@ The output ``nfout_scf`` starts with the header
    *                ***      **   **********   **    ******              *
    *                  **     **  **        **  **    **                  *
    *             ********    ** **          ** **    ********            *
-   *              ******     ** VERSION 5.6.9  **    ********            *
+   *              ******     ** VERSION 5.6.14 **    ********            *
    *                               RICS-AIST                             *
    *                           OSAKA UNIVERSITY                          *
    *                                                                     *
@@ -167,16 +165,16 @@ and at the convergence, total energy, its components, and Fermi energy are print
 
                        TOTAL ENERGY AND ITS COMPONENTS 
                     TOTAL ENERGY     =         -22.21942426 A.U.
-                  KINETIC ENERGY     =           9.92111407 A.U.
-                  HARTREE ENERGY     =           5.12121800 A.U.
-                       XC ENERGY     =          -5.89585641 A.U.
-                    LOCAL ENERGY     =         -20.23161604 A.U.
-                 NONLOCAL ENERGY     =           6.73686140 A.U.
+                  KINETIC ENERGY     =           9.92111450 A.U.
+                  HARTREE ENERGY     =           5.12121884 A.U.
+                       XC ENERGY     =          -5.89585659 A.U.
+                    LOCAL ENERGY     =         -20.23161778 A.U.
+                 NONLOCAL ENERGY     =           6.73686206 A.U.
                     EWALD ENERGY     =         -17.87114528 A.U.
                        PC ENERGY     =           0.00000000 A.U.
                  ENTROPIC ENERGY     =           0.00000000 A.U.
-  
-                                           FERMI ENERGY =       0.43248213
+
+                                         FERMI ENERGY =       0.43248214
   
 along with the forces acting on atoms
 
@@ -184,8 +182,8 @@ along with the forces acting on atoms
 
       ATOM              COORDINATES                        FORCES
   MD:    1
-  MD:    1  C   0.000000   0.000000   0.000000   0.01852 -0.00000 -0.00000
-  MD:    2  O   2.200000   0.000000   0.000000  -0.01858  0.00000 -0.00000
+  MD:    1  C   0.000000   0.000000   0.000000   0.01852  0.00000  0.00000
+  MD:    2  O   2.200000   0.000000   0.000000  -0.01858  0.00000  0.00000
 
 Congratulations! We see the victory cat at the end of the output file:-)
 
@@ -237,7 +235,6 @@ Let us have a look at it by typing in the ``Si`` directory:
   GMAX      4.00
   GMAXP     8.00
   KPOINT_MESH    8   8   8
-  KPOINT_SHIFT   OFF OFF OFF
   WIDTH     0.0002
   EDELTA    0.5000D-09
   NEG    8
@@ -335,11 +332,11 @@ At the convergence, the total energy and its componets are printed as::
 
                        TOTAL ENERGY AND ITS COMPONENTS 
                     TOTAL ENERGY     =          -7.87355833 A.U.
-                  KINETIC ENERGY     =           3.01922477 A.U.
-                  HARTREE ENERGY     =           0.55014239 A.U.
-                       XC ENERGY     =          -2.40098667 A.U.
-                    LOCAL ENERGY     =          -0.84295028 A.U.
-                 NONLOCAL ENERGY     =           0.16885308 A.U.
+                  KINETIC ENERGY     =           3.01922419 A.U.
+                  HARTREE ENERGY     =           0.55014198 A.U.
+                       XC ENERGY     =          -2.40098652 A.U.
+                    LOCAL ENERGY     =          -0.84294926 A.U.
+                 NONLOCAL ENERGY     =           0.16885291 A.U.
                     EWALD ENERGY     =          -8.36784162 A.U.
                        PC ENERGY     =           0.00000000 A.U.
                  ENTROPIC ENERGY     =           0.00000000 A.U.
