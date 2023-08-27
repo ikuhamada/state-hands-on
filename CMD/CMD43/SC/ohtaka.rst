@@ -114,23 +114,17 @@ Body
 
 .. code:: bash
 
-  #!/bin/sh
-  #SBATCH -J  CO
-  #SBATCH -p  cmdinteractive
-  #SBATCH -N  1
-  #SBATCH -n  4
-   
   # Load the modules
-   
+  
   module purge
   module load oneapi_compiler/2023.0.0
   module load oneapi_mkl/2023.0.0
   module load oneapi_mpi/2023.0.0
-   
+
   # Set this variable to use with OpenAPI and IntelMPI
-   
-  export FI_PROVIDER=psm3
   
+  export FI_PROVIDER=psm3
+ 
   # Set the STATE executable
    
   ln -fs ${HOME}/STATE/src/state/src/STATE .
@@ -151,7 +145,6 @@ Body
    
   srun ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
 
-
 * Modules
 
 .. code::
@@ -163,9 +156,17 @@ Body
   module load oneapi_mkl/2023.0.0
   module load oneapi_mpi/2023.0.0
 
-
 Please do not change them, unless you build STATE with different modules.
 
+* Platform specific variable
+
+.. code::
+
+  # Set this variable to use with OpenAPI and IntelMPI
+  
+  export FI_PROVIDER=psm3
+
+This variable is necessary to run a program properly with the above modules. Please also do not change it.
 
 * STATE executable
 
@@ -196,6 +197,16 @@ Please choose all the pseudopotentials you need to use and write here (change ``
     
   INPUT_FILE=nfinp_scf
   OUTPUT_FILE=nfout_scf
+
+* Execution
+
+.. code::
+
+  # Run!
+   
+  ulimit -s unlimited
+   
+  srun ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
 
 Please change the input (``nfinp_scf``) and output (``nfout_scf``) file names as necessary.
  
