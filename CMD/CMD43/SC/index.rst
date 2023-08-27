@@ -8,7 +8,7 @@ Welcome to the STATE hands-on tutorial at CMD43. In the following, how to run th
 
 
 .. warning::
-	This page is under construction
+	This page is subject to change
 
 Getting started
 ===============
