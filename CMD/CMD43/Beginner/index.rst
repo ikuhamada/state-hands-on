@@ -502,8 +502,8 @@ This example shows how to perform a calculation of a spin-polarized system using
 
 The directory is ``Ni``.
 
-SCF
----
+SCF and DOS
+-----------
 
 * Input file (``nfinp_scf``)
 
