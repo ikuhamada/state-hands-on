@@ -96,6 +96,11 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
   CELL      6.00  4.00  4.00  90.00  90.00  90.00
 
 ``CELL`` defines the cell parameter :math:`a`, :math:`b`, :math:`c`, :math:`\alpha`, :math:`\beta`, and :math:`\gamma`, where :math:`a`, :math:`b`, :math:`c`, are the lengths (in Bohr) of the 1st, 2nd, and 3rd lattice vectors, respectively, and :math:`\alpha`, :math:`\beta`, and :math:`\gamma`, are the angles (in degree) between 2nd and 3rd, 3rd and 1st, and 1st and 2nd lattice vectors, respectively.
+See below for pictorial description.
+
+.. image:: ../../../img/co_cell.png
+   :scale: 20%
+   :align: center
 
 .. code:: bash
 
