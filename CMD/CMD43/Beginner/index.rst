@@ -363,11 +363,11 @@ In addition, total density of states (DOS) is printed to ``dos.data``, which can
 
 .. code :: bash
 
-  $ gnuplot> set xrange [-12.5:7.5]
-  $ gnuplot> set yrange [0:2.0]
-  $ gnuplot> set xlabel 'Energy (eV)'
-  $ gnuplot> set ylabel 'DOS (arb. unit)'
-  $ gnuplot> plot 'dos.data' w l
+  gnuplot> set xrange [-12.5:7.5]
+  gnuplot> set yrange [0:2.0]
+  gnuplot> set xlabel 'Energy (eV)'
+  gnuplot> set ylabel 'DOS (arb. unit)'
+  gnuplot> plot 'dos.data' w l
 
 The resulting DOS looks as follows:
 
