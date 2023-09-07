@@ -415,7 +415,7 @@ This can be visualized by using, for example, ``gnuplot`` as
 
 .. code:: bash
 
-  $ gnuplot> plot 'etot.dat' pt 7
+  gnuplot> plot 'etot.dat' pt 7
 
 The output looks like
 
@@ -581,11 +581,11 @@ This can be plotted by using gnuplot as follows:
 
 .. code:: bash
 
-  $ gnuplot> set xrange [-10:5]
-  $ gnuplot> set yrange [0:4]
-  $ gnuplot> set xlabel 'E-E_F (eV)'
-  $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):($3) w l title 'Spin-down'
+  gnuplot> set xrange [-10:5]
+  gnuplot> set yrange [0:4]
+  gnuplot> set xlabel 'E-E_F (eV)'
+  gnuplot> set ylabel 'DOS (state/eV)'
+  gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):($3) w l title 'Spin-down'
 
 
 The spin-polarized DOS looks like:
@@ -598,12 +598,12 @@ Or by using the following:
 
 .. code:: bash
 
-  $ gnuplot> set xrange [-10:5]
-  $ gnuplot> set yrange [-4:4]
-  $ gnuplot> set yzeroaxis
-  $ gnuplot> set xlabel 'E-E_F (eV)'
-  $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):(-$3) w l title 'Spin-down'
+  gnuplot> set xrange [-10:5]
+  gnuplot> set yrange [-4:4]
+  gnuplot> set yzeroaxis
+  gnuplot> set xlabel 'E-E_F (eV)'
+  gnuplot> set ylabel 'DOS (state/eV)'
+  gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):(-$3) w l title 'Spin-down'
 
 One may obtain the spin-polarized DOS like:
 
