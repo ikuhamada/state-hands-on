@@ -215,8 +215,14 @@ This example explains how to perform a self-consistent field (SCF) calculation a
 
 SCF
 ---
-In this example, we are going to use the input file ``nfinp_scf``.
-Let us have a look at it by typing in the ``Si`` directory:
+In this example, we are going to learn how to run the SCF calculation. Below is a flowchart for the SCF calculation:
+
+.. image:: ../../../img/scf.png
+   :scale: 20%
+   :align: center
+
+
+Let us have a look at the input file for the SCF calculation ``nfinp_scf`` by typing in the ``Si`` directory:
 
 .. code:: bash
 
@@ -732,9 +738,16 @@ Ethylene
    :scale: 20%
    :align: center
 
-This example explains how to perform the geometry optimization.
+* Directory: ``C2H4``
 
-* Directory ``C2H4``
+This example explains how to perform: 
+
+#. geometry optimization
+#. vibrational analysis
+#. molecular dynamics simulation
+
+Geometry optimization
+---------------------
 
 * Input file ``nfinp_gdiis``
 
@@ -778,8 +791,13 @@ The force threshold for the geometry optimization is set by the keyword ``FMAX``
 
   FMAX    0.5000D-03
 
-Geometry optimization
----------------------
+Below is a flowchart for the geometry optimization:
+
+.. image:: ../../../img/geo_opt.png
+   :scale: 20%
+   :align: center
+
+Let us submit the job as:
 
 .. code:: bash
 
