@@ -44,6 +44,12 @@ and execute the following
 
   $ ./state-setup.sh
 
+To make sure the command search path is update, type the following
+
+.. code:: bash
+
+  $ source ~/.bashrc
+
 and you are all set!
 
 The source file is located in ``${HOME}/STATE/src`` and examples ``${HOME}/STATE/examples``.
