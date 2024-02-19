@@ -308,11 +308,12 @@ and atomic positions::
      2  1    2.57500    2.57500    2.57500   0.2500  0.2500  0.2500  1   0
    ***********************************************************************
 
-The exchange-correlation functional used is printed as::
+The exchange-correlation (XC) functional used is printed as::
 
    EXCHANGE CORRELATION FUNCTIONALS : ggapbe
 
 and make sure that this is what you want to use.
+In this example, we use generalized gradient approximation (GGA) to the XC functional of Perdew, Burk and Ernzerhof (PBE), which is abreviated as ``ggapbe`` in STATE.
 
 The convergence of the total energy can be monitored from the output. It looks like::
 
@@ -439,7 +440,16 @@ and the equilibrium volume is obitained.
 
 The equilibrium volume (v0), energy (e0), bulk modulus (b0), and derivative of bulk modulus (b0') can be found in ``eosfit.param``.
 The resulting equilibrium lattice constant is 10.3455 Bohr.
-Compare with that reported in the literature.
+Compare with experimental and theoretical values in the literature.
+
+Question
+--------
+- How to derive the equilibrium lattice constant from the volume?
+- How good/bad is the equilibrium lattice constant obtained here?
+
+Further exercise
+----------------
+In the current working directory, you can find subdirectory ``LDAPW91``, which contains the input files and job scripts for the calculations using the local density approximation (LDA). Calculate the equilibrium lattice constant and compare it with that obtained using PBE (above) and experimental value. There is also another subdirectory ``PBEsol`` for another GGA XC functional. Calculate the equilibrium lattice constant using the PBEsol XC functional and compare the accuracies of the theoretical values. 
 
 
 Aluminum
@@ -468,7 +478,6 @@ In the ``Al`` directory, we use the following input file for the SCF calculation
   GMAX    4.00
   GMAXP   8.00
   KPOINT_MESH   12  12  12
-  KPOINT_SHIFT  OFF OFF OFF
   SMEARING MP
   WIDTH   0.0020
   EDELTA  0.5000D-09
@@ -532,7 +541,6 @@ SCF and DOS
   GMAX    5.00
   GMAXP  15.00
   KPOINT_MESH   12  12  12
-  KPOINT_SHIFT  OFF OFF OFF
   MIX_ALPHA 0.3
   SMEARING MP
   WIDTH  0.0020
@@ -610,6 +618,10 @@ One may obtain the spin-polarized DOS like:
 .. image:: ../../../img/dos_ni_raw_2.png
    :scale: 80%
    :align: center
+
+Question
+--------
+- Compare DOS obtained using the pseudopotential method (present) with that using the all-electron one (e.g., FLAPW and KKR).
 
 
 Iron
@@ -734,7 +746,7 @@ After the calculation, we plot DOS and may obtain the following:
    :scale: 40%
    :align: center
 
-How about the comparison with the all-electron results?
+How about the comparison with the all-electron (e.g., FLAPW and KKR) results?
 
 
 Ethylene
@@ -1309,7 +1321,6 @@ In this example (``GR``), how to optimize the cell parameter, how to calculate t
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   12  12  1
-  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_ALPHA 0.4
@@ -1381,7 +1392,6 @@ First perform the SCF calculation by using the following input file (``nfinp_scf
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   12  12  1
-  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_ALPHA 0.4
@@ -1413,7 +1423,6 @@ After converging the charge/potential, we perform the non-SCF band structure cal
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   12  12  1
-  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_WHAT  1
@@ -1519,7 +1528,6 @@ Let us change directory to ``12x12`` and have a look at the input file::
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   12  12  1
-  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_WHAT  1
@@ -1570,7 +1578,6 @@ To compute PDOS in the SCF calculation, we can use the following ``nfinp_scf+pdo
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   24  24  1
-  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_WHAT  1
@@ -1623,7 +1630,6 @@ For the post-processing PDOS calculation, the following file (``nfinp_pdos``) ca
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   24  24  1
-  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_WHAT  1
