@@ -313,7 +313,7 @@ The exchange-correlation (XC) functional used is printed as::
    EXCHANGE CORRELATION FUNCTIONALS : ggapbe
 
 and make sure that this is what you want to use.
-In this example, we use generalized gradient approximation (GGA) to the XC functional of Perdew, Burk and Ernzerhof (PBE), which is abreviated as ``ggapbe`` in STATE.
+In this example, we use the generalized gradient approximation (GGA) to the XC functional of Perdew, Burk and Ernzerhof (PBE), which is abreviated as ``ggapbe`` in STATE.
 
 The convergence of the total energy can be monitored from the output. It looks like::
 
@@ -375,6 +375,9 @@ The resulting DOS looks as follows:
 .. image:: ../../../img/dos_si_raw.png
    :scale: 80%
    :align: center
+
+.. note::
+	The origin of energy is set to the Fermi level, which is automatically determined even in a gapped system (even in a molecule). For an insulator/semiconductor, it is suggested to set the origin of energy to the valence band maximum. Otherwise the Fermi level should be set at the middle of the band gap.
 
 
 Cell optimization
@@ -694,7 +697,9 @@ Then you may obtain DOS as shown in the following figure:
    :scale: 40%
    :align: center
 
-How do you compare DOS from the plane-wave pseudopotential calculation with that from all-electron methods such as KKR and FLAPW?
+Question
+--------
+- How do you compare DOS from the plane-wave pseudopotential calculation with that from all-electron methods such as KKR and FLAPW?
 
 To improve the accuracy of DOS, we can increase the number of k-points without performing a new SCF calculation with denser k-point grid, by performing a non-SCF calculation using the converged electron density. This can be done by adding a key word ``TASK NSCF`` in the input file as:
 

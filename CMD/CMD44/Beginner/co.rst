@@ -53,13 +53,13 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
 
   GMAX      5.50
 
-``GMAX`` is the cutoff wave vector for the plane wave expansion of the wave functions. GMAX**2 corresponds to the cutoff energy in Rydberg.
+``GMAX`` is the cutoff wave vector for the plane wave expansion of the wave functions. GMAX**2 corresponds to the cutoff energy in Rydberg (in this case, 30.25 Rydberg (Ry)).
 
 .. code:: bash
 
   GMAXP     20.00
 
-``GMAXP`` is the cutoff wave vector for the plane wave expansion of charge density. GMAXP**2 corresponds to the cutoff energy in Rydberg.
+``GMAXP`` is the cutoff wave vector for the plane wave expansion of charge density. GMAXP**2 corresponds to the cutoff energy in Rydberg (400 Ry).
 
 .. code:: bash
 
