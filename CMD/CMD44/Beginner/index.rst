@@ -515,8 +515,31 @@ Submit the STATE job as
 
   $ qsub run.sh
 
-Total energy of the metallic system is sensitive to the smearing function and width, and the number of k-points, and they should be determined very carefully before the production run.
-Detail is discussed in the tutorial (to be completed).
+After the convergence, let us plot DOS printed in ``dos.data`` as in the case of Si using ``gnuplot``:
+
+.. code:: bash
+
+  $ gnuplot
+
+.. code :: bash
+
+  gnuplot> set xrange [-12.5:7.5]
+  gnuplot> set yrange [0.0:0.4]
+  gnuplot> set xlabel 'Energy (eV)'
+  gnuplot> set ylabel 'DOS (arb. unit)'
+  gnuplot> plot 'dos.data' w l
+
+The resulting DOS looks as follows:
+
+.. image:: ../../../img/dos_al_raw.png
+   :scale: 40%
+   :align: center
+
+We can see that we obtained the free-electron-like DOS and that there is not band gap around the Fermi level in contrast to Si.
+
+.. note::
+
+	Total energy of the metallic system is sensitive to the smearing function and width, and the number of k-points, and they should be determined very carefully before the production run. Detail is discussed in the tutorial (to be completed).
 
 
 Nickel
@@ -1101,11 +1124,13 @@ To perform a molecular dynamics simulation, we set ``ION_DYN`` ``FTMD`` and how 
   NOSY    15
   NDRT    1
 
+See the `manual <https://state-doc.readthedocs.io/en/latest/manual.html>`_ for the detailed descriptions on these parameters.
+
 Submit the job
 
 .. code:: bash
 
-  $ qsub run_ftmd.sh
+  $ qsub run_nhc.sh
 
 In this example, we perform 200 MD steps (default value).
 When the calculation is terminated, we get ``TRAJECTORY`` containing the trajectory and ``ENERGIES`` containing information on temperature and energies.
