@@ -1,36 +1,37 @@
-.. _CMD44_Beginner:
+.. _CMD45_SC:
 
-=======================
-Beginner course @ CMD44
-=======================
+============================
+Supercomputer course @ CMD45
+============================
 
-Welcome to the STATE hands-on tutorial at CMD44. In the following, how to run the STATE examples for this hands on is desdribed.  A documentation of the STATE code can be found `here <https://state-doc.readthedocs.io>`_.
+Welcome to the STATE hands-on tutorial at CMD45. In the following, how to run the STATE examples for this hands on is desdribed.  A documentation of the STATE code can be found `here <https://state-doc.readthedocs.io>`_.
+
+
+.. warning::
+	This page is subject to change
 
 Getting started
 ===============
 
-First of all, we log in to the cluster system (pyxis).
+First of all, we log in to the supercomputer system (ohtaka) at ISSP, The University of Tokyo.
 
 .. code:: bash
 
-  $ ssh -Y [user_name]@pyxis.mp.es.osaka-u.ac.jp
+  $ ssh -Y [user_name]@ohtaka.issp.u-tokyo.ac.jp
 
 or
 
 .. code:: bash
 
-  $ ssh -Y -l [user_name] pyxis.mp.es.osaka-u.ac.jp
+  $ ssh -Y -l [user_name] ohtaka.issp.u-tokyo.ac.jp
 
-where [user_name] is your user name assigned. If the above commands do not work, use *pxyis*, instead of *pyxis.mp.es.osaka-u.ac.jp*.
-
-Then, we are going to set up the STATE program, pseudopotentials, and example files.
-This is done by executing the following command in the home directory (``${HOME}`` or ``~``) as:
+where [user_name] is your user name assigned.
 
 .. code:: bash
 
-  $ git clone -b cmd_beginner https://github.com/ikuhamada/state-setup.git STATE
+  $ git clone -b cmd_sc https://github.com/ikuhamada/state-setup.git STATE
 
-See also `my github page <https://github.com/ikuhamada/state-setup/tree/cmd_beginner>`_.
+See also `my github page <https://github.com/ikuhamada/state-setup/tree/cmd_sc>`_.
 
 Then, go to the STATE directory 
 
@@ -44,40 +45,61 @@ and execute the following
 
   $ ./state-setup.sh
 
-To make sure the command search path is update, type the following
+and we are almost there!
+
+Now you can find the directories by typing ``ls`` as::
+
+  examples/  gncpp/  src/
+
+and we are ready to build the STATE executable. Let us moved to the source directory
+
+.. code:: bash
+
+  $ cd src/state/src
+
+and execute the following
+
+.. code:: bash
+
+  $ ln -s ../arch/make.arch.intel_ohtaka_scalapack make.arch
+
+and build the STATE code by executing ``make``
+
+.. code:: bash
+
+  $ make > make.log 2>&1&
+
+``make.log`` is a log file for the build and the file name can be anything. It takes few minutes to complete the build.
+If successfull, we get the following message
+
+.. code:: bash
+
+  [1]+  Done                    make > make.log 2>&1
+
+Then let us also build the utility programs. Go to the utility directory
+
+.. code:: bash
+
+  $ cd ../util
+
+and ``make``
+
+.. code:: bash
+
+  $ make > make.log 2>&1&
+
+Just make sure the utility programs are in your command search path, please type the following
 
 .. code:: bash
 
   $ source ~/.bashrc
 
-and you are all set!
-
-The source file is located in ``${HOME}/STATE/src`` and examples ``${HOME}/STATE/examples``.
-Go to the STATE directory by typing
-
-.. code:: bash
-
-  $ cd ~/STATE
-
-and 
-
-.. code:: bash
-
-  $ ls
-
-you can find the directories as::
-
-  examples/  gncpp/  src/
+If the builds are done successfully, we are now ready to run the STATE program!
 
 Let us move to ``${HOME}/STATE/examples`` to run the examples.
 
 Carbon monoxide
 ===============
-
-.. image:: ../../../img/co.png
-   :scale: 20%
-   :align: center
-
 
 As the first example, let us use the carbon monoxide (CO) molecule in a box.
 Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
@@ -104,45 +126,55 @@ Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
     2.2000  0.0000  0.0000  1  1  2
   &END
 
-Short description of the input variables can be found :doc:`here <co>`
+Short description of the input variables can be found :doc:`here <co>`.
 
 Let us review the job script by ``cat run.sh``
+(very short description on the available queues and job script can be found :doc:`here <ohtaka>`.
 
 .. code:: bash
 
-  #$ -S /bin/sh
-  #$ -cwd
-  #$ -q all.q
-  #$ -pe smp 4
-  #$ -N CO
+  #!/bin/sh
+  #SBATCH -J  CO
+  #SBATCH -p  cmdinteractive
+  #SBATCH -N  1
+  #SBATCH -n  4
   
-  # Disable OPENMP parallelism
+  # Load the modules
   
-  export OMP_NUM_THREADS=1
-   
-  # Set the execuable of the STATE code
+  module purge
+  module load oneapi_compiler/2023.0.0
+  module load oneapi_mkl/2023.0.0
+  module load oneapi_mpi/2023.0.0
+
+  # Set this variable to use with OpenAPI and IntelMPI
+  
+  export FI_PROVIDER=psm3
+  
+  # Set the STATE executable
   
   ln -fs ${HOME}/STATE/src/state/src/STATE .
   
-  # Set the pseudopotential data
+  # Set the pseudopotential files
   
   ln -fs ../gncpp/pot.C_pbe1
   ln -fs ../gncpp/pot.O_pbe1
-
-  # Set the input/output file
+  
+  # Set the input/output files
   
   INPUT_FILE=nfinp_scf
   OUTPUT_FILE=nfout_scf
-   
+  
   # Run!
-
-  mpirun -np $NSLOTS ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
+  
+  ulimit -s unlimited
+  
+  srun ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
 
 and submit!
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 The output ``nfout_scf`` starts with the header
 
@@ -171,16 +203,16 @@ and at the convergence, total energy, its components, and Fermi energy are print
 
                        TOTAL ENERGY AND ITS COMPONENTS 
                     TOTAL ENERGY     =         -22.21942426 A.U.
-                  KINETIC ENERGY     =           9.92111450 A.U.
-                  HARTREE ENERGY     =           5.12121884 A.U.
-                       XC ENERGY     =          -5.89585659 A.U.
-                    LOCAL ENERGY     =         -20.23161778 A.U.
-                 NONLOCAL ENERGY     =           6.73686206 A.U.
+                  KINETIC ENERGY     =           9.92111353 A.U.
+                  HARTREE ENERGY     =           5.12121839 A.U.
+                       XC ENERGY     =          -5.89585641 A.U.
+                    LOCAL ENERGY     =         -20.23161651 A.U.
+                 NONLOCAL ENERGY     =           6.73686202 A.U.
                     EWALD ENERGY     =         -17.87114528 A.U.
                        PC ENERGY     =           0.00000000 A.U.
                  ENTROPIC ENERGY     =           0.00000000 A.U.
 
-                                         FERMI ENERGY =       0.43248214
+                                         FERMI ENERGY =       0.43248223
   
 along with the forces acting on atoms
 
@@ -188,8 +220,8 @@ along with the forces acting on atoms
 
       ATOM              COORDINATES                        FORCES
   MD:    1
-  MD:    1  C   0.000000   0.000000   0.000000   0.01852  0.00000  0.00000
-  MD:    2  O   2.200000   0.000000   0.000000  -0.01858  0.00000  0.00000
+  MD:    1  C   0.000000   0.000000   0.000000   0.01852 -0.00000 -0.00000
+  MD:    2  O   2.200000   0.000000   0.000000  -0.01858  0.00000 -0.00000
 
 Congratulations! We see the victory cat at the end of the output file:-)
 
@@ -211,24 +243,12 @@ Congratulations! We see the victory cat at the end of the output file:-)
 
 Silicon
 =======
-
-.. image:: ../../../img/si2.png
-   :scale: 20%
-   :align: center
-
-
 This example explains how to perform a self-consistent field (SCF) calculation and cell (volume) optimization by using a crystalline silicon in the diamond structure as an example.
 
 SCF
 ---
-In this example, we are going to learn how to run the SCF calculation. Below is a flowchart for the SCF calculation:
-
-.. image:: ../../../img/scf.png
-   :scale: 20%
-   :align: center
-
-
-Let us have a look at the input file for the SCF calculation ``nfinp_scf`` by typing in the ``Si`` directory:
+In this example, we are going to use the input file ``nfinp_scf``.
+Let us have a look at it by typing in the ``Si`` directory:
 
 .. code:: bash
 
@@ -263,35 +283,53 @@ By default wave function optimization (single-point calculation) is performed (`
 
 Let us review the job script ``run.sh``::
 
-  #$ -S /bin/sh
-  #$ -cwd
-  #$ -q all.q
-  #$ -pe smp 4
-  #$ -N Si
+  #!/bin/sh
+  #SBATCH -J  Si
+  #SBATCH -p  cmdinteractive
+  #SBATCH -N  1
+  #SBATCH -n  4
   
-  #disable OPENMP parallelism
-  export OMP_NUM_THREADS=1
+  # Load the modules
   
-  # execuable of the STATE code
+  module purge
+  module load oneapi_compiler/2023.0.0
+  module load oneapi_mkl/2023.0.0
+  module load oneapi_mpi/2023.0.0
+  
+  # Set this variable to use with OpenAPI and IntelMPI
+  
+  export FI_PROVIDER=psm3
+  
+  # Set the STATE executable
+  
   ln -fs ${HOME}/STATE/src/state/src/STATE .
   
-  # pseudopotential data
+  # Set the pseudopotential file
+  
   ln -fs ../gncpp/pot.Si_pbe1
-   
-  # launch STATE
-  mpirun -np $NSLOTS ./STATE < nfinp_scf > nfout_scf
+  
+  # Set the input/output files
+  
+  INPUT_FILE=nfinp_scf
+  OUTPUT_FILE=nfout_scf
+  
+  # Run!
+  
+  ulimit -s unlimited
+  
+  srun ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
 
 By using the above input file and job script, we submit the job as:
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
-Status of your job can be monitored by using ``qstat`` as:
+Status of your job can be monitored by using ``squeue`` as:
 
 .. code:: bash
 
-  $ qstat
+  $ squeue
 
 After the calculation is done, check the output file ``nfout_scf`` and make sure that lattice vectors and atomic positions are correct.
 The primitive lattice vectors are given as::
@@ -308,12 +346,11 @@ and atomic positions::
      2  1    2.57500    2.57500    2.57500   0.2500  0.2500  0.2500  1   0
    ***********************************************************************
 
-The exchange-correlation (XC) functional used is printed as::
+The exchange-correlation functional used is printed as::
 
    EXCHANGE CORRELATION FUNCTIONALS : ggapbe
 
 and make sure that this is what you want to use.
-In this example, we use the generalized gradient approximation (GGA) to the XC functional of Perdew, Burk and Ernzerhof (PBE), which is abreviated as ``ggapbe`` in STATE.
 
 The convergence of the total energy can be monitored from the output. It looks like::
 
@@ -345,11 +382,11 @@ At the convergence, the total energy and its componets are printed as::
 
                        TOTAL ENERGY AND ITS COMPONENTS 
                     TOTAL ENERGY     =          -7.87355833 A.U.
-                  KINETIC ENERGY     =           3.01922419 A.U.
-                  HARTREE ENERGY     =           0.55014198 A.U.
-                       XC ENERGY     =          -2.40098652 A.U.
-                    LOCAL ENERGY     =          -0.84294926 A.U.
-                 NONLOCAL ENERGY     =           0.16885291 A.U.
+                  KINETIC ENERGY     =           3.01922477 A.U.
+                  HARTREE ENERGY     =           0.55014239 A.U.
+                       XC ENERGY     =          -2.40098667 A.U.
+                    LOCAL ENERGY     =          -0.84295028 A.U.
+                 NONLOCAL ENERGY     =           0.16885308 A.U.
                     EWALD ENERGY     =          -8.36784162 A.U.
                        PC ENERGY     =           0.00000000 A.U.
                  ENTROPIC ENERGY     =           0.00000000 A.U.
@@ -364,20 +401,17 @@ In addition, total density of states (DOS) is printed to ``dos.data``, which can
 
 .. code :: bash
 
-  gnuplot> set xrange [-12.5:7.5]
-  gnuplot> set yrange [0:2.0]
-  gnuplot> set xlabel 'Energy (eV)'
-  gnuplot> set ylabel 'DOS (arb. unit)'
-  gnuplot> plot 'dos.data' w l
+  $ gnuplot> set xrange [-12.5:7.5]
+  $ gnuplot> set yrange [0:2.0]
+  $ gnuplot> set xlabel 'Energy (eV)'
+  $ gnuplot> set ylabel 'DOS (arb. unit)'
+  $ gnuplot> plot 'dos.data' w l
 
 The resulting DOS looks as follows:
 
 .. image:: ../../../img/dos_si_raw.png
    :scale: 80%
    :align: center
-
-.. note::
-	The origin of energy is set to the Fermi level, which is automatically determined even in a gapped system (even in a molecule). For an insulator/semiconductor, it is suggested to set the origin of energy to the valence band maximum. Otherwise the Fermi level should be set at the middle of the band gap.
 
 
 Cell optimization
@@ -403,7 +437,7 @@ For each lattice constant we prepare an input file as ``nfinp_scf_10.20``, ``nfi
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 To collect the volume-energy (E-V) data, here we use ``state2ev.sh`` script in ``state-5.6.6/util/`` as
 
@@ -419,7 +453,7 @@ This can be visualized by using, for example, ``gnuplot`` as
 
 .. code:: bash
 
-  gnuplot> plot 'etot.dat' pt 7
+  $ gnuplot> plot 'etot.dat' pt 7
 
 The output looks like
 
@@ -442,26 +476,12 @@ one can see the following
 and the equilibrium volume is obitained.
 
 The equilibrium volume (v0), energy (e0), bulk modulus (b0), and derivative of bulk modulus (b0') can be found in ``eosfit.param``.
-The resulting equilibrium lattice constant is 10.3455 Bohr (5.475 Angstrom).
-Compare with experimental and theoretical values in the literature.
-
-Question
---------
-- How to derive the equilibrium lattice constant from the volume?
-- How good/bad is the equilibrium lattice constant obtained here?
-
-Further exercise
-----------------
-In the current working directory, you can find subdirectory ``LDAPW91``, which contains the input files and job scripts for the calculations using the local density approximation (LDA). Calculate the equilibrium lattice constant and compare it with that obtained using PBE (above) and experimental value. There is also another subdirectory ``PBEsol`` for another GGA XC functional. Calculate the equilibrium lattice constant using the PBEsol XC functional and compare the accuracies of the theoretical values. 
+The resulting equilibrium lattice constant is 10.3455 Bohr.
+Compare with that reported in the literature.
 
 
 Aluminum
 ========
-
-.. image:: ../../../img/al.png
-   :scale: 30%
-   :align: center
-
 In this example, how to deal with a metallic system with the smearing method is briefly described by using the crystalline aluminium in the face centered cubic (fcc) structure.
 
 SCF
@@ -481,6 +501,7 @@ In the ``Al`` directory, we use the following input file for the SCF calculation
   GMAX    4.00
   GMAXP   8.00
   KPOINT_MESH   12  12  12
+  KPOINT_SHIFT  OFF OFF OFF
   SMEARING MP
   WIDTH   0.0020
   EDELTA  0.5000D-09
@@ -513,33 +534,10 @@ Submit the STATE job as
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
-After the convergence, let us plot DOS printed in ``dos.data`` as in the case of Si using ``gnuplot``:
-
-.. code:: bash
-
-  $ gnuplot
-
-.. code :: bash
-
-  gnuplot> set xrange [-12.5:7.5]
-  gnuplot> set yrange [0.0:0.4]
-  gnuplot> set xlabel 'Energy (eV)'
-  gnuplot> set ylabel 'DOS (arb. unit)'
-  gnuplot> plot 'dos.data' w l
-
-The resulting DOS looks as follows:
-
-.. image:: ../../../img/dos_al_raw.png
-   :scale: 40%
-   :align: center
-
-We can see that we obtained the free-electron-like DOS and that there is not band gap around the Fermi level in contrast to Si.
-
-.. note::
-
-	Total energy of the metallic system is sensitive to the smearing function and width, and the number of k-points, and they should be determined very carefully before the production run. Detail is discussed in the tutorial (to be completed).
+Total energy of the metallic system is sensitive to the smearing function and width, and the number of k-points, and they should be determined very carefully before the production run.
+Detail is discussed in the tutorial (to be completed).
 
 
 Nickel
@@ -549,8 +547,8 @@ This example shows how to perform a calculation of a spin-polarized system using
 
 The directory is ``Ni``.
 
-SCF and DOS
------------
+SCF
+---
 
 * Input file (``nfinp_scf``)
 
@@ -567,6 +565,7 @@ SCF and DOS
   GMAX    5.00
   GMAXP  15.00
   KPOINT_MESH   12  12  12
+  KPOINT_SHIFT  OFF OFF OFF
   MIX_ALPHA 0.3
   SMEARING MP
   WIDTH  0.0020
@@ -603,7 +602,7 @@ for each atomic species.
 
 Submitting a job::
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 
 As above, ``dos.data`` is automatically generated. In the case of spin polarized system, the first column of ``dos.data`` contains energy, second and third columns contain DOS for spin up and down respectively.
@@ -615,11 +614,11 @@ This can be plotted by using gnuplot as follows:
 
 .. code:: bash
 
-  gnuplot> set xrange [-10:5]
-  gnuplot> set yrange [0:4]
-  gnuplot> set xlabel 'E-E_F (eV)'
-  gnuplot> set ylabel 'DOS (state/eV)'
-  gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):($3) w l title 'Spin-down'
+  $ gnuplot> set xrange [-10:5]
+  $ gnuplot> set yrange [0:4]
+  $ gnuplot> set xlabel 'E-E_F (eV)'
+  $ gnuplot> set ylabel 'DOS (state/eV)'
+  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):($3) w l title 'Spin-down'
 
 
 The spin-polarized DOS looks like:
@@ -632,12 +631,12 @@ Or by using the following:
 
 .. code:: bash
 
-  gnuplot> set xrange [-10:5]
-  gnuplot> set yrange [-4:4]
-  gnuplot> set yzeroaxis
-  gnuplot> set xlabel 'E-E_F (eV)'
-  gnuplot> set ylabel 'DOS (state/eV)'
-  gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):(-$3) w l title 'Spin-down'
+  $ gnuplot> set xrange [-10:5]
+  $ gnuplot> set yrange [-4:4]
+  $ gnuplot> set yzeroaxis
+  $ gnuplot> set xlabel 'E-E_F (eV)'
+  $ gnuplot> set ylabel 'DOS (state/eV)'
+  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):(-$3) w l title 'Spin-down'
 
 One may obtain the spin-polarized DOS like:
 
@@ -645,155 +644,13 @@ One may obtain the spin-polarized DOS like:
    :scale: 80%
    :align: center
 
-Question
---------
-- Compare DOS obtained using the pseudopotential method (present) with that using the all-electron one (e.g., FLAPW and KKR).
-
-
-Iron
-====
-
-.. image:: ../../../img/fe.png
-   :scale: 30%
-   :align: center
-
-This is yet another example to show how to perform a calculation of a spin-polarized system using the ferromagnetic Fe in the bcc structure.
-
-The directory is ``Fe``.
-
-SCF
----
-
-* Input file (``nfinp_scf``)
-
-.. code::
-
-  #
-  # Fe in the bcc structure
-  # 
-  WF_OPT      DAV
-  NTYP        1
-  NATM        1
-  TYPE        1
-  NSPG        229
-  GMAX        5.00
-  GMAXP       15.00
-  KPOINT_MESH 08 08 08
-  MIX_ALPHA   0.50
-  BZINT       TETRA
-  EDELTA      1.0D-10
-  NSPIN       2
-  NEG         16
-  XCTYPE      ggapbe
-  CELL  5.40461887  5.40461887  5.40461887  90.00000000  90.00000000  90.00000000
-  &ATOMIC_SPECIES
-   Fe  55.845000 pot.Fe_pbe3
-  &END
-  &INITIAL_ZETA
-    0.2000
-  &END
-  &ATOMIC_COORDINATES CRYSTAL
-        0.000000000000      0.000000000000      0.000000000000    1    0    1
-  &END
-
-In this case, we use the tetrahedron method for the Brillouin zone integration.
-
-Make sure if the input and output files are propley given in the job script (``run.sh``), submit a job by:
-
-.. code::
-
-  $ qsub run.sh
-
-As in the case of the Ni example, let us plot the density of states using ``gnuplot`` as follows
-
-.. code::
-
-  gnuplot> set xrange [-10:5]
-  gnuplot> set yrange [-4.0:4.0]
-  gnuplot> set xlabel 'E-E_F (eV)'
-  gnuplot> set ylabel 'Density of states (state/eV)'
-  gnuplot> plot 'dos.data' using ($1):($3) title 'Spin-up' with lines lt 1 lw 3,'' using ($1):(-$2) title 'Spin-down' with lines lt 2 lw 3
-
-Then you may obtain DOS as shown in the following figure:
-
-.. image:: ../../../img/dos_fe_raw_1.png
-   :scale: 40%
-   :align: center
-
-Question
---------
-- How do you compare DOS from the plane-wave pseudopotential calculation with that from all-electron methods such as KKR and FLAPW?
-
-To improve the accuracy of DOS, we can increase the number of k-points without performing a new SCF calculation with denser k-point grid, by performing a non-SCF calculation using the converged electron density. This can be done by adding a key word ``TASK NSCF`` in the input file as:
-
-Non-SCF and DOS
----------------
-
-* Input file (``nfinp_nscf``)
-
-.. code::
-
-  #
-  # Fe in the bcc structure
-  # 
-  TASK        NSCF
-  WF_OPT      DAV
-  NTYP        1
-  NATM        1
-  TYPE        1
-  NSPG        229
-  GMAX        5.00
-  GMAXP       15.00
-  KPOINT_MESH 16 16 16
-  MIX_ALPHA   0.50
-  BZINT       TETRA
-  EDELTA      1.0D-10
-  NSPIN       2
-  NEG         16
-  XCTYPE      ggapbe
-  CELL  5.40461887  5.40461887  5.40461887  90.00000000  90.00000000  90.00000000
-  &ATOMIC_SPECIES
-   Fe  55.845000 pot.Fe_pbe3
-  &END
-  &INITIAL_ZETA
-    0.2000
-  &END
-  &ATOMIC_COORDINATES CRYSTAL
-        0.000000000000      0.000000000000      0.000000000000    1    0    1
-  &END
-
-We can see that we are going to use 16 x 16 x 16 k-point mesh in this calculation. Before performing Non-SCF calculation, let us rename ``dos.data`` ``dos.data_08x08x08``, and edit the job script and change the input and output file names ``nfinp_nscf`` and ``nfout_nscf``, respectively, and submit the job:
-
-.. code::
-
-  $ qsub run.sh
-
-After the calculation, we plot DOS and may obtain the following:
-
-.. image:: ../../../img/dos_fe_raw_2.png
-   :scale: 40%
-   :align: center
-
-How about the comparison with the all-electron (e.g., FLAPW and KKR) results?
-
 
 Ethylene
 ========
 
-.. image:: ../../../img/c2h4.png
-   :scale: 20%
-   :align: center
+This example explains how to perform the geometry optimization.
 
-* Directory: ``C2H4``
-
-This example explains how to perform: 
-
-#. geometry optimization
-#. vibrational analysis
-#. molecular dynamics simulation
-
-Geometry optimization
----------------------
+* Directory ``C2H4``
 
 * Input file ``nfinp_gdiis``
 
@@ -837,17 +694,12 @@ The force threshold for the geometry optimization is set by the keyword ``FMAX``
 
   FMAX    0.5000D-03
 
-Below is a flowchart for the geometry optimization:
-
-.. image:: ../../../img/geo_opt.png
-   :scale: 20%
-   :align: center
-
-Let us submit the job as:
+Geometry optimization
+---------------------
 
 .. code:: bash
 
-  $ qsub run_gdiis.sh
+  $ sbatch run_gdiis.sh
 
 The convergence of the forces can be monitored by:
 
@@ -893,7 +745,7 @@ Because the maximum force ``f_max`` is smaller than the threshold, the calculati
 
    EXITING ATOM LOOP 
 
-The latest geometry is stored in the ``GEOMETRY`` file (text file), and in the case of GDIIS, past geometries are stored in ``gdiis.data``.
+The latest geometry is stored in the ``GEOMETRY`` file, and in the case of GDIIS, past geometries are stored in ``gdiis.data``.
 It is suggested that ``gdiis.data`` be deleted or renamed when the number of optimization steps is close to the number of degrees of freedom.
 
 If the structural optimization is not finished, add the keyword ``RESTART`` in the input file and submit the job again. To restart the calculation, make sure ``restart.data`` file exists in the working directory.
@@ -1014,7 +866,7 @@ Submit the job
 
 .. code:: bash
 
-  $ qsub run_vib.sh
+  $ sbatch run_vib.sh
 
 and we get ``nfforce.data`` in addition to the standard output files, which contains displaced atomic positions and forces acting on atoms, which can be used to calculate the vibrational frequencies.
 
@@ -1075,7 +927,7 @@ Use C2H4.xsf for the XSF file, vib.data for VIB file, and vib for prefix, and we
 
 Finite temperature molecular dynamics
 -------------------------------------
-In this example, we are going to perform a finite temperature molecular dynamics (MD) simulation.
+In this example, we are going to perform a finite temperature molecular dynamics simulation.
 
 * Input file ``nfinp_nhc``
 
@@ -1124,13 +976,11 @@ To perform a molecular dynamics simulation, we set ``ION_DYN`` ``FTMD`` and how 
   NOSY    15
   NDRT    1
 
-See the `manual <https://state-doc.readthedocs.io/en/latest/manual.html>`_ for the detailed descriptions on these parameters.
-
 Submit the job
 
 .. code:: bash
 
-  $ qsub run_nhc.sh
+  $ sbatch run_ftmd.sh
 
 In this example, we perform 200 MD steps (default value).
 When the calculation is terminated, we get ``TRAJECTORY`` containing the trajectory and ``ENERGIES`` containing information on temperature and energies.
@@ -1150,18 +1000,12 @@ Then use ``traj2xyz.pl`` in the current example directry as
 to save the trajectory in the XYZ format.
 
 Use XCrySDen, VMD, or other your favorite visualization software to visualize it (VESTA cannot be used for movies).
-:doc:`Here <openmxviewer>` is an example how to use a web-based tool to visualize the molecular dynamics.
 
 .. note::
   Generally, long time molecular dynamics simulation is required to obtain reliable statistical ensemble/average, which cannot be possible within the given hours. In STATE, use ``CPUMAX`` to dump the latest geometry and wave functions before the time limit, and restart by using the ``RESTART`` keyword. It is also possible to terminate the job by writing a positive number in the ``nfstop.data``.
 
 Cl on Al(100)
 =============
-
-.. image:: ../../../img/al6cl.png
-   :scale: 20%
-   :align: center
-
 
 This example explains how to model the surface with an adsobate by using an Al(100) surface with a Cl atom.
 We also discuss how the periodic boundary condition (PBC) affects the potential (and thus the energy and forces)
@@ -1217,7 +1061,7 @@ Subit the STATE job by executing:
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 and we get ``GEOMETRY`` and ``gdiis.data`` in addition to the standard output files.
 
@@ -1306,6 +1150,7 @@ Use ``state2chgpro.sh`` utility to extract planar average of charge, effective (
 
 Here, the first column is the z-coordinate in the Bohr radius, and second, third, and fourth column are the planer averages of charge density, local potential (sum of local pseudo-, Hartree, and XC potentials), and hartree potential, respectively. 
 
+
 By plotting the first (z-coordinate) and third (local potential) colums, and first (z-coordinate) and fourth (electrostatic potential) colums, we get the following potential profile:
 
 .. image:: ../../../img/potential_profile_pbc.png
@@ -1333,10 +1178,6 @@ We can see that the potentials are flat in the vacuum region. Mind that the slab
 Graphene
 ========
 
-.. image:: ../../../img/gr.png
-   :scale: 20%
-   :align: center
-
 In this example (``GR``), how to optimize the cell parameter, how to calculate the band structure, and how to calculate density of states, are described.
 
 * Sample input file ``nfinp_scf``
@@ -1351,6 +1192,7 @@ In this example (``GR``), how to optimize the cell parameter, how to calculate t
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   12  12  1
+  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_ALPHA 0.4
@@ -1391,9 +1233,9 @@ For each lattice constant we prepare an input file as ``nfinp_scf_a4.54``, ``nfi
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
-Alternatively one can use ``run_multi.sh`` to automatically run a set of calculations.
+Alternatively one can use ``run_opt.sh`` to automatically run a set of calculations.
  
 
 We then plot the total energy as a function of lattice parameter (use getetot.sh in the same directory), and fit it to any function. In this example, let us use 6th order polynomial. The result looks like:
@@ -1422,6 +1264,7 @@ First perform the SCF calculation by using the following input file (``nfinp_scf
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   12  12  1
+  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_ALPHA 0.4
@@ -1440,7 +1283,7 @@ First perform the SCF calculation by using the following input file (``nfinp_scf
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 After converging the charge/potential, we perform the non-SCF band structure calculation by using the following input (``nfinp_band``)::
 
@@ -1453,6 +1296,7 @@ After converging the charge/potential, we perform the non-SCF band structure cal
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   12  12  1
+  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_WHAT  1
@@ -1521,7 +1365,7 @@ Run the band structure calculation by replacing the input file with ``nfinp_band
 
 .. code:: bash
 
-  $ qsub run.sh
+  $ sbatch run.sh
 
 we obtain the file ``energy.data``, which containg the Kohn-Sham eigenvalues, along with the k-points.
 However, we cannot plot the band structure directory from ``energy.data`` and should be processed properly.
@@ -1558,6 +1402,7 @@ Let us change directory to ``12x12`` and have a look at the input file::
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   12  12  1
+  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_WHAT  1
@@ -1608,6 +1453,7 @@ To compute PDOS in the SCF calculation, we can use the following ``nfinp_scf+pdo
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   24  24  1
+  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_WHAT  1
@@ -1660,6 +1506,7 @@ For the post-processing PDOS calculation, the following file (``nfinp_pdos``) ca
   GMAX      5.00
   GMAXP    15.00
   KPOINT_MESH   24  24  1
+  KPOINT_SHIFT  F   F   F
   NSCF      400
   WAY_MIX   3
   MIX_WHAT  1
@@ -1730,10 +1577,6 @@ The calculated PDOS for graphene can be visualized as:
 
 Benzene
 =======
-
-.. image:: ../../../img/c6h6.png
-   :scale: 30%
-   :align: center
 
 This example explain how to plot the molecular orbitals by using the benzene (C6H6) molecule.
 The directory is ``C6H6/``
@@ -1856,11 +1699,10 @@ The real parts of the doubly degenerated highest occupied molecular orbitals (HO
 TiO2
 ====
 
-.. image:: ../../../img/ti2o4.png
-   :scale: 20%
-   :align: center
-
 This example explains hot to perform a calculation with the on-site Coulomb potential correction (DFT+U) by using rutile.
+
+SCF
+---
 
 * Directory ``TiO2/``
 
@@ -1949,3 +1791,140 @@ and the indices for the m components are give by::
    LMU       5    6    7    8    9
 
 Compare the result (for instance, density of states written to ``dos.data``)  wihtout the Hubbard U correction.
+
+H\ :sub:`2`\+H
+===============
+
+This example shows how to run the nudged elastic band (NEB) calculation for a reaction path search.
+
+To perform a NEB calculation, we need the following steps:
+
+- Optimization of the initial state
+
+- Optimization of the final state
+
+- Preparation of the (initial) intermediate images and corresponding input files
+
+- NEB calculation (constrained optimization along the reaction pathway)
+
+In the following, we consider the following reaction
+
+.. math:: \mathrm{H}_2 + \mathrm{H} \rightarrow \mathrm{H} + \mathrm{H}_2
+
+Optimization of the initial and final state
+-------------------------------------------
+
+To save time for this example, input files created using the optmized geometries for the initial ``Initial/nfinp_ini`` and final ``Initial/nfinp_fin`` are prepared.
+
+Run single-point (SCF) calculations in ``Initial`` and ``Final`` directories and confirm that the forces acting on the atoms are small enough and these state can be metastable states.
+
+Preparation of the intermediate images
+--------------------------------------
+
+To perform the NEB calculation, we need to prepare the intermediate images along the reaction path considered.
+
+Supposing that we have :math:`p-1` images between the initial (:math:`r_i^\alpha`) and final (:math:`r_i^\beta`), :math:`\kappa` th intermediate image can be obtained by a linear interpolation as
+
+.. math:: r^\kappa_i = r_i^{\alpha} + \kappa ( r_i^{\beta} - r_i^{\alpha} ) / p 
+
+In the current implementation, each image is optimized using an input file (``nfinp.data``) and geometry file (``nudged_2``) in a subdirectory. In addition, initial (final) state geometries should be given in ``nudged_terminal_s`` (``nudged_terminal_e``) in the subdirectory next to the initial (final) image. Furthermore, we use image (replica) parallel NEB, i.e., the parallelization is done over the images, and the number of cores should be divisable by the number of images.
+
+Preparation can be done using a utility ``prepneb``. In the ``NEB`` directory, execute
+
+.. code:: bash
+
+  $ prepneb -ndiv 6 -ini ../Initial/nfinp_ini  -fin ../Final/nfinp_fin
+
+(type ``prepneb -h`` for more options)
+
+This creates 7 images (subdirectories ``01``, ``02``, ... ``07``) including initial and final geometries as::
+
+  01:
+  nfinp.data  nudged_2
+  02:
+  nfinp.data  nudged_2  nudged_terminal_s
+  03:
+  nfinp.data  nudged_2
+  04:
+  nfinp.data  nudged_2
+  05:
+  nfinp.data  nudged_2
+  06:
+  nfinp.data  nudged_2  nudged_terminal_e
+  07:
+  nfinp.data  nudged_2
+
+In each ``nfinp.data``, we need to use declare::
+
+  GEO_OPT NEB
+
+for standard NEB, and for the climing-image NEB (CINEB)::
+
+  GEO_OPT CINEB
+
+Also, the ``nudged_2`` contains the spring constant and the geometry of the intermediate image as::
+
+        0.02000000
+      1      0.000000000000      0.000000000000      0.000000000000
+      2      2.828316488820      0.000000000000      0.000000000000
+      3      5.656632977600      0.000000000000      0.000000000000
+
+Here, the first line specify the spring constant, and the remaining lines specify the atomic index (1st column) and positions (2-4th columns) in the cartesian coordinate (in Bohr).
+
+Furthermore, ``replica.cmd`` is required to run the image-parallel NEB. For this example it looks::
+
+  ASYNC
+  02
+  03
+  04
+  05
+  05
+
+The first line specify if the images are syncronized or not, and should ``ASYNC`` or ``NEB`` for the NEB calculation. The following lines specify the directories containing the intermediate images (excluding the initial and final images).
+
+.. warning::
+  If ``replica.cmd`` exists, normal STATE jobs cannot be executed. Make sure that there is ``replica.cmd`` *only* when replica-NEB is executed.
+
+Running the NEB calculation
+---------------------------
+
+Finally, the NEB calculation can be executed, in the presence of ``replica.cmd`` as
+
+.. code:: bash
+  
+  $ sbatch run_neb.sh
+
+The standard output is not mandatroy, and actual output is written to ``nfout.data`` in each directory.
+
+In contrast to the usual structural optmization, the calculation is not terminated automatically.
+Instead, we mononitor the convergence of the force along and perpendicular to the reaction coordinate, and when the force perpendicular to the reaction coordinate is small, we judge the NEB calculation is converged. To do so, we grep the keyword ``ForceIn`` (``ForceOut``) in the output file for the force perpendicular (parallel) to the reaction coordinate. For example
+
+.. code:: bash
+
+  $ for d in 0[2-6]; do grep -A1 ForceIn $d/nfout.data | tail -2; done
+
+and we obtain::
+
+  NEB:     Dist1     Dist3  AbsForce   ForceIn  ForceOut    CosPhi    Switch
+  NEB:   0.71047   0.73707   0.00064   0.00031  -0.00153   0.79410   0.10101
+
+  NEB:     Dist1     Dist3  AbsForce   ForceIn  ForceOut    CosPhi    Switch
+  NEB:   0.73677   0.77057   0.00074   0.00023  -0.00453   0.83762   0.06366
+
+  NEB:     Dist1     Dist3  AbsForce   ForceIn  ForceOut    CosPhi    Switch
+  NEB:   0.77053   0.77023   0.00011   0.00011   0.00021   0.24898   0.85468
+
+  NEB:     Dist1     Dist3  AbsForce   ForceIn  ForceOut    CosPhi    Switch
+  NEB:   0.77068   0.73493   0.00078   0.00023   0.00451   0.83650   0.06452
+
+  NEB:     Dist1     Dist3  AbsForce   ForceIn  ForceOut    CosPhi    Switch
+  NEB:   0.73547   0.70698   0.00070   0.00036   0.00152   0.79843   0.09695
+
+and we can confirm the the forces perpendicular to the reaction coordinate (``ForceIn``) are small.
+
+Finally, by plotting the final energy (difference),  we obtain the following energy profile.
+
+.. image:: ../../../img/deltae_h2+h.png
+   :scale: 50%
+   :align: center
+

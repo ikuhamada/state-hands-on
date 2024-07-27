@@ -1,10 +1,10 @@
-.. _CMD44_Beginner:
+.. _CMD45_Beginner:
 
 =======================
-Beginner course @ CMD44
+Beginner course @ CMD45
 =======================
 
-Welcome to the STATE hands-on tutorial at CMD44. In the following, how to run the STATE examples for this hands on is desdribed.  A documentation of the STATE code can be found `here <https://state-doc.readthedocs.io>`_.
+Welcome to the STATE hands-on tutorial at CMD45. In the following, how to run the STATE examples for this hands on is desdribed.  A documentation of the STATE code can be found `here <https://state-doc.readthedocs.io>`_.
 
 Getting started
 ===============
