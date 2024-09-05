@@ -898,6 +898,19 @@ It is suggested that ``gdiis.data`` be deleted or renamed when the number of opt
 
 If the structural optimization is not finished, add the keyword ``RESTART`` in the input file and submit the job again. To restart the calculation, make sure ``restart.data`` file exists in the working directory.
 
+To visualize the optimized geometry, let us use a utility ``geom2nfinp`` as
+
+.. code:: bas
+
+  $ geom2nfinp -xyz nfinp_gdiis -g GEOMETRY -o C2H4.xyz
+
+and you may obtain ``C2H4.xyz``.
+
+Question
+--------
+
+- Validate the optmized geometry by comparing experimental and calculated ones in the literature
+
 Vibrational analyis
 -------------------
 
