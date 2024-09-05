@@ -900,7 +900,7 @@ If the structural optimization is not finished, add the keyword ``RESTART`` in t
 
 To visualize the optimized geometry, let us use a utility ``geom2nfinp`` as
 
-.. code:: bas
+.. code:: bash
 
   $ geom2nfinp -xyz nfinp_gdiis -g GEOMETRY -o C2H4.xyz
 
