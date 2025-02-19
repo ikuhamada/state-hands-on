@@ -159,7 +159,7 @@ The output ``nfout_scf`` starts with the header
    *                ***      **   **********   **    ******              *
    *                  **     **  **        **  **    **                  *
    *             ********    ** **          ** **    ********            *
-   *              ******     ** VERSION 5.6.14 **    ********            *
+   *              ******     ** VERSION 5.6.16 **    ********            *
    *                               RICS-AIST                             *
    *                           OSAKA UNIVERSITY                          *
    *                                                                     *
