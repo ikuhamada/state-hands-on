@@ -902,7 +902,7 @@ To visualize the optimized geometry, let us use a utility ``geom2nfinp`` as
 
 .. code:: bash
 
-  $ geom2nfinp -xyz nfinp_gdiis -g GEOMETRY -o C2H4.xyz
+  $ geom2nfinp -xyz -i nfinp_gdiis -g GEOMETRY -o C2H4.xyz
 
 and you may obtain ``C2H4.xyz``.
 
