@@ -29,6 +29,7 @@ This is the home to the STATE hands-on tutorial. A documentation of the STATE co
    CMD/ACMD2022_TDMU/Beginner/index.rst
    CMD/CMD40/Beginner/index.rst
    CMD/CMD40/Advanced/index.rst
+   In-house/index.rst
 
 +----------------------+-------+------------------------------------------------------+
 | Date                 | Event | Course                                               |
@@ -65,4 +66,6 @@ This is the home to the STATE hands-on tutorial. A documentation of the STATE co
 +                      +       +------------------------------------------------------+
 |                      |       | :any:`Advanced course <CMD/CMD40/Advanced/index>`    |
 +----------------------+-------+------------------------------------------------------+
+| :any:`In-house hands-on tutorial <In-house/index>`                                  |
++-------------------------------------------------------------------------------------+
 
