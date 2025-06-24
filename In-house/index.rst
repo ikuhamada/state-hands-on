@@ -110,16 +110,11 @@ Let us review the job script by ``cat run.sh``
 
 .. code:: bash
 
-  #$ -S /bin/sh
-  #$ -cwd
-  #$ -q all.q
-  #$ -pe smp 4
-  #$ -N CO
+  #!/bin/sh
+  #PBS -q xs2
+  #PBS -l select=1:ncpus=8:ompthreads=1:mpiprocs=8
+  #PBS -N CO
   
-  # Disable OPENMP parallelism
-  
-  export OMP_NUM_THREADS=1
-   
   # Set the execuable of the STATE code
   
   ln -fs ${HOME}/STATE/src/state/src/STATE .
@@ -159,7 +154,7 @@ The output ``nfout_scf`` starts with the header
    *                ***      **   **********   **    ******              *
    *                  **     **  **        **  **    **                  *
    *             ********    ** **          ** **    ********            *
-   *              ******     ** VERSION 5.6.16 **    ********            *
+   *              ******     ** VERSION 5.6.17 **    ********            *
    *                               RICS-AIST                             *
    *                           OSAKA UNIVERSITY                          *
    *                                                                     *
@@ -263,15 +258,11 @@ By default wave function optimization (single-point calculation) is performed (`
 
 Let us review the job script ``run.sh``::
 
-  #$ -S /bin/sh
-  #$ -cwd
-  #$ -q all.q
-  #$ -pe smp 4
-  #$ -N Si
-  
-  #disable OPENMP parallelism
-  export OMP_NUM_THREADS=1
-  
+  #!/bin/sh
+  #PBS -q xs2
+  #PBS -l select=1:ncpus=8:ompthreads=1:mpiprocs=8
+  #PBS -N Si
+
   # execuable of the STATE code
   ln -fs ${HOME}/STATE/src/state/src/STATE .
   
