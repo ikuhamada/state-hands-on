@@ -66,6 +66,6 @@ This is the home to the STATE hands-on tutorial. A documentation of the STATE co
 +                      +       +------------------------------------------------------+
 |                      |       | :any:`Advanced course <CMD/CMD40/Advanced/index>`    |
 +----------------------+-------+------------------------------------------------------+
-| :any:`In-house hands-on tutorial <In-house/index>`                                  |
-+-------------------------------------------------------------------------------------+
+| June-July, 2025      | :any:`In-house hands-on tutorial <In-house/index>`           |
++----------------------+-------+------------------------------------------------------+
 

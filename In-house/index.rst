@@ -114,6 +114,11 @@ Let us review the job script by ``cat run.sh``
   #PBS -q xs2
   #PBS -l select=1:ncpus=8:ompthreads=1:mpiprocs=8
   #PBS -N CO
+
+  module load intel/2020.2.254
+  module load intelmpi/2020.2.254
+  
+  cd $PBS_O_WORKDIR
   
   # Set the execuable of the STATE code
   
@@ -262,6 +267,11 @@ Let us review the job script ``run.sh``::
   #PBS -q xs2
   #PBS -l select=1:ncpus=8:ompthreads=1:mpiprocs=8
   #PBS -N Si
+
+  module load intel/2020.2.254
+  module load intelmpi/2020.2.254
+  
+  cd $PBS_O_WORKDIR
 
   # execuable of the STATE code
   ln -fs ${HOME}/STATE/src/state/src/STATE .
