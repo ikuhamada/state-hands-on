@@ -478,7 +478,7 @@ In the ``Al`` directory, we use the following input file for the SCF calculation
   NTYP    1
   NATM    1
   TYPE    2
-  NSPG    221
+  NSPG    225
   GMAX    4.00
   GMAXP   8.00
   KPOINT_MESH   12  12  12
@@ -776,6 +776,138 @@ After the calculation, we plot DOS and may obtain the following:
    :align: center
 
 How about the comparison with the all-electron (e.g., FLAPW and KKR) results?
+
+Copper
+======
+
+How can we determine the most stable crystal structure? For complex materials, it is a really challenging question, especially unknown ones, and numerous efforts have been devoted to develop methods to find structures of molecules and materials.
+For a simple solids, we can determine the stable crystal structure by calculating the total energies of the solids having different (known) crystal structures and compare them. Note however that there can be an infite number of possible structures including amorphous.
+Below, crystalline copper is chosen as a simple example ``Cu``, and we are going to perfom the total enery calculations of simple cubic ``Cu/sc``, face-centered cubic ``Cu/fcc``, hexagonal closed pack ``Cu/hcp`` structures and compare the energies and determine the most stable one among the structures considered here.
+
+Simple cubic structure
+----------------------
+
+In the ``Cu/sc`` directory we can find a template for the SCF calculation as below:
+
+* ``nfinp_scf``
+
+.. code::
+
+  #
+  # Cu in the simple cubic structure
+  #
+  NTYP   1
+  NATM   1
+  TYPE   0
+  NSPG   221
+  GMAX    6.00
+  GMAXP  20.00
+  KPOINT_MESH   12  12  12
+  MIX_ALPHA 0.3
+  SMEARING  MP
+  WIDTH  0.0020
+  EDELTA 1.0D-10
+  NEG    16
+  CELL    4.5920  4.5920  4.5920  90.00  90.00  90.00
+  &ATOMIC_SPECIES
+   Cu  63.5460  pot.Cu_pbe1
+  &END
+  &ATOMIC_COORDINATES CRYSTAL
+        0.000000000000      0.000000000000      0.000000000000    1    1    1
+  &END
+
+Let us perform SCF calculations by changing the lattice constant from 2.20 to 2.90 Angstroms with 0.05 Angstrom interval. The calculated total energy as a funciton of the lattice constant may look as below:
+
+.. image:: ../img/etot_cu_sc_calc.png
+   :scale: 40%
+   :align: center
+
+Face-centered cubic structure
+-----------------------------
+
+In the ``Cu/fcc`` directory we can find a template for the SCF calculation as below:
+
+* ``nfinp_scf``
+
+.. code::
+
+  #
+  # Cu in the face-centered cubic structure
+  #
+  NTYP   1
+  NATM   1
+  TYPE   2
+  NSPG   225
+  GMAX    6.00
+  GMAXP  20.00
+  KPOINT_MESH  12  12  12
+  MIX_ALPHA 0.3
+  SMEARING  MP
+  WIDTH  0.0020
+  EDELTA 1.0D-10
+  NEG    16
+  CELL    6.8408  6.8408  6.8408  90.00  90.00  90.00
+  &ATOMIC_SPECIES
+   Cu  63.5460  pot.Cu_pbe1
+  &END
+  &ATOMIC_COORDINATES CRYSTAL
+        0.000000000000      0.000000000000      0.000000000000    1    1    1
+  &END
+
+For the fcc Cu, we perform SCF calculations by changing the lattice constant from 3.40 to 3.80 Angstroms with 0.05 Angstrom interval. The calculated total energy as a funciton of the lattice constant may look as below:
+
+.. image:: ../img/etot_cu_fcc_calc.png
+   :scale: 40%
+   :align: center
+
+hexagonal closed-pack structure
+-------------------------------
+
+In the ``Cu/hcp`` directory we can find a template for the SCF calculation as below:
+
+* ``nfinp_scf``
+
+.. code::
+
+  #
+  # Cu in the hexagonal closed pack structure
+  #
+  NTYP   1
+  NATM   2
+  TYPE   0
+  NSPG   194
+  GMAX    6.00
+  GMAXP  20.00
+  KPOINT_MESH  12  12  08
+  MIX_ALPHA 0.3
+  SMEARING  MP
+  WIDTH  0.0020
+  EDELTA 1.0D-10
+  NEG    16
+  CELL    4.9133  4.9133 8.0234  90.00  90.00 120.00
+  &ATOMIC_SPECIES
+   Cu  63.5460  pot.Cu_pbe1
+  &END
+  &ATOMIC_COORDINATES CRYSTAL
+        0.333333333333      0.666666666667      0.250000000000    1    1    1
+        0.666666666667      0.333333333333      0.750000000000    1    1    1
+  &END
+
+In the example above, the lattice constant a is set 2.60 Angstrom and c/a, 1.633.
+
+In the primitive hcp structure, there are two atoms in the unit cell, whose fractional coordinates are :math:`\tau_1 = (1/3, 2/3, 1/4)` and :math:`\tau_2 = (2/3, 1/3, 3/4)`.
+
+To determine the optimized lattice parameters a and c (or c/a), we calculate the total energy as a function of a, by varying c/a (or c). Here, for c/a=1.60, 1.633, 1.660, 1.70, and 1.74, we perfrom total energy by changing the lattice constat from 2.40 to 2.70 Angstrom with the interval of 0.05. By plotting the total energies for each c/a, we may obtain the results as below:
+
+.. image:: ../img/etot_cu_hcp_calc.png
+   :scale: 40%
+   :align: center
+
+Question
+--------
+- How to compare the total energies with different crystal structures? Note the different numbers of the atoms in the systems considered.
+- What is the most stable crystal structures for copper?
+
 
 
 Ethylene
