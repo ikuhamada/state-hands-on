@@ -14,6 +14,7 @@ This is the home to the STATE hands-on tutorial. A documentation of the STATE co
 
    about
    CMD/CMD47/Beginner/index.rst
+   CMD/CMD47/SC/index.rst
    CMD/CMD46/Beginner/index.rst
    CMD/CMD45/Beginner/index.rst
    CMD/CMD45/SC/index.rst
@@ -35,6 +36,8 @@ This is the home to the STATE hands-on tutorial. A documentation of the STATE co
 | Date                 | Event | Course                                               |
 +======================+=======+======================================================+
 | September 1-5, 2025  | CMD47 | :any:`Beginner course <CMD/CMD47/Beginner/index>`    |
++                      +       +------------------------------------------------------+
+|                      |       | :any:`Supercomputer course <CMD/CMD47/SC/index>`     |
 +----------------------+-------+------------------------------------------------------+
 | February 17-21, 2024 | CMD46 | :any:`Beginner course <CMD/CMD46/Beginner/index>`    |
 +----------------------+-------+------------------------------------------------------+
