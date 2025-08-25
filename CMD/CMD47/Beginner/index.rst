@@ -383,27 +383,39 @@ The resulting DOS looks as follows:
 Cell optimization
 -----------------
 In the current version of STATE, the stress tensor is not (yet!) calculated, and the cell optimization should be performed manually.
-Let us change the lattice constant from 10.20 Bohr to 10.50 Bohr by 0.05 Bohr by changing the input variable ``CELL``
+Here, by the cell optimization, we mean determining the cell parameter (lattice constant) that gives the minimum total energy.
 
-.. code:: bash
+Now, let us change the lattice constant from 10.20 Bohr to 10.50 Bohr by 0.05 Bohr.
+For each lattice constant we prepare an input file as ``nfinp_scf_10.20``, ``nfinp_scf_10.25``, ... ``nfinp_scf_10.50``, and for each input file change the variable ``CELL`` as
+
+``nfinp_scf_10.20``::
 
   CELL   10.20  10.20  10.20  90.00  90.00  90.00
 
-.. code:: bash
+``nfinp_scf_10.25``::
 
   CELL   10.25  10.25  10.25  90.00  90.00  90.00
 
 ...
 
-.. code:: bash
+
+``nfinp_scf_10.50``::
 
   CELL   10.50  10.50  10.50  90.00  90.00  90.00
 
-For each lattice constant we prepare an input file as ``nfinp_scf_10.20``, ``nfinp_scf_10.25``, ... ``nfinp_scf_10.50`` and submit jobs by changing the input and output files in the job script.
+For each lattice constant we edit the job script and submit the job.
+For instance, for the calculation of the lattice parameter of 10.20 Bohr, edit the input and output file in the job script as::
+
+  INPUT_FILE=nfinp_scf_10.20
+  OUTPUT_FILE=nfout_scf_10.20
+
+and submit the job as
 
 .. code:: bash
 
   $ qsub run.sh
+
+and repeat.
 
 To collect the volume-energy (E-V) data, here we use ``state2ev.sh`` script in ``state-5.6.6/util/`` as
 
@@ -411,7 +423,25 @@ To collect the volume-energy (E-V) data, here we use ``state2ev.sh`` script in `
 
   $ state2ev.sh nfout_scf_* > etot.dat
 
-This can be visualized by using, for example, ``gnuplot`` as
+Let us check the contents of ``etot.dat`` by typing
+
+.. code:: bash
+
+  $ cat etot.dat
+
+The results look like::
+
+  #volume(Bohr^3) ftot(Ha)
+  0.265302E+03 -7.87286120
+  0.269223E+03 -7.87332156
+  0.273182E+03 -7.87355833
+  0.277179E+03 -7.87364725
+  0.281216E+03 -7.87354557
+  0.285292E+03 -7.87325835
+  0.289406E+03 -7.87284975
+
+
+``etot.dat`` can be visualized by using, for example, ``gnuplot`` as
 
 .. code:: bash
 
