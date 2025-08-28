@@ -13,7 +13,14 @@ Welcome to the STATE hands-on tutorial at CMD47. In the following, how to run th
 Getting started
 ===============
 
-First of all, we log in to the supercomputer system (ohtaka) at ISSP, The University of Tokyo.
+First of all, make sure you have obtained your user ID and password from the organizer.
+
+.. note::
+	For the CMD workshop *only*, we are allowed to use password. Usually, we have to register the public key via `the web page <https://mdcl.issp.u-tokyo.ac.jp/scc/en/guide/t555fi>`_ of the ISSP Supercomputer Center.
+
+Then, let us log in to the supercomputer system (ohtaka) at ISSP, The University of Tokyo.
+
+See also `my github page <https://github.com/ikuhamada/state-setup/tree/cmd_sc>`_.
 
 .. code:: bash
 
