@@ -124,6 +124,7 @@ Go to ``CO`` in the examples directory, and  have a look at by ``cat nfinp_scf``
   EDELTA    1.D-10
   NEG       8
   CELL      6.00  4.00  4.00  90.00  90.00  90.00
+  CPUMAX    1700
   &ATOMIC_SPECIES
    C  12.011  pot.C_pbe1
    O  15.999  pot.O_pbe1
@@ -145,6 +146,7 @@ Let us review the job script by ``cat run.sh``
   #SBATCH -p  cmdinteractive
   #SBATCH -N  1
   #SBATCH -n  4
+  #SBATCH -t  00:30:00
   
   # Load the modules
   
@@ -277,8 +279,9 @@ Let us have a look at it by typing in the ``Si`` directory:
   KPOINT_MESH    8   8   8
   WIDTH     0.0002
   EDELTA    0.5000D-09
-  NEG    8
+  NEG       8
   CELL   10.30  10.30  10.30  90.00  90.00  90.00
+  CPUMAX    1700
   &ATOMIC_SPECIES
    Si 28.0900 pot.Si_pbe1
   &END
@@ -296,6 +299,7 @@ Let us review the job script ``run.sh``::
   #SBATCH -p  cmdinteractive
   #SBATCH -N  1
   #SBATCH -n  4
+  #SBATCH -t  00:30:00
   
   # Load the modules
   

@@ -111,6 +111,15 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
 
 .. code:: bash
 
+  CPUMAX    1700
+
+``CPUMAX`` is used to set the maximum time (in second) to terminate the execution of ``STATE`` (safely) before the maximum computational hours defined by the system, and restart the calculation.
+
+.. note::
+``CPUMAX`` should be set smaller than the maximum time defined in the job script and the computational system.
+
+.. code:: bash
+
   &ATOMIC_SPECIES
    Si 28.0900 pot.Si_pbe1
   &END

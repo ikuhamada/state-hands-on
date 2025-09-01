@@ -20,6 +20,7 @@ By using a carbon monoxide (CO) in a small rectangular box as an example, short 
   EDELTA    1.D-10
   NEG       8
   CELL      6.00  4.00  4.00  90.00  90.00  90.00
+  CPUMAX    1700
   &ATOMIC_SPECIES
    C  12.011  pot.C_pbe1
    O  15.999  pot.O_pbe1
@@ -96,6 +97,15 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
   CELL      6.00  4.00  4.00  90.00  90.00  90.00
 
 ``CELL`` defines the cell parameter :math:`a`, :math:`b`, :math:`c`, :math:`\alpha`, :math:`\beta`, and :math:`\gamma`, where :math:`a`, :math:`b`, :math:`c`, are the lengths (in Bohr) of the 1st, 2nd, and 3rd lattice vectors, respectively, and :math:`\alpha`, :math:`\beta`, and :math:`\gamma`, are the angles (in degree) between 2nd and 3rd, 3rd and 1st, and 1st and 2nd lattice vectors, respectively.
+
+.. code:: bash
+
+  CPUMAX    1700
+
+``CPUMAX`` is used to set the maximum time (in second) to terminate the execution of ``STATE`` (safely) before the maximum computational hours defined by the system, and restart the calculation.
+
+.. note::
+	``CPUMAX`` should be set smaller than the maximum time defined in the job script and the computational system. In this example, the maximum time set in the job script is 30 minutes and therefore ``CPUMAX`` should be slightly smaller than 30 * 60 = 1800.
 
 .. code:: bash
 

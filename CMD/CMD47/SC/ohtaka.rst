@@ -14,6 +14,7 @@ Example of the job script
   #SBATCH -p  cmdinteractive
   #SBATCH -N  1
   #SBATCH -n  4
+  #SBATCH -t  00:30:00
   
   # Load the modules
   
@@ -56,6 +57,7 @@ Header
   #SBATCH -p  cmdinteractive
   #SBATCH -N  1
   #SBATCH -n  4
+  #SBATCH -t  00:30:00
 
 * 1st line:
 
@@ -108,6 +110,11 @@ In this example, we use 4 cores with 1 node.
 .. note::
 	Each node of ohtaka has 128 cores, and (number of MPI processes) times (number of OpenMPI processes) should be within the resource you request.
 
+* 6th line:
+
+.. code:: bash
+
+  #SBATCH -t  00:30:00
 
 Body
 ----
