@@ -124,6 +124,7 @@ Body
   # Set this variable to use with OpenAPI and IntelMPI
   
   export FI_PROVIDER=psm3
+  export MKL_NUM_THREADS=1
  
   # Set the STATE executable
    
@@ -165,8 +166,9 @@ Please do not change them, unless you build STATE with different modules.
   # Set this variable to use with OpenAPI and IntelMPI
   
   export FI_PROVIDER=psm3
+  export MKL_NUM_THREADS=1
 
-This variable is necessary to run a program properly with the above modules. Please also do not change it.
+These variables are necessary to run a program properly with the above modules. Please also do not change it.
 
 * STATE executable
 
