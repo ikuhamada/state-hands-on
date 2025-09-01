@@ -58,50 +58,8 @@ Now you can find the directories by typing ``ls`` as::
 
   examples/  gncpp/  src/
 
-and we are ready to build the STATE executable. Let us moved to the source directory
-
-.. code:: bash
-
-  $ cd src/state/src
-
-and execute the following
-
-.. code:: bash
-
-  $ ln -s ../arch/make.arch.intel_ohtaka_scalapack make.arch
-
-and build the STATE code by executing ``make``
-
-.. code:: bash
-
-  $ make > make.log 2>&1&
-
-``make.log`` is a log file for the build and the file name can be anything. It takes few minutes to complete the build.
-If successfull, we get the following message
-
-.. code:: bash
-
-  [1]+  Done                    make > make.log 2>&1
-
-Then let us also build the utility programs. Go to the utility directory
-
-.. code:: bash
-
-  $ cd ../util
-
-and ``make``
-
-.. code:: bash
-
-  $ make > make.log 2>&1&
-
-Just make sure the utility programs are in your command search path, please type the following
-
-.. code:: bash
-
-  $ source ~/.bashrc
-
-If the builds are done successfully, we are now ready to run the STATE program!
+and we are ready to run the STATE executable (pre-compiled version of the STATE executable and utilities are downloaded from our server).
+Please confirm ``STATE`` exists in the ``src/state/src`` directory.
 
 Let us move to ``${HOME}/STATE/examples`` to run the examples.
 
