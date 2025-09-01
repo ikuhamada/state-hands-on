@@ -253,8 +253,8 @@ Available resources on ohtaka
 +-------------------+-----------------+-----------------+------------+
 
 .. warning::
-	Max. number of nodes allocated for the CMD workshop is 16.
+	Max. number of nodes allocated for the CMD workshop is 36, depending on the queue/partion, but the max. number of nodes which can be used at the same time is limited to 16 to all the CMD perticipants.
 	If you used too may cores, other users in the course have to wait until their reqired number nodes are available.
 	Please choose the number of cores with care.
-	In the begininng, it is better to play within one node (128 cores) to get accustomed to use many cores/nodes.
+	In the begininng, it is better to play within one node (128 cores) using ``cmd1cpu`` partion or to use many nodes but with limited computational time, to get accustomed to use many cores/nodes.
 
