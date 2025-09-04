@@ -942,7 +942,7 @@ Question
 
 - Calculate the C-H and C-C bond lengths and H-C-H and H-C-C angles.
 
-- Validate the optmized geometry by comparing experimental and calculated ones in the literature or on the web. See for instance, `Computational Chemistry Comparison and Benchmark DataBase` <https://cccbdb.nist.gov/>`_ or `NIST Chemistry WebBook <https://webbook.nist.gov/chemistry/>`_.
+- Validate the optmized geometry by comparing experimental and calculated ones in the literature or on the web. See for instance, `Computational Chemistry Comparison and Benchmark DataBase <https://cccbdb.nist.gov/>`_ or `NIST Chemistry WebBook <https://webbook.nist.gov/chemistry/>`_.
 
 Vibrational analyis
 -------------------
