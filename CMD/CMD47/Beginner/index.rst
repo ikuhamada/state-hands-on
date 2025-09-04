@@ -4,7 +4,8 @@
 Beginner course @ CMD47
 =======================
 
-Welcome to the STATE hands-on tutorial at CMD47. In the following, how to run the STATE examples for this hands on is desdribed.  A documentation of the STATE code can be found `here <https://state-doc.readthedocs.io>`_.
+Welcome to the STATE hands-on tutorial at CMD47. In the following, how to run the STATE examples for this hands on is desdribed.
+A documentation of the STATE code can be found `here <https://state-doc.readthedocs.io>`_.
 
 Getting started
 ===============
@@ -941,8 +942,7 @@ Question
 
 - Calculate the C-H and C-C bond lengths and H-C-H and H-C-C angles.
 
-- Validate the optmized geometry by comparing experimental and calculated ones in the literature or on the web.
-See for instance, `NIST Chemistry WebBook <https://webbook.nist.gov/chemistry/>`_.
+- Validate the optmized geometry by comparing experimental and calculated ones in the literature or on the web. See for instance, `NIST Chemistry WebBook <https://webbook.nist.gov/chemistry/>`_.
 
 Vibrational analyis
 -------------------
