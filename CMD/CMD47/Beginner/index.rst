@@ -278,9 +278,12 @@ Let us review the job script ``run.sh``::
   
   # pseudopotential data
   ln -fs ../gncpp/pot.Si_pbe1
+
+  INPUT_FILE=nfinp_scf
+  OUTPUT_FILE=nfout_scf
    
   # launch STATE
-  mpirun -np $NSLOTS ./STATE < nfinp_scf > nfout_scf
+  mpirun -np $NSLOTS ./STATE < ${INPUT_FILE} > ${OUTPUT_FILE}
 
 By using the above input file and job script, we submit the job as:
 
