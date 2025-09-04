@@ -939,7 +939,10 @@ and you may obtain ``C2H4.xyz``.
 Question
 --------
 
-- Validate the optmized geometry by comparing experimental and calculated ones in the literature
+- Calculate the C-H and C-C bond lengths and H-C-H and H-C-C angles.
+
+- Validate the optmized geometry by comparing experimental and calculated ones in the literature or on the web.
+See for instance, `NIST Chemistry WebBook <https://webbook.nist.gov/chemistry/>`_.
 
 Vibrational analyis
 -------------------
