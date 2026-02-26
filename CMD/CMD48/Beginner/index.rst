@@ -459,6 +459,13 @@ The results look like::
 
   gnuplot> plot 'etot.dat' pt 7
 
+Or you can do it by typing
+
+.. code:: bas
+
+  $ gnuplot -p -e "plot 'etot.dat' pt 7"
+
+
 The output looks like
 
 .. image:: ../../../img/etot_si_raw.png
