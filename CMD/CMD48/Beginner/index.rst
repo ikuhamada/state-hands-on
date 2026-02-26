@@ -483,9 +483,9 @@ The equilibrium volume (v0), energy (e0), bulk modulus (b0), and derivative of b
 The resulting equilibrium lattice constant is 10.3455 Bohr (5.475 Angstrom).
 Compare with experimental and theoretical values in the literature.
 
-Question
---------
-- How to derive the equilibrium lattice constant from the volume?
+Questions
+---------
+- How to derive the equilibrium lattice constant of the conventional cell from the volume of the primitive unit cell?
 - How good/bad is the equilibrium lattice constant obtained here?
 
 Further exercise
@@ -944,8 +944,8 @@ To visualize the optimized geometry, let us use a utility ``geom2nfinp`` as
 
 and you may obtain ``C2H4.xyz``.
 
-Question
---------
+Questions
+---------
 
 - Calculate the C-H and C-C bond lengths and H-C-H and H-C-C angles.
 
