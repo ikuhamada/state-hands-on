@@ -1055,7 +1055,7 @@ First line
 
 * Second column : factor for the displacement
 
-* Thrid column : dummy
+* Third column : dummy
 
 Second line
 
