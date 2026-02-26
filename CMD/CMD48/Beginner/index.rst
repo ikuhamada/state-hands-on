@@ -461,7 +461,7 @@ The results look like::
 
 Or you can do it by typing
 
-.. code:: bas
+.. code:: bash
 
   $ gnuplot -p -e "plot 'etot.dat' pt 7"
 
@@ -950,6 +950,8 @@ To visualize the optimized geometry, let us use a utility ``geom2nfinp`` as
   $ geom2nfinp -xyz -i nfinp_gdiis -g GEOMETRY -o C2H4.xyz
 
 and you may obtain ``C2H4.xyz``.
+
+We can visualize the structure by using softwares such as XCrySden, VESTA, VMD. Alternatively, we can use online viewers such as `Online Molecular Viewer <https://liwt31.github.io/2022/01/02/online_viewer/>`_ or `OpenMX Viewer <https://www.openmx-square.org/viewer/>`_.
 
 Questions
 ---------
