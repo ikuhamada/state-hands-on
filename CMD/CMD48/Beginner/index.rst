@@ -383,6 +383,10 @@ The resulting DOS looks as follows:
 .. note::
 	The origin of energy is set to the Fermi level, which is automatically determined even in a gapped system (even in a molecule). For an insulator/semiconductor, it is suggested to set the origin of energy to the valence band maximum. Otherwise the Fermi level should be set at the middle of the band gap.
 
+Question
+--------
+- Compare DOS obtained using the pseudopotential method (present) with that using the all-electron one (e.g., FLAPW and/or KKR).
+
 
 Cell optimization
 -----------------
