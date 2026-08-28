@@ -24,19 +24,19 @@ See also `my github page <https://github.com/ikuhamada/state-setup/tree/cmd_sc>`
 
 .. code:: bash
 
-  $ ssh -Y [user_name]@ohtaka.issp.u-tokyo.ac.jp
+  ssh -Y [user_name]@ohtaka.issp.u-tokyo.ac.jp
 
 or
 
 .. code:: bash
 
-  $ ssh -Y -l [user_name] ohtaka.issp.u-tokyo.ac.jp
+  ssh -Y -l [user_name] ohtaka.issp.u-tokyo.ac.jp
 
 where [user_name] is your user name assigned.
 
 .. code:: bash
 
-  $ git clone -b cmd_sc https://github.com/ikuhamada/state-setup.git STATE
+  git clone -b cmd_sc https://github.com/ikuhamada/state-setup.git STATE
 
 See also `my github page <https://github.com/ikuhamada/state-setup/tree/cmd_sc>`_.
 
@@ -44,13 +44,13 @@ Then, go to the STATE directory
 
 .. code:: bash
 
-  $ cd STATE
+  cd STATE
 
 and execute the following
 
 .. code:: bash
 
-  $ ./state-setup.sh
+  ./state-setup.sh
 
 and we are almost there!
 
@@ -142,7 +142,7 @@ and submit!
 
 .. code:: bash
 
-  $ sbatch run.sh
+  sbatch run.sh
 
 The output ``nfout_scf`` starts with the header
 
@@ -220,7 +220,7 @@ Let us have a look at it by typing in the ``Si`` directory:
 
 .. code:: bash
 
- $ cat nfinp_scf
+ cat nfinp_scf
 
 ``nfinp_scf``::
 
@@ -294,13 +294,13 @@ By using the above input file and job script, we submit the job as:
 
 .. code:: bash
 
-  $ sbatch run.sh
+  sbatch run.sh
 
 Status of your job can be monitored by using ``squeue`` as:
 
 .. code:: bash
 
-  $ squeue
+  squeue
 
 After the calculation is done, check the output file ``nfout_scf`` and make sure that lattice vectors and atomic positions are correct.
 The primitive lattice vectors are given as::
@@ -368,15 +368,15 @@ In addition, total density of states (DOS) is printed to ``dos.data``, which can
 
 .. code:: bash
 
-  $ gnuplot
+  gnuplot
 
 .. code :: bash
 
-  $ gnuplot> set xrange [-12.5:7.5]
-  $ gnuplot> set yrange [0:2.0]
-  $ gnuplot> set xlabel 'Energy (eV)'
-  $ gnuplot> set ylabel 'DOS (arb. unit)'
-  $ gnuplot> plot 'dos.data' w l
+  gnuplot> set xrange [-12.5:7.5]
+  gnuplot> set yrange [0:2.0]
+  gnuplot> set xlabel 'Energy (eV)'
+  gnuplot> set ylabel 'DOS (arb. unit)'
+  gnuplot> plot 'dos.data' w l
 
 The resulting DOS looks as follows:
 
@@ -408,23 +408,23 @@ For each lattice constant we prepare an input file as ``nfinp_scf_10.20``, ``nfi
 
 .. code:: bash
 
-  $ sbatch run.sh
+  sbatch run.sh
 
 To collect the volume-energy (E-V) data, here we use ``state2ev.sh`` script in ``state-5.6.6/util/`` as
 
 .. code:: bash
 
-  $ state2ev.sh nfout_scf_* > etot.dat
+  state2ev.sh nfout_scf_* > etot.dat
 
 This can be visualized by using, for example, ``gnuplot`` as
 
 .. code:: bash
 
-  $ gnuplot
+  gnuplot
 
 .. code:: bash
 
-  $ gnuplot> plot 'etot.dat' pt 7
+  gnuplot> plot 'etot.dat' pt 7
 
 The output looks like
 
@@ -436,7 +436,7 @@ Furthermore, by using the ``eosfit`` in the ``util`` directory as
 
 .. code:: bash
 
-  $ eosfit etot.dat
+  eosfit etot.dat
 
 one can see the following
 
@@ -505,7 +505,7 @@ Submit the STATE job as
 
 .. code:: bash
 
-  $ sbatch run.sh
+  sbatch run.sh
 
 Total energy of the metallic system is sensitive to the smearing function and width, and the number of k-points, and they should be determined very carefully before the production run.
 Detail is discussed in the tutorial (to be completed).
@@ -573,7 +573,7 @@ for each atomic species.
 
 Submitting a job::
 
-  $ sbatch run.sh
+  sbatch run.sh
 
 
 As above, ``dos.data`` is automatically generated. In the case of spin polarized system, the first column of ``dos.data`` contains energy, second and third columns contain DOS for spin up and down respectively.
@@ -581,15 +581,15 @@ This can be plotted by using gnuplot as follows:
 
 .. code:: bash
 
-  $ gnuplot
+  gnuplot
 
 .. code:: bash
 
-  $ gnuplot> set xrange [-10:5]
-  $ gnuplot> set yrange [0:4]
-  $ gnuplot> set xlabel 'E-E_F (eV)'
-  $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):($3) w l title 'Spin-down'
+  gnuplot> set xrange [-10:5]
+  gnuplot> set yrange [0:4]
+  gnuplot> set xlabel 'E-E_F (eV)'
+  gnuplot> set ylabel 'DOS (state/eV)'
+  gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):($3) w l title 'Spin-down'
 
 
 The spin-polarized DOS looks like:
@@ -602,12 +602,12 @@ Or by using the following:
 
 .. code:: bash
 
-  $ gnuplot> set xrange [-10:5]
-  $ gnuplot> set yrange [-4:4]
-  $ gnuplot> set yzeroaxis
-  $ gnuplot> set xlabel 'E-E_F (eV)'
-  $ gnuplot> set ylabel 'DOS (state/eV)'
-  $ gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):(-$3) w l title 'Spin-down'
+  gnuplot> set xrange [-10:5]
+  gnuplot> set yrange [-4:4]
+  gnuplot> set yzeroaxis
+  gnuplot> set xlabel 'E-E_F (eV)'
+  gnuplot> set ylabel 'DOS (state/eV)'
+  gnuplot> plot 'dos.data' using ($1):($2) w l title 'Spin-up','dos.data' using ($1):(-$3) w l title 'Spin-down'
 
 One may obtain the spin-polarized DOS like:
 
@@ -670,13 +670,13 @@ Geometry optimization
 
 .. code:: bash
 
-  $ sbatch run_gdiis.sh
+  sbatch run_gdiis.sh
 
 The convergence of the forces can be monitored by:
 
 .. code:: bash
 
-  $ grep -A1 f_max nfout_gdiis
+  grep -A1 f_max nfout_gdiis
 
 The result looks like::
 
@@ -732,7 +732,7 @@ This can be done by using a utility ``geom2nfinp`` as
 
 .. code:: bash
 
-  $ geom2nfinp -i nfinp_gdiis -g GEOMETRY -o nfinp_relaxed
+  geom2nfinp -i nfinp_gdiis -g GEOMETRY -o nfinp_relaxed
 
 where input parameters from ``nfinp_gdiis`` and atomic positions from ``GEOMETRY`` are used to create a new input file ``nfinp_relaxed``. 
 ``geom2nfinp`` can also be used to generate an XYZ/XSF file from the optimized geometry.
@@ -837,7 +837,7 @@ Submit the job
 
 .. code:: bash
 
-  $ sbatch run_vib.sh
+  sbatch run_vib.sh
 
 and we get ``nfforce.data`` in addition to the standard output files, which contains displaced atomic positions and forces acting on atoms, which can be used to calculate the vibrational frequencies.
 
@@ -845,7 +845,7 @@ Then to calculate the dynamical matrix and vibrational frequencies, we use the `
 
 .. code:: bash
 
-  $ gif -f nfforce.data
+  gif -f nfforce.data
 
 and we can see the vibrational frequncies printed in the standard output as:
 
@@ -885,14 +885,14 @@ To use ``gif2xsf`` we prepare an XSF, which can be created by using the ``chkinp
 
 .. code:: bash
 
-  $ chkinpf --atom nfinp_vib
+  chkinpf --atom nfinp_vib
 
 By this we are able to create an XSF file for molecule (not periodic boundary condition).
 Then type
 
 .. code:: bash
 
-  $ gif2xsf -s --xsf C2H4 --gif vib.data --prefix vib
+  gif2xsf -s --xsf C2H4 --gif vib.data --prefix vib
 
 Use C2H4.xsf for the XSF file, vib.data for VIB file, and vib for prefix, and we get separate vib_*.xsf, which can be visualized by using XCrySden or VESTA.
 
@@ -951,7 +951,7 @@ Submit the job
 
 .. code:: bash
 
-  $ sbatch run_ftmd.sh
+  sbatch run_ftmd.sh
 
 In this example, we perform 200 MD steps (default value).
 When the calculation is terminated, we get ``TRAJECTORY`` containing the trajectory and ``ENERGIES`` containing information on temperature and energies.
@@ -960,13 +960,13 @@ To visualize the trajectroy, first we need ``GEOMETRY.xyz``, which can be genera
 
 .. code:: bash
 
-  $ chkinpf --xyz nfinp_nhc -o GEOMETRY.xyz
+  chkinpf --xyz nfinp_nhc -o GEOMETRY.xyz
 
 Then use ``traj2xyz.pl`` in the current example directry as
 
 .. code:: bash
 
-  $ ./traj2xyz.pl > traj.xyz
+  ./traj2xyz.pl > traj.xyz
 
 to save the trajectory in the XYZ format.
 
@@ -1032,7 +1032,7 @@ Subit the STATE job by executing:
 
 .. code:: bash
 
-  $ sbatch run.sh
+  sbatch run.sh
 
 and we get ``GEOMETRY`` and ``gdiis.data`` in addition to the standard output files.
 
@@ -1103,7 +1103,7 @@ Use ``state2chgpro.sh`` utility to extract planar average of charge, effective (
 
 .. code:: bash
 
-  $ state2chgpro.sh nfout_gdiis_pbc > chgpro.dat_pbc
+  state2chgpro.sh nfout_gdiis_pbc > chgpro.dat_pbc
 
 ``chgpro.dat_pbc`` may look like following:
 
@@ -1134,7 +1134,7 @@ We also extract the planar average of chargen and potential from the ESM calcula
 
 .. code:: bash
 
-  $ state2chgpro.sh nfout_gdiis_esm > chgpro.dat_esm
+  state2chgpro.sh nfout_gdiis_esm > chgpro.dat_esm
 
 and we get the following:
 
@@ -1204,7 +1204,7 @@ For each lattice constant we prepare an input file as ``nfinp_scf_a4.54``, ``nfi
 
 .. code:: bash
 
-  $ sbatch run.sh
+  sbatch run.sh
 
 Alternatively one can use ``run_opt.sh`` to automatically run a set of calculations.
  
@@ -1254,7 +1254,7 @@ First perform the SCF calculation by using the following input file (``nfinp_scf
 
 .. code:: bash
 
-  $ sbatch run.sh
+  sbatch run.sh
 
 After converging the charge/potential, we perform the non-SCF band structure calculation by using the following input (``nfinp_band``)::
 
@@ -1336,7 +1336,7 @@ Run the band structure calculation by replacing the input file with ``nfinp_band
 
 .. code:: bash
 
-  $ sbatch run.sh
+  sbatch run.sh
 
 we obtain the file ``energy.data``, which containg the Kohn-Sham eigenvalues, along with the k-points.
 However, we cannot plot the band structure directory from ``energy.data`` and should be processed properly.
@@ -1345,7 +1345,7 @@ Type
 
 .. code:: bash
 
-  $ energy2band
+  energy2band
 
 and you will be asked the numbers of bands considered, the number of bands to be plotted (can be the same as the previous one), the number of k-points considered (in this example, the eigenvalues at 61 k-points are calculated), and the energy origin (here, the Fermi level obtained in the SCF calculation will be used).
 If the numbers are given properly, we obtain the file ``band.data``, which can be used to plot the band directory by using gnuplot or grace.
@@ -1804,7 +1804,7 @@ Preparation can be done using a utility ``prepneb``. In the ``NEB`` directory, e
 
 .. code:: bash
 
-  $ prepneb -ndiv 6 -ini ../Initial/nfinp_ini  -fin ../Final/nfinp_fin
+  prepneb -ndiv 6 -ini ../Initial/nfinp_ini  -fin ../Final/nfinp_fin
 
 (type ``prepneb -h`` for more options)
 
@@ -1863,7 +1863,7 @@ Finally, the NEB calculation can be executed, in the presence of ``replica.cmd``
 
 .. code:: bash
   
-  $ sbatch run_neb.sh
+  sbatch run_neb.sh
 
 The standard output is not mandatroy, and actual output is written to ``nfout.data`` in each directory.
 
@@ -1872,7 +1872,7 @@ Instead, we mononitor the convergence of the force along and perpendicular to th
 
 .. code:: bash
 
-  $ for d in 0[2-6]; do grep -A1 ForceIn $d/nfout.data | tail -2; done
+  for d in 0[2-6]; do grep -A1 ForceIn $d/nfout.data | tail -2; done
 
 and we obtain::
 
