@@ -878,7 +878,7 @@ In this example, GDIIS algorithm is employed as::
 
   GEO_OPT GDIIS
 
-The force threshold for the geometry optimization is set by the keyword ``FMAX`` as::
+The force threshold for the geometry optimization is set by the keyword ``FMAX`` in hartree/bohr as::
 
   FMAX    0.5000D-03
 

@@ -77,13 +77,13 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
 
   WIDTH     0.0010
 
-``WIDTH`` is the width of the broadening to approximate the delta function in Hartree. For systems with a gap, very small positive ``WIDTH`` is used. In such a case, it does not have a physical meaning and is used to determine the Fermi level.
+``WIDTH`` is the width of the broadening to approximate the delta function in hartree. For systems with a gap, very small positive ``WIDTH`` is used. In such a case, it does not have a physical meaning and is used to determine the Fermi level.
 
 .. code:: bash
 
   EDELTA    0.1000D-09
 
-``EDELTA`` is the convergence threshold for the total energy in Hartree per atom for the SCF calculation.
+``EDELTA`` is the convergence threshold for the total energy in hartree per atom for the SCF calculation.
 
 .. code:: bash
 
@@ -95,7 +95,7 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
 
   CELL      6.00  4.00  4.00  90.00  90.00  90.00
 
-``CELL`` defines the cell parameter :math:`a`, :math:`b`, :math:`c`, :math:`\alpha`, :math:`\beta`, and :math:`\gamma`, where :math:`a`, :math:`b`, :math:`c`, are the lengths (in Bohr) of the 1st, 2nd, and 3rd lattice vectors, respectively, and :math:`\alpha`, :math:`\beta`, and :math:`\gamma`, are the angles (in degree) between 2nd and 3rd, 3rd and 1st, and 1st and 2nd lattice vectors, respectively.
+``CELL`` defines the cell parameter :math:`a`, :math:`b`, :math:`c`, :math:`\alpha`, :math:`\beta`, and :math:`\gamma`, where :math:`a`, :math:`b`, :math:`c`, are the lengths (in bohr) of the 1st, 2nd, and 3rd lattice vectors, respectively, and :math:`\alpha`, :math:`\beta`, and :math:`\gamma`, are the angles (in degree) between 2nd and 3rd, 3rd and 1st, and 1st and 2nd lattice vectors, respectively.
 See below for pictorial description.
 
 .. image:: ../../../img/co_cell.png
@@ -150,11 +150,11 @@ The block ``&ATOMIC_COORDINATES ... &END`` is used to define the atomic coordina
         &END
         
 
- ``CARTESIAN``/``CART``: If set, atomic coordinates are given in the cartesian coordinate
+ ``CARTESIAN``/``CART``: If set, atomic coordinates are given in the cartesian coordinate (in bohr)
 
  ``CRYSTAL``/``CRYS``: If set, atomic coordinates are given in the crystal coordinate
 
- ``CPS``: Atomic coordinate in the cartesian (``NCORD=1`` or ``COORD=CARTESIAN``) or in the crystal (``NCORD=0`` or ``COORD=CRYSTAL``) coordinate
+ ``CPS``: Atomic coordinate in the cartesian (``NCORD=1`` or ``COORD=CARTESIAN``) or in the crystal (``NCORD=0`` or ``COORD=CRYSTAL``) coordinate. The unit is bohr.
 
  ``IWEI``: number of equivalent atoms under the inversion symmetry (currently inversion symmetry is disabled and always ``IWEI`` is always set to 1).
 
