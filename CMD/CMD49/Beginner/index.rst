@@ -1143,7 +1143,7 @@ Finite temperature molecular dynamics
 -------------------------------------
 In this example, we are going to perform a finite temperature molecular dynamics (MD) simulation.
 
-* Input file ``nfinp_nhc``
+* Input file ``nfinp_velsc``
 
 .. code:: bash
 
@@ -1159,14 +1159,11 @@ In this example, we are going to perform a finite temperature molecular dynamics
   GMAXP  15.00
   MIX_ALPHA 0.8
   WIDTH   0.0010
-  EDELTA  0.1000D-08
+  EDELTA  0.10D-09
   NEG     10
-  TEMP_CONTROL NHC
+  TEMP_CONTROL VELSC
   TEMPW   300.0D0
-  WNOSEP  500.0D0
-  NHC     8
-  NOSY    15
-  NDRT    1
+  TOLP     50.0D0
   CELL   12.00  12.00  12.00  90.00  90.00  90.00
   &ATOMIC_SPECIES
    C  12.0107  pot.C_pbe3
@@ -1181,14 +1178,15 @@ In this example, we are going to perform a finite temperature molecular dynamics
        -2.348328846800     -1.753458668500      0.000000000000    1 1001    2
   &END
 
-To perform a molecular dynamics simulation, we set ``ION_DYN`` ``FTMD`` and how to control the temperature is given as::
+To perform a molecular dynamics simulation, we set ``ION_DYN`` ``FTMD`` and how to control the temperature is given as:
 
-  TEMP_CONTROL NHC
+.. code:: bash
+
+  TEMP_CONTROL VELSC
   TEMPW   300.0D0
-  WNOSEP  500.0D0
-  NHC     8
-  NOSY    15
-  NDRT    1
+  TOLP     50.0D0
+
+In short, we use the velocity rescaling by ``VELSC`` with the temperature of 300 K (``TEMPW 300.0D0``) with the tolerance of 50 K (``TOLP``).
 
 See the `manual <https://state-doc.readthedocs.io/en/latest/manual.html>`_ for the detailed descriptions on these parameters.
 
@@ -1196,7 +1194,7 @@ Submit the job
 
 .. code:: bash
 
-  qsub run_nhc.sh
+  qsub run_velsc.sh
 
 In this example, we perform 200 MD steps (default value).
 When the calculation is terminated, we get ``TRAJECTORY`` containing the trajectory and ``ENERGIES`` containing information on temperature and energies.
@@ -1205,7 +1203,7 @@ To visualize the trajectroy, first we need ``GEOMETRY.xyz``, which can be genera
 
 .. code:: bash
 
-  chkinpf --xyz nfinp_nhc -o GEOMETRY.xyz
+  chkinpf --xyz nfinp_velsc -o GEOMETRY.xyz
 
 Then use ``traj2xyz.pl`` in the current example directry as
 
