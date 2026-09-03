@@ -694,6 +694,10 @@ Question
 --------
 - Compare DOS obtained using the pseudopotential method (present) with that using the all-electron one (e.g., FLAPW and KKR).
 
+Further exercise
+----------------
+- As done in the Silicon case, calculate the equilibrium lattice constant of Ni in the fcc structure by (i) performing SCF calculations with different lattice constants (say, 6.60, 6.62, 6.64, ..., 6.70), (ii) fitting the total energy to the Murnaghan equation of states to obtain the equilibirum volume, (iii) deriving the equilibrium lattice constant.
+- Compare the equilibrium lattice constant obtained using the all electron method and discuss the differences obtained using different methods.
 
 Iron
 ====
