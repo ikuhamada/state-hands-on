@@ -1186,7 +1186,7 @@ To perform a molecular dynamics simulation, we set ``ION_DYN`` ``FTMD`` and how 
   TEMPW   300.0D0
   TOLP     50.0D0
 
-In short, we use the velocity rescaling by ``VELSC`` with the temperature of 300 K (``TEMPW 300.0D0``) with the tolerance of 50 K (``TOLP``).
+In short, we use the velocity rescaling by ``VELSC`` with the temperature of 300 K (``TEMPW 300.0D0``) with the tolerance of 50 K (``TOLP 50.0D0``).
 
 See the `manual <https://state-doc.readthedocs.io/en/latest/manual.html>`_ for the detailed descriptions on these parameters.
 
