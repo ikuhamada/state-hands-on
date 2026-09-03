@@ -58,7 +58,7 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
 
   TYPE      2
 
-``TYPE`` defines the Bravis lattice 2 is for the face centered cubic. Default is 0 (Simple lattice).
+``TYPE`` defines the Bravis lattice 2 is for the face centered cubic. See the `document <https://state-doc.readthedocs.io>`_ for details. Default is 0 (Simple lattice).
 
 .. code:: bash
 

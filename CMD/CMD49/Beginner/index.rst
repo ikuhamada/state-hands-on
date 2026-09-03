@@ -225,7 +225,7 @@ SCF
 In this example, we are going to learn how to run the SCF calculation. Below is a flowchart for the SCF calculation:
 
 .. image:: ../../../img/scf.png
-   :scale: 20%
+   :scale: 30%
    :align: center
 
 
@@ -396,18 +396,23 @@ Here, by the cell optimization, we mean determining the cell parameter (lattice 
 Now, let us change the lattice constant from 10.20 Bohr to 10.50 Bohr by 0.05 Bohr.
 For each lattice constant we prepare an input file as ``nfinp_scf_10.20``, ``nfinp_scf_10.25``, ... ``nfinp_scf_10.50``, and for each input file change the variable ``CELL`` as
 
-``nfinp_scf_10.20``::
+``nfinp_scf_10.20``
+
+.. code :: bash
 
   CELL   10.20  10.20  10.20  90.00  90.00  90.00
 
-``nfinp_scf_10.25``::
+``nfinp_scf_10.25``
+
+.. code :: bash
 
   CELL   10.25  10.25  10.25  90.00  90.00  90.00
 
 ...
 
+``nfinp_scf_10.50``
 
-``nfinp_scf_10.50``::
+.. code:: bash
 
   CELL   10.50  10.50  10.50  90.00  90.00  90.00
 
@@ -457,9 +462,9 @@ The results look like::
 
 .. code:: bash
 
-  gnuplot> plot 'etot.dat' pt 7
+  plot 'etot.dat' pt 7
 
-Or you can do it by typing
+Or you can do it by typing directory on your command line as
 
 .. code:: bash
 
