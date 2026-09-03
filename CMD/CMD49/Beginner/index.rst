@@ -68,7 +68,7 @@ and
 
 you can find the directories as::
 
-  examples/  gncpp/  src/
+  examples/  gncpp/  README.md  src/  state-setup.sh
 
 Let us move to ``${HOME}/STATE/examples`` to run the examples.
 
