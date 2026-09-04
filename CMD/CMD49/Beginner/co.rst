@@ -90,6 +90,11 @@ Each input variables and blocks (&[BLOCK_NAME] ... &) are explained below:
   NEG       8
 
 ``NEG`` is the number of states/bands considered in the calculation. STATE does not allow an occupied-state only calculation, and therefore ``NEG`` should be large enough to include occupied states and some unoccupied states.
+See below for the schematic energy diagram of CO. 
+
+.. image:: ../../../img/co_eg.png
+   :scale: 15%
+   :align: center
 
 .. code:: bash
 
@@ -165,3 +170,4 @@ The block ``&ATOMIC_COORDINATES ... &END`` is used to define the atomic coordina
  * 0: Fix the ion
 
  Default coordinate system is ``CARTESIAN``. This is chosen when ``&ATOMIC_COORDINATES`` without argument is used.
+
